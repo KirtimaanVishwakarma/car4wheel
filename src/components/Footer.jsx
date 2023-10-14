@@ -1,6 +1,8 @@
 import React from "react";
 import FooteLogo from "../assets/footer-logo.svg";
 import CallIcon from "../assets/hotline-icon.svg";
+import Map from './map.jsx'
+import {BsFacebook,BsInstagram,BsYoutube} from "react-icons/bs"
 
 const Footer = () => {
   const footerLists = [
@@ -35,17 +37,20 @@ const Footer = () => {
       { name: "Mahindra", link: "/about-us" },
       { name: "Tata", link: "/about-us" },
     ],
+    
+
   ];
   const socailLinks = [
-    { img: "facebook", link: "" },
-    { img: "insta", link: "" },
-    { img: "linkdin", link: "" },
+    { icon: <BsFacebook className="h-6 w-6 text-[#3b5998]"/>, link: "" },
+    { icon: <BsInstagram className="h-6 w-6 instagram rounded-lg"/>, link: "" },
+    { icon: <BsYoutube className="h-6 w-6 text-[#CD201F] "/>, link: "" },
   ];
   return (
-    <div className="bg-gray-700 px-6">
-      <div className="flex justify-between">
+    <div className=" p-14 pb-0  bg-gray-700 px-6">
+      <div className="flex gap-20 mb-12">
+      <div className="flex w-full justify-between px-8">
         {footerLists.map((item, i) => (
-          <div key={i}>
+          <div key={i} className="flex flex-col gap-4">
             {item.map((ele, index) => {
               if (ele?.header) {
                 return (
@@ -56,14 +61,18 @@ const Footer = () => {
               }
               return (
                 <div className="text-gray-300" key={index}>
-                  {ele.name}
+                     {ele.name}
                 </div>
               );
             })}
           </div>
         ))}
       </div>
-
+      <div>
+        <Map />
+      </div>
+      </div>
+          
       <div className="flex justify-between py-4 border-b border-gray-100">
         <img src={FooteLogo} alt="FooteLogo" />
         <div className="flex items-center gap-2">
@@ -86,11 +95,14 @@ const Footer = () => {
         </div>
         <header>Advertise With Us</header>
       </div>
-      <div>
-        <header>Copyright 2023 DRIVCO | Design By Egens Lab</header>
-        <div>
+      <div className="py-4 flex justify-between">
+        <header className="flex flex-row gap-2 items-center">Copyright 2023 <div className="text- text-blue-300">DRIVCO</div> <div className="flex gap-2 items-center">| Design By  <div className="text-blue-300">Egens Lab</div> </div> </header>
+        <div className="flex gap-4 items-center">
           <header>Follow Drivco:</header>
-          <div></div>
+          
+          {socailLinks.map((ele,i)=>(
+            <div key={i} className="overflow-hidden">{ele?.icon}</div>
+          ))}
         </div>
       </div>
     </div>
