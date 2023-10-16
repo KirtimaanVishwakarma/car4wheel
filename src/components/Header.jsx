@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "../assets/logo.svg";
 import CallIcon from "../assets/hotline-icon.svg";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 const Header = () => {
   const navbarMenu = [
     { name: "Home", link: "/" },
@@ -52,16 +52,16 @@ const Header = () => {
           <span>SING UP</span>
         </div>
       </div>
-      <div className="flex justify-between p-3 px-6 border-b border-gray-200">
+      <div className="flex justify-between px-3 py-2 border-b border-gray-200">
         <ul className="flex items-center gap-4">
           {navbarMenu.map((ele, i) => (
             <li
               key={i}
-              className={`h-full relative flex items-center px-4 ${
-                pathname === ele?.link && "custom-underline"
+              className={`h-full relative flex items-center font-semibold tracking-wider text-sm px-4 ${
+                pathname === ele?.link && "custom-underline text-blue-500"
               }`}
             >
-              <a href={ele.link ? ele.link : "#"}>{ele.name}</a>
+              <Link to={ele.link ? ele.link : "#"}>{ele.name}</Link>
             </li>
           ))}
         </ul>
