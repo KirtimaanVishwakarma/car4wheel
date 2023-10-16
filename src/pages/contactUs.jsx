@@ -4,8 +4,7 @@ import { BsShop } from 'react-icons/bs';
 import { FiPhoneCall } from 'react-icons/fi';
 import ContactForm from '../components/contactForm';
 import Map from '../components/map';
-import BreadCrumb from '../components/breadcrumb';
-import { HomeOutlined, UserOutlined } from '@ant-design/icons';
+import HeroSection from '../components/heroSection';
 
 const ContactUs = () => {
   const contacts = [
@@ -31,54 +30,9 @@ const ContactUs = () => {
     },
   ];
 
-  const items = [
-    {
-      href: '',
-      title: (
-        <>
-          <HomeOutlined />
-          <span>Home</span>
-        </>
-      ),
-    },
-    {
-      href: '',
-      title: (
-        <>
-          <UserOutlined />
-          <span>Contact Us</span>
-        </>
-      ),
-    },
-  ];
   return (
     <>
-      <div className="px-14  bg-white bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
-        <div className="py-14">
-          <BreadCrumb items={items} />
-
-          <div className="flex items-center h-full justify-between ">
-            <div className="w-full flex flex-col gap-2">
-              <header className="text-xl text-blue-500 tracking-[4px]">
-                Contact Us
-              </header>
-              <header className=" text-6xl font-bold tracking-[2px]">
-                For Any Information
-              </header>
-              <div className="flex">
-                <header>rating</header>
-                <header>rating 2</header>
-              </div>
-            </div>
-            <div className="w-full">
-              <img
-                src="https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-banner-img.png"
-                alt=""
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+      <HeroSection/>
       {/* contact form  */}
       <div className="m-14 flex gap-4">
         <div className="flex flex-col justify-between gap-6 w-2/5 ">
