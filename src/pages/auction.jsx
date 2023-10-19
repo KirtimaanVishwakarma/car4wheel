@@ -1,83 +1,332 @@
-import React from 'react'
+import React from 'react';
 import HeroSection from '../components/heroSection';
-import { Image } from 'antd';
+import { Button, Image } from 'antd';
 import { TbEngine } from 'react-icons/tb';
 import { BiGasPump } from 'react-icons/bi';
 import { BsSpeedometer2 } from 'react-icons/bs';
-import {MdOutlineCarCrash} from 'react-icons/md'
-import {PiCheckCircleThin} from 'react-icons/pi'
-
+import { MdOutlineCarCrash } from 'react-icons/md';
+import { PiCheckCircleThin, PiEngineLight, PiGasCan } from 'react-icons/pi';
+import ContactForm from '../components/contactForm';
+import { GiGearStickPattern } from 'react-icons/gi';
 
 const Auction = () => {
-  const carInfo=[{
-    img: <BsSpeedometer2 className='w-8 h-8  mb-4 font-thin text-gray-400'/>,
-    header: '25,100 miles',
-    subheader: 'Mileage'
-  },
-  {
-    img: <TbEngine className='w-8 h-8 mb-4 font-thin text-gray-400'/>,
-    header: '22,231 cc',
-    subheader: 'Engine'
-  },
-  {
-    img: <BiGasPump className='w-8 h-8 mb-4 font-thin text-gray-400' />,
-    header: 'Petrol + Gas',
-    subheader: 'Fuel Type'
-  },
-  {
-    img: <MdOutlineCarCrash className='w-8 h-8 mb-4 font-thin text-gray-400'/>,
-    header: 'Used Car',
-    subheader: 'Condition'
-  }]
+  // car info data
 
-  const keyFeatures=[
-    'Premium Wheel','Moonroof','Premium Audio', 'Navigation', 'Front Heated Seats','Premium Seat Material','Bluetooth','Premium Seat Material','Front Heated Seats','Remote Engine Start','Blind Spot System','Multi-Zone Climate'
-  ]
+  const carInfo = [
+    {
+      img: <BsSpeedometer2 className="w-8 h-8  mb-4 font-thin text-gray-400" />,
+      header: '25,100 miles',
+      subheader: 'Mileage',
+    },
+    {
+      img: <TbEngine className="w-8 h-8 mb-4 font-thin text-gray-400" />,
+      header: '22,231 cc',
+      subheader: 'Engine',
+    },
+    {
+      img: <BiGasPump className="w-8 h-8 mb-4 font-thin text-gray-400" />,
+      header: 'Petrol + Gas',
+      subheader: 'Fuel Type',
+    },
+    {
+      img: (
+        <MdOutlineCarCrash className="w-8 h-8 mb-4 font-thin text-gray-400" />
+      ),
+      header: 'Used Car',
+      subheader: 'Condition',
+    },
+  ];
+
+  // key Features array
+
+  const keyFeatures = [
+    'Premium Wheel',
+    'Moonroof',
+    'Premium Audio',
+    'Navigation',
+    'Front Heated Seats',
+    'Premium Seat Material',
+    'Bluetooth',
+    'Premium Seat Material',
+    'Front Heated Seats',
+    'Remote Engine Start',
+    'Blind Spot System',
+    'Multi-Zone Climate',
+  ];
+  // overviews
+
+  const overviews = [
+    {
+      specificationLabel: 'Make',
+      specification: 'lamborghini',
+    },
+    {
+      specificationLabel: 'Model',
+      specification: 'lamborghini ave11',
+    },
+    {
+      specificationLabel: 'Year/Month',
+      specification: '2023',
+    },
+    {
+      specificationLabel: 'Mileage',
+      specification: '25,100 miles',
+    },
+    {
+      specificationLabel: 'Door’s',
+      specification: '4 doors',
+    },
+    {
+      specificationLabel: 'Engine',
+      specification: '22,231 cc',
+    },
+    {
+      specificationLabel: 'Color’s',
+      specification: 'sky blue',
+    },
+    {
+      specificationLabel: 'Repaire',
+      specification: 'no',
+    },
+    {
+      specificationLabel: 'Steering',
+      specification: 'right',
+    },
+    {
+      specificationLabel: 'Steating Catacity',
+      specification: '08',
+    },
+    {
+      specificationLabel: 'Fuel Type',
+      specification: 'petrol+gas',
+    },
+    {
+      specificationLabel: 'No. of Cylinder',
+      specification: '03',
+    },
+    {
+      specificationLabel: 'Transmission',
+      specification: 'Manual',
+    },
+    {
+      specificationLabel: 'Wheel’s',
+      specification: '04',
+    },
+  ];
+  const enginePerformance = [
+    {
+      specificationLabel: 'Engine Size',
+      specification: '3.5 L',
+    },
+    {
+      specificationLabel: 'Valve Gear',
+      specification: 'DOHC with VVT',
+    },
+    {
+      specificationLabel: 'Induction',
+      specification: 'Aspirated',
+    },
+    {
+      specificationLabel: 'Fuel Injection',
+      specification: 'Direct Injection',
+    },
+    {
+      specificationLabel: 'Cylinders',
+      specification: '6 cyl',
+    },
+    {
+      specificationLabel: 'Power',
+      specification: '140 kw 7000 rpm',
+    },
+    {
+      specificationLabel: 'Engine Config',
+      specification: 'In-line',
+    },
+    {
+      specificationLabel: 'Engine Location',
+      specification: 'front',
+    },
+  ];
   return (
     <>
-    <HeroSection/>
-    <div className='flex container gap-2 px-0 py-14 m-auto'>
-      <section className='flex flex-[65%] flex-col'>
-      <Image
+      <HeroSection />
+      <div className="flex container gap-6 px-0 py-14 m-auto">
+        <section className="flex flex-[65%] flex-col">
+          <Image
             src="https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/color-car-05.png"
             className="rounded-lg  borded-solid border-2"
             alt="cars"
-          /> 
-          <div className='mt-14'>
-          <div className='font-bold  text-xl'>Car Info</div>
-          <div className='justify-between flex mt-5'>
-            {carInfo.map((ele,i)=>(
-              <div key={i} className='flex items-center gap-2'>
-               {ele.img}
-               <header>
-                <h1>{ele.header}</h1>
-                <h2 className='font-normal text-gray-500 text-sm'>{ele.subheader}</h2>
-               </header>
+          />
+
+          {/* car info */}
+          <div className="mt-10">
+            <div className="font-bold  text-xl">Car Info</div>
+            <div className="justify-between flex mt-5">
+              {carInfo.map((ele, i) => (
+                <div key={i} className="flex items-center gap-2">
+                  {ele.img}
+                  <header>
+                    <h1>{ele.header}</h1>
+                    <h2 className="font-normal text-gray-500 text-sm">
+                      {ele.subheader}
+                    </h2>
+                  </header>
+                </div>
+              ))}
+            </div>
+
+            {/* key features */}
+            <div className="mt-14 ">
+              <h1 className="font-bold  text-xl">Key Features</h1>
+              <div className="grid rounded-lg p-4 border grid-cols-4 mx-0 gap-4 mt-4">
+                {keyFeatures.map((item, i) => (
+                  <div key={i} className="flex items-center gap-2">
+                    <PiCheckCircleThin />
+                    <span className="text-gray-500 text-sm font-semibold">
+                      {item}
+                    </span>
+                  </div>
+                ))}
               </div>
-            ))} 
+            </div>
           </div>
 
-<div className='mt-14'>
-         <h1 className='font-bold  text-xl'>Key Features</h1>
-          <div className='grid grid-cols-4 mx-0 gap-4 mt-5'>
-            {keyFeatures.map((item,i)=>(
-              <div key={i} className='flex items-center gap-2'>
-              <PiCheckCircleThin /><span className='text-gray-500 text-sm font-semibold'>{item}</span>
+          {/* overviews */}
+          <div className="mt-14">
+            <h1 className="font-bold  text-xl">Overviews</h1>
+            <div className="grid rounded-lg p-4 border grid-cols-2 gap-x-14 mt-4">
+              {overviews.map((item, i) => (
+                <div key={i} className="">
+                  <ul className="flex justify-between h-10 items-center">
+                    <li>{item.specificationLabel}</li>
+                    <span className='text-gray-500'>{item.specification}</span>
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Engine Performance */}
+          <div className="mt-14">
+            <h1 className="font-bold  text-xl">Engine Performance</h1>
+            <div className="grid rounded-lg p-4 border grid-cols-2 gap-x-14 mt-4">
+              {enginePerformance.map((item, i) => (
+                <div key={i} className="">
+                  <ul className="flex justify-between h-10 items-center">
+                    <li>{item.specificationLabel}</li>
+                    <span>{item.specification}</span>
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+{/* form section */}
+        <section className="flex flex-col flex-[35%] gap-11">
+          <div className="w-full outline-gray-200 outline-dashed rounded-lg h-fit">
+            <div className="p-6 flex flex-col gap-4">
+              <div className="m-auto mb-4">
+                <div className="grid grid-flow-col w-full gap-5 text-center auto-cols-max">
+                  <div className="flex flex-col bg-pink-50 p-2 rounded-lg">
+                    <span className="countdown font-mono text-4xl">
+                      <span style={{ '--value': 15 }}></span>
+                    </span>
+                    days
+                  </div>
+                  <div className="flex flex-col bg-pink-50 p-2 rounded-lg">
+                    <span className="countdown font-mono text-4xl">
+                      <span style={{ '--value': 10 }}></span>
+                    </span>
+                    hours
+                  </div>
+                  <div className="flex flex-col bg-pink-50 p-2 rounded-lg">
+                    <span className="countdown font-mono text-4xl">
+                      <span style={{ '--value': 24 }}></span>
+                    </span>
+                    min
+                  </div>
+                  <div className="flex flex-col bg-pink-50 p-2 rounded-lg">
+                    <span className="countdown font-mono text-4xl">
+                      <span style={{ '--value': 20 }}></span>
+                    </span>
+                    sec
+                  </div>
+                </div>
               </div>
-            ))}
-          </div>
-          </div>
+              <div className="flex justify-between">
+                <span>Starting Bids</span>
+                <span>$23,323.000</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Total Bids</span>
+                <span>10 Person</span>
+              </div>
+              <Button className="h-11">Place Bids</Button>
+            </div>
           </div>
 
-          
-      </section>
+          {/* form  */}
+          <div className="w-full rounded-lg bg-white bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
+            <div className="p-4 flex flex-col gap-3">
+              <header className="font-semibold text-2xl">
+                To More inquiry
+              </header>
+              <header className="text-sm">
+                If choose this car to contact easily with us.
+              </header>
+              <div>
+                <ContactForm />
+              </div>
+            </div>
+          </div>
 
-      <section className='flex flex-[35%]'>
-        card section
-      </section>
-    </div>
+          {/* recent added car  */}
+          <div className="w-full">
+            <div className="flex flex-col gap-3">
+              <header className="font-semibold text-2xl">
+                Recent Used Car
+              </header>
+              <div className='flex flex-col gap-3'>
+                {[1,2,3,4].map(ele=>
+                <div key={ele} className="card w-full bg-base-100 outline-dashed shadow-xl flex gap-2 flex-row">
+                  <figure className="p-2 flex-1 h-40 relative">
+                    <img
+                      className="h-full object-cover rounded-lg"
+                      src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+                      alt="Shoes"
+                    />
+
+                    <div className="absolute bottom-2 left-1 w-2/3 text-center bg-white bg-clip">
+                      <span className="m-auto">$7,656.00</span>
+                    </div>
+                  </figure>
+                  <div className="flex-1 py-2 flex flex-col justify-around">
+                    <header className="font-bold pb-1 w-fit border-b">
+                      Mercedes-Benz-2023
+                    </header>
+                    <div className="flex gap-2">
+                      <GiGearStickPattern className="h-full" />
+                      <header>Automactic</header>
+                    </div>
+                    <div className="flex gap-2">
+                      <PiGasCan className="h-full" />
+                      <header>Automactic</header>
+                    </div>
+                    <div className="flex gap-2">
+                      <PiEngineLight className="h-full" />
+                      <header>Automactic</header>
+                    </div>
+                  </div>
+                </div>
+                )}
+                <Button className="h-11 mt-4">View All Cars</Button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </>
-  )
-}
+  );
+};
 
 export default Auction;

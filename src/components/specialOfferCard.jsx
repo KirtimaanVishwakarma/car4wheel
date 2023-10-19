@@ -21,7 +21,7 @@ export const SpecialOfferCard = () => {
     },
   ];
   return (
-    <div className="card card-compact bg-base-100 shadow-xl rounded-lg w-full  bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
+    <div className="card card-compact bg-base-100 shadow-xl rounded-lg w-full bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
       <div className="m-4">
         <figure className="mb-4">
           <Image
