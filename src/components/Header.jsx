@@ -2,6 +2,8 @@ import React from "react";
 import Logo from "../assets/logo.svg";
 import CallIcon from "../assets/hotline-icon.svg";
 import { Link, useLocation } from "react-router-dom";
+import { AiOutlineTags } from "react-icons/ai";
+import {LiaUserCircle} from "react-icons/lia"
 const Header = () => {
   const navbarMenu = [
     { name: "Home", link: "/" },
@@ -47,9 +49,14 @@ const Header = () => {
           </button>
         </div>
         <div className="flex items-center gap-4 text-sm font-medium">
-          <span>SELL WITH US</span>
-          <span>SAVE</span>
-          <span>SING UP</span>
+          <div className="flex gap-1 items-center">
+
+        <AiOutlineTags className="h-6 w-6"/><span>SELL WITH US</span>
+          </div>
+          <div className="flex gap-1 items-center">
+         <LiaUserCircle className="h-6 w-6"/> <span>SING UP</span>
+          </div>
+          
         </div>
       </div>
       <div className="flex justify-between px-3 py-2 border-b border-gray-200">
