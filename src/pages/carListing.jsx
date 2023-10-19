@@ -74,15 +74,15 @@ const CarListing = () => {
 
                 <div className="max-w-md mx-auto mt-8 p-4 bg-gray-100 rounded-lg  bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
                   <h2 className="text-xl font-semibold mb-4">Year</h2>
-                  <div className="flex gap-6">
+                  <div className="flex justify-center gap-6">
                     <form>
-                      <div className="mb-4">
+                      <div className="mb-4 ">
                         <select
-                          className="w-full px-3 py-2 rounded-md"
+                          className="w-36 px-4 py-2 rounded-md"
                           value={selectedOption}
                           onChange={handleOptionChange}
                         >
-                          <option value="" disabled>
+                          <option value="" disabled className='text-start'>
                             Min Year
                           </option>
                           {options.map((option, index) => (
@@ -97,7 +97,7 @@ const CarListing = () => {
                     <form>
                       <div className="mb-4">
                         <select
-                          className="w-full px-3 py-2 rounded-md"
+                          className="w-36 px-4 py-2 rounded-md"
                           value={selectedOption}
                           onChange={handleOptionChange}
                         >
