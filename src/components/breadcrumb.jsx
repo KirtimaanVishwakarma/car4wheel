@@ -4,7 +4,7 @@ import { Breadcrumb } from 'antd';
 
 const BreadCrumb = ({items}) => (
   <Breadcrumb
-    items={items}
+    items={items} className='mb-10'
   />
 );
 

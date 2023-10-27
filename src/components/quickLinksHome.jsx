@@ -7,7 +7,7 @@ import {CiDiscount1} from 'react-icons/ci'
 
 export const QuickLinksHome = () => {
     const quickLinks=[{
-        link: 'Browse Used a Car',
+        link: 'Browse Used Car',
         icon: <AiOutlineFileSearch className='text-3xl'/>,
         href: "/car-lists"
     },
@@ -27,10 +27,10 @@ export const QuickLinksHome = () => {
         href: "/contact-us"
     }]
   return (
-    <div className='flex items-center justify-between p-8 bg-black text-white '>
+    <div className='lg:flex items-center justify-between py-4 lg:p-8 bg-black text-white '>
         {quickLinks.map((item,i)=>(
             
-        <Link key={i} to={item.href} className='flex gap-4 w-full justify-center border-r last:border-none last:justify-end first:justify-start p-3' >{item.icon}<span>{item.link}</span></Link>
+        <Link key={i} data-tip={item.link} to={item.href} className='flex items-center gap-4 w-full lg:justify-center lg:border-r lg:last:border-none lg:last:justify-end lg:first:justify-start  p-3 text-base font-semibold '>{item.icon}<span>{item.link}</span></Link>
         
         ))}
     </div>

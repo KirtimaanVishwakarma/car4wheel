@@ -14,7 +14,7 @@ const Auction = () => {
 
   const carInfo = [
     {
-      img: <BsSpeedometer2 className="w-8 h-8  mb-4 font-thin text-gray-400" />,
+      img: <BsSpeedometer2 className="w-8 h-8  lg:mb-4 font-thin text-gray-400" />,
       header: '25,100 miles',
       subheader: 'Mileage',
     },
@@ -150,20 +150,20 @@ const Auction = () => {
   return (
     <>
       <HeroSection />
-      <div className="flex container gap-6 px-0 py-14 m-auto">
+      <div className="flex lg:flex-row flex-col container gap-6 px-2 lg:px-0 py-14 lg:m-auto">
         <section className="flex flex-[65%] flex-col">
           <Image
             src="https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/color-car-05.png"
-            className="rounded-lg  borded-solid border-2"
+            className="rounded-lg shadow-lg p-3"
             alt="cars"
           />
 
           {/* car info */}
           <div className="mt-10">
             <div className="font-bold  text-xl">Car Info</div>
-            <div className="justify-between flex mt-5">
+            <div className="grid grid-cols-2 gap-y-3 items-center justify-between lg:flex mt-5">
               {carInfo.map((ele, i) => (
-                <div key={i} className="flex items-center gap-2">
+                <div key={i} className="flex justify-center items-center gap-2">
                   {ele.img}
                   <header>
                     <h1>{ele.header}</h1>
@@ -178,7 +178,7 @@ const Auction = () => {
             {/* key features */}
             <div className="mt-14 ">
               <h1 className="font-bold  text-xl">Key Features</h1>
-              <div className="grid rounded-lg p-4 border grid-cols-4 mx-0 gap-4 mt-4">
+              <div className="grid rounded-lg p-4 border  lg:grid-cols-4 mx-0 gap-4 mt-4">
                 {keyFeatures.map((item, i) => (
                   <div key={i} className="flex items-center gap-2">
                     <PiCheckCircleThin />
@@ -194,7 +194,7 @@ const Auction = () => {
           {/* overviews */}
           <div className="mt-14">
             <h1 className="font-bold  text-xl">Overviews</h1>
-            <div className="grid rounded-lg p-4 border grid-cols-2 gap-x-14 mt-4">
+            <div className="lg:grid rounded-lg p-4 border lg:grid-cols-2 gap-x-14 mt-4">
               {overviews.map((item, i) => (
                 <div key={i} className="">
                   <ul className="flex justify-between h-10 items-center">
@@ -209,7 +209,7 @@ const Auction = () => {
           {/* Engine Performance */}
           <div className="mt-14">
             <h1 className="font-bold  text-xl">Engine Performance</h1>
-            <div className="grid rounded-lg p-4 border grid-cols-2 gap-x-14 mt-4">
+            <div className="lg:grid rounded-lg p-4 border lg:grid-cols-2 gap-x-14 mt-4">
               {enginePerformance.map((item, i) => (
                 <div key={i} className="">
                   <ul className="flex justify-between h-10 items-center">

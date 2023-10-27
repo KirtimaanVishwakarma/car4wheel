@@ -16,9 +16,9 @@ const CarListing = () => {
   return (
     <>
       <HeroSection />
-      <div className="flex container px-0 py-14 m-auto">
-        <div className="flex  container gap-4 justify-between mt-6 px-3">
-          <section className="w-1/3">
+      <div className="flex w-full container px-0 py-4 pb-10 lg:py-14 m-auto">
+        <div className="flex flex-col-reverse lg:flex-row container gap-4 justify-between mt-6 px-3">
+          <section className="lg:w-1/3 w-auto">
             <div className="flex gap-8 mb-2 container max-w-md mx-auto mt-8 py-2">
               <h1>Search filter</h1>
               <div className="flex items-center">
@@ -82,7 +82,7 @@ const CarListing = () => {
                           value={selectedOption}
                           onChange={handleOptionChange}
                         >
-                          <option value="" disabled className='text-start'>
+                          <option value="" disabled className=''>
                             Min Year
                           </option>
                           {options.map((option, index) => (
@@ -209,9 +209,9 @@ const CarListing = () => {
             </div>
           </section>
 
-          <section className="w-2/3">
+          <section className="lg:w-2/3 w-auto">
           <h1 className='mt-4 mb-10'>Showing 2,928 car available in stock</h1>
-          <div className='grid grid-cols-2 gap-5'>
+          <div className='grid lg:grid-cols-2 grid-row gap-5'>
             <CarListingCard />
             <CarListingCard />
             <CarListingCard />

@@ -5,19 +5,19 @@ import CarListingCard from '../components/carListingCard';
 import MostSearchedCarousel from '../components/mostSearchedCarousel';
 import { AboutCard } from '../components/aboutCard';
 import ReviewSlider from '../components/Reviewslider';
-import CustomerReviewCard from '../components/CustomerReviewCard';
-import { BiFullscreen } from 'react-icons/bi';
+import WhyChoose from '../components/whyChoose';
+
 const Home = () => {
   return (
     <>
-      <div className="m-auto bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
-        <div className="m-auto container flex  px-1 py-28">
-          <section className=" container ms-2 me-80">
-            <span className="flex items-center gap-2 font-bold text-2xl">
+      <div className="bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
+        <div className="ps-4 pe-8 m-auto container flex py-14 lg:px-1 lg:py-28">
+          <section className="lg:container lg:ms-2 lg:me-80">
+            <span className="flex items-center  lg:gap-2 font-semibold lg:font-bold text-lg lg:text-2xl">
               Fastest Speed
               <GiSpeedometer />
             </span>
-            <h1 className="flex flex-col font-bold text-7xl leading-tight">
+            <h1 className="flex flex-col font-bold text-5xl lg:text-7xl leading-tight">
               To Best Way Buy
               <span>Dream Car.</span>
             </h1>
@@ -28,21 +28,23 @@ const Home = () => {
           </section>
           {/* banner-content */}
 
-          <section className="flex-[50%] container border-solid border-2 rounded-lg bg-white">
+          <section className="hidden lg:flex-[50%] container border-solid border-2 rounded-lg bg-white">
             <header>Find Your Dream Car</header>
           </section>
         </div>
       </div>
 
       <QuickLinksHome className="border-r " />
-      <div className="my-14">
-        <div className="container m-auto">
-          <div className="flex justify-between px-2 pb-2">
+      <div className="my-14 px-2">
+        <div className="my-8 lg:container lg:m-auto">
+          <div className="lg:flex lg:justify-between px-2 pb-2">
             <div className="text-lg  tracking-widest font-medium">
               <span className="text-green-10">Available Brand Cars</span>
-              <h1 className="text-4xl font-bold">Most Searched Used Cars</h1>
+              <h1 className="lg:text-4xl text-3xl font-bold mt:5 mb-6">
+                Most Searched Used Cars
+              </h1>
             </div>
-            <ul className="flex items-end text-normal font-normal border-b-2 border-black">
+            <ul className="flex justify-between lg:items-end text-normal font-normal border-b-2 border-black">
               <li className="bg-black text-white px-2">Sedan</li>
               <li className="hover:bg-black hover:text-white px-2">SUV</li>
               <li className="hover:bg-black hover:text-white px-2">Hach</li>
@@ -52,75 +54,42 @@ const Home = () => {
           </div>
         </div>
 
-        <div className=" flex px-10 py-14">
+        <div className="lg:m-auto lg:flex-row lg:px-10 lg:py-14">
           <MostSearchedCarousel />
         </div>
       </div>
       {/* recently-lanched */}
-      <div className="my-14">
-        <div className="container m-auto">
-          <div className="flex justify-between px-2 pb-2">
+      <div className="my-14 px-2">
+        <div className="lg:container lg:m-auto">
+          <div className="lg:flex lg:justify-between px-2 pb-2">
             <div className="text-lg  tracking-widest font-medium">
-              <span className="text-green-10">Recent Launched</span>
-              <h1 className="text-4xl font-bold">Recent Launched Car</h1>
+              <span className="text-green-10">Available Brand Cars</span>
+              <h1 className="lg:text-4xl text-3xl font-bold mt:5 mb-6">
+                Most Searched Used Cars
+              </h1>
             </div>
-            <ul className="flex items-end text-normal font-normal border-b-2 border-black">
+            <ul className="flex justify-between lg:items-end text-normal font-normal border-b-2 border-black">
               <li className="bg-black text-white px-2">Sedan</li>
-              <li className="hover:bg-black hover:text-white px-2">Popular</li>
-              <li className="hover:bg-black hover:text-white px-2">New Car</li>
-              <li className="hover:bg-black hover:text-white px-2">Used Car</li>
-              <li className="hover:bg-black hover:text-white px-2">
-                Auction Car
-              </li>
+              <li className="hover:bg-black hover:text-white px-2">SUV</li>
+              <li className="hover:bg-black hover:text-white px-2">Hach</li>
+              <li className="hover:bg-black hover:text-white px-2">Suzuki</li>
+              <li className="hover:bg-black hover:text-white px-2">Tata</li>
             </ul>
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-3 px-10 py-14">
+        <div className="lg:grid flex flex-col gap-6 items-center justify-center py-10 lg:grid-cols-3 lg:gap-3 lg:px-10 lg:py-14">
           {[1, 2, 3, 4, 5, 6].map((ele) => (
             <CarListingCard key={ele} />
           ))}
         </div>
       </div>
       {/* about */}
-      <div className="px-10 py-8  bg-white bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
-        <div className="mx-4">
-          <div className="text-center w-4/5 m-auto mb-8">
-            <h3 className="text-green-10 text-lg tracking-widest mb-1">
-              Best Car Agency
-            </h3>
-            <h1 className="font-bold text-4xl">Why Only Choose Drivco</h1>
-          </div>
-
-          <div className="flex justify-between gap-5 my-10">
-            <AboutCard /> <AboutCard /> <AboutCard />
-          </div>
-
-          <div className="border-t border-b ">
-            <div className="my-8 flex ">
-              {[1, 2, 3, 4].map((ele) => (
-                <div
-                  key={ele}
-                  className="flex gap-4 w-full justify-center border-r last:border-none last:justify-end first:justify-start"
-                >
-                  <img
-                    src="https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/home1/icon/av-car.svg"
-                    alt=""
-                  />
-                  <div className="">
-                    <header className="font-bold text-2xl">19+</header>
-                    <header>Car Available</header>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
+      <WhyChoose />
       {/* upcoming-cars */}
-      <div className="my-14">
-        <div className="container m-auto">
-          <div className="flex justify-between px-2 pb-2">
+      <div className="my-14 px-2">
+        <div className="lg:container lg:m-auto">
+          <div className="lg:flex lg:justify-between px-4 lg:px-2 lg:pb-2">
             <div className="text-lg  tracking-widest font-medium">
               <span className="text-green-10">On The Way</span>
               <h1 className="text-4xl font-bold">Upcoming Cars</h1>
@@ -128,24 +97,24 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-3 px-10 py-14">
+        <div className="lg:grid flex flex-col gap-6 items-center justify-center py-10 lg:grid-cols-3 lg:gap-3 lg:px-10 lg:py-14">
           {[1, 2, 3].map((ele) => (
             <CarListingCard key={ele} />
           ))}
         </div>
       </div>
       {/* used-cars*/}
-      <div className="my-14">
-        <div className="container m-auto">
-          <div className="flex justify-between px-2 pb-2">
+      <div className="my-14 px-2">
+        <div className="mx-4 lg:container lg:m-auto">
+          <div className="lg:flex lg:justify-between px-4 lg:px-2 lg:pb-2">
             <div className="text-lg  tracking-widest font-medium">
-              <span className="text-green-10">Used Car</span>
-              <h1 className="text-4xl font-bold">Top Rate Used Cars</h1>
+              <span className="text-green-10">Used Cars</span>
+              <h1 className="text-4xl font-bold">Top Rated Used Cars</h1>
             </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-3 px-10 py-14">
+        <div className="lg:grid flex flex-col gap-6 items-center justify-center py-10 lg:grid-cols-3 lg:gap-3 lg:px-10 lg:py-14">
           {[1, 2, 3].map((ele) => (
             <CarListingCard key={ele} />
           ))}
@@ -153,69 +122,135 @@ const Home = () => {
       </div>
 
       {/* Top Rate Used Cars */}
-      <div className="my-14">
-        <div className="container m-auto">
-          <div className="flex justify-between px-2 pb-2">
+      <div className="my-14 px-2">
+        <div className="lg:container lg:m-auto">
+          <div className="lg:flex lg:justify-between px-4 lg:px-2 lg:pb-2">
             <div className="text-lg  tracking-widest font-medium">
-              <span className="text-green-10">Used Car</span>
-              <h1 className="text-4xl font-bold">Top Rate Used Cars</h1>
+              <span className="text-green-10">Used Cars</span>
+              <h1 className="text-4xl font-bold">Top Rated Used Cars</h1>
             </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-3 px-10 py-14">
-          {[1, 2, 3,].map((ele) => (
-            <CarListingCard key={ele} />
-          ))}
-        </div>
-      </div>
-
-      {/* Top Rate Used Cars */}
-      <div className="my-14">
-        <div className="container m-auto">
-          <div className="flex justify-between px-2 pb-2">
-            <div className="text-lg  tracking-widest font-medium">
-              <span className="text-green-10">News & Article</span>
-              <h1 className="text-4xl font-bold">The Latest News Car & Bids</h1>
-            </div>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-3 gap-3 px-10 py-14">
+        <div className="lg:grid flex flex-col gap-6 items-center justify-center py-10 lg:grid-cols-3 lg:gap-3 lg:px-10 lg:py-14">
           {[1, 2, 3].map((ele) => (
             <CarListingCard key={ele} />
           ))}
         </div>
       </div>
 
-      <div className="my-14">
-      <div className="container m-auto">
-          <div className="flex justify-between px-2 pb-2">
+      {/* News and Car Bids */}
+      <div className="my-14 px-2">
+        <div className="my-8 lg:container lg:m-auto">
+          <div className="lg:flex lg:justify-between px-4 lg:px-2 lg:pb-2">
             <div className="text-lg  tracking-widest font-medium">
+              <span className="text-green-10">News and Articles</span>
+              <h1 className="text-4xl font-bold">Latest News and Car Bids.</h1>
+            </div>
+          </div>
+        </div>
+
+        <div className="lg:grid lg:grid-cols-3 lg:gap-3 lg:px-10 lg:py-14 flex flex-col gap-6 items-center">
+          {[1, 2, 3].map((ele) => (
+            <CarListingCard key={ele} />
+          ))}
+        </div>
+      </div>
+      {/* customers-review */}
+      <div className="my-14">
+        <div className="container m-auto">
+          <div className="flex justify-between px-2 pb-2">
+            <div className="text-lg px-2  tracking-widest font-medium">
               <span className="text-green-10">Customer Review</span>
-              <h1 className="text-4xl font-bold">What our customers are saying</h1>
+              <h1 className="text-4xl font-bold">
+                What our customers are saying
+              </h1>
             </div>
           </div>
         </div>
 
-       
-      <div className="flex h-full px-14 py-14">
-  <div className="w-1/4 h-auto">
-    <img
-      src="https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/home1/recommended-img.png"
-      alt=""
-      className="h-full"
-      />
-  </div>
-  <div className="w-3/4">
-    <ReviewSlider />
-  </div>
-</div>
-</div>
-
-     
+        <div className="lg:flex w-full lg:h-full lg:px-14 py-14 relative">
+          <div className="hidden lg:block w-1/4 h-auto">
+            <img
+              src="https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/home1/recommended-img.png"
+              alt=""
+              className="h-full"
+            />
+          </div>
+          <div className="lg:w-3/4">
+            <ReviewSlider />
+          </div>
+          <div className="lg:hidden w-1/4 h-auto absolute  left-1 bottom-0">
+            <img
+              src="https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/home1/recommended-img.png"
+              alt=""
+              className="w-30%"
+            />
+          </div>
+        </div>
+      </div>
     </>
   );
 };
 
 export default Home;
+
+// import React from 'react'; ̰
+// import { GiSpeedometer } from 'react-icons/gi';
+// import QuickLinksHome from '../components/quickLinksHome';
+// import CarListingCard from '../components/carListingCard';
+// import MostSearchedCarousel from '../components/mostSearchedCarousel';
+// import { AboutCard } from '../components/aboutCard';
+// import ReviewSlider from '../components/Reviewslider';
+
+// const Home = () => {
+//   return (
+//     <>
+//       <div className="bg-cover bg-center bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
+//         <div className="container mx-auto p-4 md:p-10">
+//           <section>
+//             <span className="flex items-center gap-2 font-bold text-xl md:text-2xl">
+//               Fastest Speed <GiSpeedometer />
+//             </span>
+//             <h1 className="text-4xl md:text-7xl font-bold leading-tight mt-2 md:mt-4">
+//               To Best Way Buy <br /> Dream Car.
+//             </h1>
+//             <p className="text-sm md:text-xl text-gray-500 mt-2 md:mt-4">
+//               Car dealerships may sell new cars from one or several manufacturers, as well as used cars from a variety of sources.
+//             </p>
+//           </section>
+
+//           {/* Mobile-friendly banner-content */}
+//           <section className="mt-4 md:mt-10 border-2 rounded-lg bg-white">
+//             <header className="text-lg md:text-xl p-2">Find Your Dream Car</header>
+//           </section>
+//         </div>
+//       </div>
+
+//       <QuickLinksHome className="border-r" />
+
+//       <div className="my-6 md:my-14">
+//         <div className="container mx-auto p-2 md:p-4">
+//           <div className="text-lg tracking-wider font-medium">
+//             <span className="text-green-10 text-sm md:text-base">Available Brand Cars</span>
+//             <h1 className="text-2xl md:text-4xl font-bold">Most Searched Used Cars</h1>
+//           </div>
+//           <ul className="flex flex-wrap text-xs md:text-sm font-normal border-b-2 border-black mt-2 md:mt-4">
+//             <li className="bg-black text-white px-2 py-1 md:px-4 md:py-2 mr-2 md:mr-4 mb-2 md:mb-0">Sedan</li>
+//             <li className="bg-black text-white px-2 py-1 md:px-4 md:py-2 mr-2 md:mr-4 mb-2 md:mb-0">SUV</li>
+//             <li className="bg-black text-white px-2 py-1 md:px-4 md:py-2 mr-2 md:mr-4 mb-2 md:mb-0">Hatch</li>
+//             <li className="bg-black text-white px-2 py-1 md:px-4 md:py-2 mr-2 md:mr-4 mb-2 md:mb-0">Suzuki</li>
+//             <li className="bg-black text-white px-2 py-1 md:px-4 md:py-2 mb-2 md:mb-0">Tata</li>
+//           </ul>
+//         </div>
+//         <div className="p-2 md:p-4">
+//           <MostSearchedCarousel />
+//         </div>
+//       </div>
+
+//       {/* Other sections follow with similar modifications for mobile-friendliness. Adjust typography, spacing, and layout for each section as needed. */}
+//     </>
+//   );
+// };
+
+// export default Home;

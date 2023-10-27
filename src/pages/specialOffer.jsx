@@ -27,8 +27,8 @@ const SpecialOffer = () => {
       <div className="relative">
         <HeroSection />
 
-        <div className="border rounded-2xl p-5 absolute w-full top-[80%] right-20 bg-white container">
-          <div className="h-full flex gap-4 justify-between w-full">
+        <div className="border w-[90%]  right-5 rounded-2xl p-5 absolute lg:w-full top-[90%] lg:top-[82%] lg:right-20 bg-white container">
+          <div className="h-full lg:flex gap-4 justify-between w-full">
             {filterForm.map((ele, i) => (
               <div key={i} className="flex-1">
                 <OfferForm
@@ -50,11 +50,11 @@ const SpecialOffer = () => {
           </div>
         </div>
       </div>
-      <div className="my-20 mx-14">
+      <div className="block mt-[28rem] mb-10 lg:my-[11rem] mx-4  lg:mx-14">
         <h1 className="ps-4 mb-4 mt-4 text-gray-500">
           Showing 2,928 car available in stock
         </h1>
-        <div className="grid grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-3 gap-8">
           {[1, 2, 3, 4, 5, 6].map((ele) => (
             <SpecialOfferCard key={ele} />
           ))}
