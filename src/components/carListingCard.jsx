@@ -20,7 +20,7 @@ export const CarListingCard = () => {
     },
   ];
   return (
-    <div className="card w-96  bg-base-100 shadow-xl">
+    <div className="card w-full bg-base-100 shadow-xl m-auto">
   <figure className="px-3  pt-3">
     <Image src="https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/product-sb-img-01.png" alt="Shoes" className="rounded-xl" />
   </figure>

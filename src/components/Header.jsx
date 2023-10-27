@@ -1,10 +1,18 @@
-import React from "react";
+import React, {useState} from "react";
 import Logo from "../assets/logo.svg";
 import CallIcon from "../assets/hotline-icon.svg";
 import { Link, useLocation } from "react-router-dom";
 import { AiOutlineTags } from "react-icons/ai";
 import {LiaUserCircle} from "react-icons/lia"
+import {CiMenuBurger} from 'react-icons/ci'
+import MenuDrawer from "./menuDrawer";
+
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const showSideBar=()=>{
+    setIsOpen(true)
+  }
   const navbarMenu = [
     { name: "Home", link: "/" },
     { name: "ABOUT US", link: "/about" },
@@ -17,9 +25,9 @@ const Header = () => {
   const { pathname } = useLocation();
   return (
     <>
-      <div className="flex justify-between px-8 py-4 border-b border-gray-200">
+     <div className="flex items-center justify-between px-8 py-4 border-b border-gray-200">
         <img src={Logo} alt="logo" />
-        <div className="relative w-2/5 h-12">
+        <div className="hidden relative w-2/5 h-12">
           <input
             type="search"
             className=" p-2.5 w-full h-full text-sm rounded-lg outline-none border border-gray-300 dark:placeholder-gray-400"
@@ -48,18 +56,22 @@ const Header = () => {
             <span className="sr-only">Search</span>
           </button>
         </div>
-        <div className="flex items-center gap-4 text-sm font-medium">
+        <div className="hidden lg:flex items-center gap-4 text-sm font-medium">
           <div className="flex gap-1 items-center">
-
         <AiOutlineTags className="h-6 w-6"/><span>SELL WITH US</span>
           </div>
           <div className="flex gap-1 items-center">
          <LiaUserCircle className="h-6 w-6"/> <span>SING UP</span>
-          </div>
-          
+          </div>    
+        </div>
+        <div className="lg:hidden " onClick={showSideBar} >
+              <label htmlFor="my-drawer-4" className={isOpen||'drawer-open'}>  
+              <CiMenuBurger className="h-10 w-10 drawer-button cursor-pointer"/>
+              </label>
+      
         </div>
       </div>
-      <div className="flex justify-between px-3 py-2 border-b border-gray-200">
+      <div className="hidden lg:flex justify-between px-3 py-2 border-b border-gray-200">
         <ul className="flex items-center gap-4">
           {navbarMenu.map((ele, i) => (
             <li
@@ -82,6 +94,8 @@ const Header = () => {
           </div>
         </div>
       </div>
+
+      <MenuDrawer setIsOpen={setIsOpen}/>
     </>
   );
 };

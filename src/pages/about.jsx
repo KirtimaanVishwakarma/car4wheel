@@ -3,6 +3,7 @@ import HeroSection from '../components/heroSection';
 import { AboutCard } from '../components/aboutCard';
 import { Button, Image } from 'antd';
 import Stepper from '../components/stepper';
+import WhyChoose from '../components/whyChoose'
 
 const About = () => {
   return (
@@ -10,10 +11,10 @@ const About = () => {
       <HeroSection />
 
       {/* welcome section start  */}
-      <div className="p-14 w-full'">
+      <div className="py-14 px-3 lg:p-14 w-full'">
         <div className="flex flex-col items-center">
           {' '}
-          <div className="w-4/5 flex flex-col gap-7">
+          <div className="lg:w-4/5 w-auto flex flex-col gap-7 ">
             <div>
               <header className="font-medium text-lg text-center text-green-10">
                 (Since-1994)
@@ -22,7 +23,7 @@ const About = () => {
                 Welcome To Drivco
               </header>
             </div>
-            <div className="text-center">
+            <div className="text-center w-full">
               <p className="leading-8 tracking-wide">
                 We're passionate car agency <br /> we're thrilled to have you
                 join our community of automotive enthusiasts and professionals.
@@ -49,7 +50,8 @@ const About = () => {
       {/* welcome section start  */}
 
       {/* Why Only Choose Drivco */}
-      <div className="px-10 py-8  bg-white bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
+      <WhyChoose />
+      {/* <div className="px-10 py-8  bg-white bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
         <div className='mx-4'>
           <div className="text-center w-4/5 m-auto mb-8">
             <h3 className="text-green-10 text-lg tracking-widest mb-1">
@@ -82,14 +84,14 @@ const About = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* gallery section */}
-      <div className="mx-8 mt-24">
+      <div className="lg:mx-8 mx-3 mt-24">
         <h2 className="font-bold text-4xl text-center mb-8"> Drivco Gallery</h2>
 
         <div className="flex justify-center">
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid lg:grid-cols-3 gap-6 lg:gap-4">
             {[1, 2, 3, 4, 5, 6].map((ele) => (
               <Image
                 key={ele}
@@ -118,7 +120,7 @@ const About = () => {
         </div>
         {/* <div className="flex flex-col"> */}
         {/* <Stepper /> */}
-        <div className="flex text-center">
+        <div className="flex lg:flex-row flex-col text-center">
           {[1, 2, 3, 4].map((ele) => (
             <Stepper key={ele} step={ele}>
               <div className=" px-4 py-8 flex items-center flex-col gap-6 mx-8 mt-2">

@@ -9,6 +9,7 @@ import CarListing from './pages/carListing'
 import SpecialOffer from './pages/specialOffer';
 import Auction from './pages/auction';
 import CustomerReview from './pages/customerReview';
+import ErrorPage from './pages/error';
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
         <Route path="/auction" element={<Auction />}/>
         <Route path="/customer-review" element={<CustomerReview/>}/>
         <Route path='/contact-us' element={<ContactUs />}/>
+
+        <Route path='*' element={<ErrorPage />}/>
       </Routes>
       <Footer />
     </BrowserRouter>  

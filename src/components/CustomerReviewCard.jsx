@@ -8,7 +8,7 @@ export const CustomerReviewCard = () => {
       <div className="m-4">
         <figure className="mb-4">
           <Image
-            src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+            src="https://media.zigcdn.com/media/model/2021/May/v8_360x240.jpg"
             className="rounded-lg borded-solid border-2"
             alt="Shoes"
           />
