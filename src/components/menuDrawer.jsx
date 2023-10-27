@@ -56,7 +56,7 @@ const MenuDrawer = ({setIsOpen}) => {
 
   </div>
 
-  <div className='m-auto w-full flex gap-2'>
+  <div className='m-auto w-full flex gap-2 mt-10'>
 <li>
 
 

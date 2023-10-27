@@ -87,7 +87,7 @@ const About = () => {
       </div> */}
 
       {/* gallery section */}
-      <div className="lg:mx-8 mx-3 mt-24">
+      <div className="lg:mx-10 mx-3 mt-24">
         <h2 className="font-bold text-4xl text-center mb-8"> Drivco Gallery</h2>
 
         <div className="flex justify-center">

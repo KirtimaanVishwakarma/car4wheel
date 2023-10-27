@@ -27,7 +27,7 @@ const SpecialOffer = () => {
       <div className="relative">
         <HeroSection />
 
-        <div className="border w-[90%]  right-5 rounded-2xl p-5 absolute lg:w-full top-[90%] lg:top-[82%] lg:right-20 bg-white container">
+        <div className="border w-[90%]  right-5 rounded-2xl p-5 absolute lg:w-[95%] top-[90%] lg:top-[82%] lg:left-8 bg-white">
           <div className="h-full lg:flex gap-4 justify-between w-full">
             {filterForm.map((ele, i) => (
               <div key={i} className="flex-1">

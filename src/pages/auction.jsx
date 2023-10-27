@@ -150,7 +150,7 @@ const Auction = () => {
   return (
     <>
       <HeroSection />
-      <div className="flex lg:flex-row flex-col container gap-6 px-2 lg:px-0 py-14 lg:m-auto">
+      <div className="flex lg:flex-row flex-col gap-6 px-2 lg:my-14 py-14 lg:px-10">
         <section className="flex flex-[65%] flex-col">
           <Image
             src="https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/color-car-05.png"
