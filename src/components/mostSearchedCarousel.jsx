@@ -44,7 +44,7 @@ let slidesToShow =
     if (viewportWidth >= 768) {
       return (
         <button {...props} className="slick-arrow custom-prev-arrow">
-          <MdArrowForwardIos className="border-solid border-2 border-black h-10 w-10 p-2 rounded-full text-green-10 rotate-180" />
+          <MdArrowForwardIos className="border-solid border-2 border-black h-10 w-10 p-2 rounded-full text-green-g1 rotate-180" />
         </button>
       );
     }
@@ -55,7 +55,7 @@ let slidesToShow =
     if (viewportWidth >= 768) {
       return (
         <button {...props} className="slick-arrow custom-next-arrow">
-          <MdArrowForwardIos className="border-solid border-2 border-black h-10 w-10 p-2 rounded-full text-green-10" />
+          <MdArrowForwardIos className="border-solid border-2 border-black h-10 w-10 p-2 rounded-full text-green-g1" />
         </button>
       );
     }

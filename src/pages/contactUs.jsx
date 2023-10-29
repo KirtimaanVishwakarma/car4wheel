@@ -5,6 +5,8 @@ import { FiPhoneCall } from 'react-icons/fi';
 import ContactForm from '../components/contactForm';
 import Map from '../components/map';
 import HeroSection from '../components/heroSection';
+import FormWrapper from '../components/forms/formWrapper';
+import { contactForm } from '../utils/constant';
 
 const ContactUs = () => {
   const contacts = [
@@ -69,7 +71,7 @@ const ContactUs = () => {
         {/* form  */}
         <div className="border w-full lg:w-3/5 rounded-md p-4 lg:p-6">
           <div>
-            <ContactForm />
+          <FormWrapper formObj={contactForm}/>
           </div>
         </div>
       </div>

@@ -76,7 +76,7 @@ const CarListing = () => {
                   <h2 className="text-xl font-semibold mb-4">Year</h2>
                   <div className="flex justify-center gap-6">
                     <form>
-                      <div className="mb-4 ">
+                      <div className="">
                         <select
                           className="w-36 px-4 py-2 rounded-md"
                           value={selectedOption}
@@ -95,7 +95,7 @@ const CarListing = () => {
                     </form>
 
                     <form>
-                      <div className="mb-4">
+                      <div className="">
                         <select
                           className="w-36 px-4 py-2 rounded-md"
                           value={selectedOption}

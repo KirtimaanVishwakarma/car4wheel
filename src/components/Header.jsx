@@ -1,18 +1,15 @@
-import React, {useState} from "react";
+import  {useState} from "react";
 import Logo from "../assets/logo.svg";
 import CallIcon from "../assets/hotline-icon.svg";
 import { Link, useLocation } from "react-router-dom";
 import { AiOutlineTags } from "react-icons/ai";
 import {LiaUserCircle} from "react-icons/lia"
-import {CiMenuBurger} from 'react-icons/ci'
+import {CgMenuRightAlt} from 'react-icons/cg'
 import MenuDrawer from "./menuDrawer";
 
 const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const showSideBar=()=>{
-    setIsOpen(true)
-  }
+  const [open, setOpen] = useState(false);
+  
   const navbarMenu = [
     { name: "Home", link: "/" },
     { name: "ABOUT US", link: "/about" },
@@ -64,11 +61,8 @@ const Header = () => {
          <LiaUserCircle className="h-6 w-6"/> <span>SING UP</span>
           </div>    
         </div>
-        <div className="lg:hidden " onClick={showSideBar} >
-              <label htmlFor="my-drawer-4" className={isOpen||'drawer-open'}>  
-              <CiMenuBurger className="h-10 w-10 drawer-button cursor-pointer"/>
-              </label>
-      
+        <div className="lg:hidden " onClick={()=>setOpen(true)}>
+              <CgMenuRightAlt className="h-7 w-7 cursor-pointer"/>
         </div>
       </div>
       <div className="hidden lg:flex justify-between px-3 py-2 border-b border-gray-200">
@@ -95,7 +89,7 @@ const Header = () => {
         </div>
       </div>
 
-      <MenuDrawer setIsOpen={setIsOpen}/>
+      <MenuDrawer setOpen={setOpen} open={open}/>
     </>
   );
 };

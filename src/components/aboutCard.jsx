@@ -9,7 +9,7 @@ export const AboutCard = () => {
           alt="AboutCardImg"
         />
         <div className='flex gap-2 items-center font-bold text-2xl'>
-          <span className='text-green-10'>Affordable</span> <span> Price</span>
+          <span className='text-green-g1'>Affordable</span> <span> Price</span>
         </div>
       </div>
     
