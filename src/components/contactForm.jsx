@@ -38,18 +38,20 @@ const ContactForm = () => {
   return (
     <Form form={form} name="validateOnly" layout="vertical" autoComplete="off">
       <Form.Item
-        name="name"
-        label="Full Name"
-        rules={[
-          {
-            required: true,
-          },
-        ]}
-        className="mb-2 "
+        // name="name"
+        // label="Full Name"
+        // rules={[
+        //   {
+        //     required: true,
+        //   },
+        // ]}
+        // className="mb-2 "
+    
       >
         <Input className="rounded p-3" />
       </Form.Item>
-      <div className='flex justify-between gap-4'>
+      
+      <div className="flex justify-between gap-4">
         <Form.Item
           label="Email"
           name="email"
@@ -59,7 +61,7 @@ const ContactForm = () => {
               message: 'Please enter a valid email address',
             },
           ]}
-          className='w-full'
+          className="w-full"
         >
           <Input
             type="email"
@@ -76,7 +78,7 @@ const ContactForm = () => {
               required: true,
             },
           ]}
-          className='w-full'
+          className="w-full"
         >
           <Input onChange={handleMobileNumberChange} className="rounded p-3" />
         </Form.Item>
@@ -93,7 +95,7 @@ const ContactForm = () => {
       >
         <Input className="rounded p-3" />
       </Form.Item>
-
+{/* 
       <Form.Item
         name="name"
         label="Message"
@@ -105,11 +107,20 @@ const ContactForm = () => {
         className="mb-2 "
       >
         <TextArea rows={4} />
-      </Form.Item>
+      </Form.Item> */}
+      <div className="flex flex-col ">
+        <label htmlFor={''} className="mb-2">
+          name <span className='text-red-500'>*</span>
+        </label>
+        <textarea rows={4} 
+          className="out outline-none border border-grey-b1 rounded p-3.5"
+        />
+        <span className="text-red-500">Please enter your name</span>
+      </div>
       <Form.Item>
-      <Button htmlType="submit" className='px-4 h-12'>
-                    Submit Form
-                </Button>
+        <Button htmlType="submit" className="px-4 h-12">
+          Submit Form
+        </Button>
       </Form.Item>
     </Form>
   );

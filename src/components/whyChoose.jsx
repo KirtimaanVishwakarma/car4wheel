@@ -6,7 +6,7 @@ export const WhyChoose = () => {
     <div className="lg:px-10 lg:py-8  bg-white bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
     <div className="py-12 mx-4">
       <div className="text-center w-4/5 m-auto mb-8">
-        <h3 className="text-green-10 text-xs lg:text-lg tracking-widest mb-1">
+        <h3 className="text-green-g1 text-xs lg:text-lg tracking-widest mb-1">
           Best Car Agency
         </h3>
         <h1 className="font-bold text-3xl lg:text-4xl">Why Only Choose Drivco</h1>

@@ -16,7 +16,7 @@ const About = () => {
           {' '}
           <div className="lg:w-4/5 w-auto flex flex-col gap-7 ">
             <div>
-              <header className="font-medium text-lg text-center text-green-10">
+              <header className="font-medium text-lg text-center text-green-g1">
                 (Since-1994)
               </header>
               <header className="text-4xl font-bold text-center">
@@ -54,7 +54,7 @@ const About = () => {
       {/* <div className="px-10 py-8  bg-white bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
         <div className='mx-4'>
           <div className="text-center w-4/5 m-auto mb-8">
-            <h3 className="text-green-10 text-lg tracking-widest mb-1">
+            <h3 className="text-green-g1 text-lg tracking-widest mb-1">
               Best Car Agency
             </h3>
             <h1 className="font-bold text-4xl">Why Only Choose Drivco</h1>
@@ -87,7 +87,7 @@ const About = () => {
       </div> */}
 
       {/* gallery section */}
-      <div className="lg:mx-8 mx-3 mt-24">
+      <div className="lg:mx-10 mx-3 mt-24">
         <h2 className="font-bold text-4xl text-center mb-8"> Drivco Gallery</h2>
 
         <div className="flex justify-center">
