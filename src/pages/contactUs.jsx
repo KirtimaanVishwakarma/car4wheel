@@ -74,7 +74,7 @@ const ContactUs = () => {
         <div className="border w-full lg:w-3/5 rounded-md p-4 lg:p-6">
           <div>
           <FormWrapper formObj={contactForm}/>
-          <Button btnClass='primary' name='Submit Now' className={'lg:w-[30%]'} />
+          <Button btnClass='primary' name='Submit Now' className={'lg:w-1/3'} />
           </div>
         </div>
       </div>
