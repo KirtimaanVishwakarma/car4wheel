@@ -66,3 +66,70 @@ export const offerForm = [
     ],
   },
 ];
+export const homeForm=[
+  {
+    id: 'budget',
+    label: 'Select Budget (in Lakhs)',
+    type: 'select',
+    placeholder: 'Ex: 1-5 lakhs',
+    options: [
+      {label: 'Select Budget',value:''},
+      {label: '1-3 Lakh',value:'1-3'},
+      {label: '4-6 Lakh',value:'4-6'},
+      {label: '7-9 Lakh',value:'7-9'},
+      {label: 'Above 10 Lakh',value:'above_10'}
+    ]
+  },
+  {
+    id:'vehicles',
+    label:'Select Vehicle',
+    type:'select', placeholder:'Ex: Sedan',
+    options:[
+      {label: 'Select Vehicle', value:''},
+      {label: 'Sedan', value:'Sedan'},
+      {label: 'Hachback', value:'Hachback'},
+    ]
+  }
+]
+export const logInForm=[
+  {
+    id:'email',
+    type:'email',
+    label:'Enter Your email address.',
+    placeholder:'Type email'
+  },
+  {
+    id:'password',
+    type:'password',
+    label:'Enter Password',
+    placeholder:'Password'
+  }
+]
+
+export const auctionForm=[
+  {
+    id:'name',
+    type:'text',
+    label:'Name',
+    placeholder:'Your Name'
+  },
+{
+  id:'contactNumber',
+  type:'number',
+  label:'Contact Number',
+  placeholder:'+91'
+  
+},
+{
+  id:'email',
+  type:'email',
+  label:'Email Id',
+  placeholder:'example@gmail.com'
+},
+{
+  id:'message',
+  type:'textarea',
+  label:'Message',
+  placeholder:'Write your message here...'
+}
+]

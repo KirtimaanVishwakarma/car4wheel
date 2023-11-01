@@ -1,10 +1,11 @@
 import React from 'react'
 import HeroSection from '../components/heroSection';
 import CustomerReviewCard from '../components/CustomerReviewCard';
+import Main from '../utils/main';
 
 const CustomerReview = () => {
   return (
-    <>
+    <Main>
     <HeroSection/>
     <div className='lg:mx-14 my-20 mx-4'>
     <div className='grid lg:grid-cols-3 gap-6'>
@@ -16,7 +17,7 @@ const CustomerReview = () => {
     </div>
     </div>
 
-    </>
+    </Main>
   )
 }
 

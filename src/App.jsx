@@ -10,11 +10,13 @@ import SpecialOffer from './pages/specialOffer';
 import Auction from './pages/auction';
 import CustomerReview from './pages/customerReview';
 import ErrorPage from './pages/error';
+import Dashboard from './pages/admin/dashboard';
+import AdminCarListing from './pages/admin/carListing';
 
 function App() {
   return (
     <BrowserRouter>
-      <Header />
+      {/* <Header /> */}
       <Routes>
         <Route path="/" element ={<Home />}/>
         <Route path="/about" element={<About />}/>
@@ -23,10 +25,17 @@ function App() {
         <Route path="/auction" element={<Auction />}/>
         <Route path="/customer-review" element={<CustomerReview/>}/>
         <Route path='/contact-us' element={<ContactUs />}/>
-
         <Route path='*' element={<ErrorPage />}/>
+
+        {/* admin routes  */}
+        <Route path="/admin" element={<Dashboard />}/>
+        <Route
+          path="/admin/car-lists"
+          element={<AdminCarListing />}
+        />
+
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </BrowserRouter>  
     
   );

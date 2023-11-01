@@ -1,36 +1,37 @@
 import React from 'react';
 import HeroSection from '../components/heroSection';
-import { Button, Image } from 'antd';
-import { TbEngine } from 'react-icons/tb';
-import { BiGasPump } from 'react-icons/bi';
-import { BsSpeedometer2 } from 'react-icons/bs';
-import { MdOutlineCarCrash } from 'react-icons/md';
-import { PiCheckCircleThin, PiEngineLight, PiGasCan } from 'react-icons/pi';
-import ContactForm from '../components/contactForm';
+import { Image } from 'antd';
+import { PiCheckCircleThin, PiEngineLight,PiEngineThin, PiGasCan, PiCarThin, PiGasPumpThin, PiGaugeThin } from 'react-icons/pi';  
 import { GiGearStickPattern } from 'react-icons/gi';
+import Main from '../utils/main';
+import FormWrapper from '../components/forms/formWrapper';
+import { auctionForm } from '../utils/constant';
+import Button from '../components/forms/button'
+import {PiPaperPlaneTiltThin, PiHammerThin} from 'react-icons/pi'
+
 
 const Auction = () => {
   // car info data
 
   const carInfo = [
     {
-      img: <BsSpeedometer2 className="w-8 h-8  lg:mb-4 font-thin text-gray-400" />,
+      img: <PiGaugeThin className="w-8 h-8  lg:mb-4  text-gray-400" />,
       header: '25,100 miles',
       subheader: 'Mileage',
     },
     {
-      img: <TbEngine className="w-8 h-8 mb-4 font-thin text-gray-400" />,
+      img: <PiEngineThin className="w-8 h-8 mb-4  text-gray-400" />,
       header: '22,231 cc',
       subheader: 'Engine',
     },
     {
-      img: <BiGasPump className="w-8 h-8 mb-4 font-thin text-gray-400" />,
+      img: <PiGasPumpThin className="w-8 h-8 mb-4  text-gray-400" />,
       header: 'Petrol + Gas',
       subheader: 'Fuel Type',
     },
     {
       img: (
-        <MdOutlineCarCrash className="w-8 h-8 mb-4 font-thin text-gray-400" />
+        <PiCarThin className="w-8 h-8 mb-4  text-gray-400" />
       ),
       header: 'Used Car',
       subheader: 'Condition',
@@ -148,7 +149,7 @@ const Auction = () => {
     },
   ];
   return (
-    <>
+    <Main>
       <HeroSection />
       <div className="flex lg:flex-row flex-col gap-6 px-2 lg:my-14 py-14 lg:px-10">
         <section className="flex flex-[65%] flex-col">
@@ -166,7 +167,7 @@ const Auction = () => {
                 <div key={i} className="flex justify-center items-center gap-2">
                   {ele.img}
                   <header>
-                    <h1>{ele.header}</h1>
+                    <h1 className='font-bold'>{ele.header}</h1>
                     <h2 className="font-normal text-gray-500 text-sm">
                       {ele.subheader}
                     </h2>
@@ -261,22 +262,25 @@ const Auction = () => {
                 <span>Total Bids</span>
                 <span>10 Person</span>
               </div>
-              <Button className="h-11">Place Bids</Button>
+              <Button btnClass='primary' name='Place Bids' icon={<PiHammerThin className='w-6 h-6'/>}/>
+              {/* <Button className="h-11">Place Bids</Button> */}
             </div>
           </div>
 
           {/* form  */}
           <div className="w-full rounded-lg bg-white bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
-            <div className="p-4 flex flex-col gap-3">
+            <div className="p-4 lg:p-8 flex flex-col gap-3">
               <header className="font-semibold text-2xl">
                 To More inquiry
               </header>
               <header className="text-sm">
                 If choose this car to contact easily with us.
               </header>
-              <div>
+              <FormWrapper formObj={auctionForm} />
+              <Button btnClass='primary' name='Send Message' icon={<PiPaperPlaneTiltThin className='w-6 h-6'/>}/>
+              {/* <div>
                 <ContactForm />
-              </div>
+              </div> */}
             </div>
           </div>
 
@@ -319,13 +323,14 @@ const Auction = () => {
                   </div>
                 </div>
                 )}
-                <Button className="h-11 mt-4">View All Cars</Button>
+<Button btnClass='secondary' name='View All Cars'/>
+                {/* <Button className="h-11 mt-4">View All Cars</Button> */}
               </div>
             </div>
           </div>
         </section>
       </div>
-    </>
+      </Main>
   );
 };
 

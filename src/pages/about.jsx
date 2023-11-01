@@ -4,10 +4,11 @@ import { AboutCard } from '../components/aboutCard';
 import { Button, Image } from 'antd';
 import Stepper from '../components/stepper';
 import WhyChoose from '../components/whyChoose'
+import Main from '../utils/main';
 
 const About = () => {
   return (
-    <>
+    <Main>
       <HeroSection />
 
       {/* welcome section start  */}
@@ -16,10 +17,10 @@ const About = () => {
           {' '}
           <div className="lg:w-4/5 w-auto flex flex-col gap-7 ">
             <div>
-              <header className="font-medium text-lg text-center text-green-g1">
+              <header className="font-medium text-lg text-center text-blue-400">
                 (Since-1994)
               </header>
-              <header className="text-4xl font-bold text-center">
+              <header className="text-4xl text-blue-900 font-bold text-center">
                 Welcome To Drivco
               </header>
             </div>
@@ -148,7 +149,7 @@ const About = () => {
 
       {/* customer review  */}
      
-    </>
+    </Main>
   );
 };
 
