@@ -5,6 +5,7 @@ import { Checkbox } from 'antd';
 import CarListingCard from '../components/carListingCard';
 
 import { Slider, Switch } from 'antd';
+import Main from '../utils/main';
 
 const CarListing = () => {
   const [selectedOption, setSelectedOption] = useState('');
@@ -14,7 +15,7 @@ const CarListing = () => {
   };
 
   return (
-    <>
+    <Main>
       <HeroSection />
       <div className="flex w-full py-4 pb-10 lg:py-14 lg:px-12 px-4">
         <div className="flex flex-col-reverse lg:flex-row w-full gap-4 justify-between mt-6 ">
@@ -211,15 +212,12 @@ const CarListing = () => {
 
           <section className="lg:w-2/3 w-auto">
           <h1 className='mt-4 mb-10'>Showing 2,928 car available in stock</h1>
-          <div className='grid lg:grid-cols-2 grid-row gap-5'>
-            <CarListingCard />
-            <CarListingCard />
-            <CarListingCard />
-            <CarListingCard />
-            <CarListingCard />
-            <CarListingCard />
-            <CarListingCard />
-            <CarListingCard />
+<div className='grid lg:grid-cols-2 grid-row gap-5'>
+          {[1,2,3,4,5,6,7,8].map((ele)=>(
+ <div key={ele} className=''>
+    <CarListingCard />
+ </div>
+          ))}
           </div>
         </section>
         </div>
@@ -228,7 +226,7 @@ const CarListing = () => {
 </div>
        
     
-    </>
+    </Main>
   );
 };
 

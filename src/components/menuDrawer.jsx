@@ -12,10 +12,11 @@ import { LiaUserCircle } from 'react-icons/lia';
 import { AiOutlineTags } from 'react-icons/ai';
 import { Drawer } from 'antd';
 import { IoCloseOutline } from 'react-icons/io5';
+import Button from './forms/button';
 
 const MenuDrawer = ({ setOpen, open }) => {
   const navbarMenu = [
-    { name: 'Home', link: '/', icon: <CiHome /> },
+    { name: 'HOME', link: '/', icon: <CiHome /> },
     { name: 'ABOUT US', link: '/about', icon: <PiInfoLight /> },
     { name: 'CAR LISTING', link: '/car-lists', icon: <PiCarSimpleLight /> },
     { name: 'SPACIAL OFFER', link: '/offers', icon: <CiDiscount1 /> },
@@ -73,7 +74,7 @@ const MenuDrawer = ({ setOpen, open }) => {
                 key={i}
                 onClick={onClose}
                 className={
-                  pathname === ele?.link ? 'text-green-g1' : 'text-black'
+                  pathname === ele?.link ? 'text-blue-400 font-semibold' : 'text-black'
                 }
               >
                 <Link to={ele.link ? ele.link : '#'}>
@@ -85,14 +86,28 @@ const MenuDrawer = ({ setOpen, open }) => {
               </li>
             ))}
           </ul>
-          <div className="flex justify-center gap-3">
-            <div className="flex-1 flex gap-1 items-center border border-green-g1  px-3 py-2 rounded justify-center">
+
+          <div className="flex-1 flex gap-2 items-center justify-center">
+            <div>
+              <Button
+                btnClass="secondary"
+                name="SELL WITH US"
+              icon = {<AiOutlineTags className="h-6 w-6" />}
+                className={'whitespace-nowrap'}
+              />
+            </div>
+
+            {/* <div className="flex-1 flex gap-1 items-center px-3 py-2 rounded justify-center">
               <AiOutlineTags className="h-6 w-6" />
               <span className="whitespace-nowrap">SELL WITH US</span>
-            </div>
-            <div className="flex-1 flex gap-1 items-center bg-green-g1 text-white px-3 py-2 rounded justify-center">
-              <LiaUserCircle className="h-6 w-6" />{' '}
-              <span className="whitespace-nowrap">SING UP</span>
+            </div> */}
+              <div>
+              <Button
+                btnClass="primary"
+                name="LOG IN"
+              icon = {<LiaUserCircle className="h-6 w-6" />}
+                className={'whitespace-nowrap'}
+              />
             </div>
           </div>
         </div>

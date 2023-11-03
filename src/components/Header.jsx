@@ -1,28 +1,47 @@
-import  {useState} from "react";
-import Logo from "../assets/logo.svg";
-import CallIcon from "../assets/hotline-icon.svg";
-import { Link, useLocation } from "react-router-dom";
-import { AiOutlineTags } from "react-icons/ai";
-import {LiaUserCircle} from "react-icons/lia"
-import {CgMenuRightAlt} from 'react-icons/cg'
-import MenuDrawer from "./menuDrawer";
+import { useState } from 'react';
+import Logo from '../assets/logo.svg';
+import CallIcon from '../assets/hotline-icon.svg';
+import { Link, useLocation } from 'react-router-dom';
+import { AiOutlineTags } from 'react-icons/ai';
+import { LiaUserCircle } from 'react-icons/lia';
+import { CgMenuRightAlt } from 'react-icons/cg';
+import MenuDrawer from './menuDrawer';
+import FormWrapper from './forms/formWrapper';
+import Modal from './modal';
+import Button from './forms/button';
+import { logInForm } from '../utils/constant';
+import { useDispatch } from 'react-redux';
+import { login, logout } from '../redux/actions/user';
+import { useCookies } from 'react-cookie';
 
 const Header = () => {
   const [open, setOpen] = useState(false);
-  
+  const [modal, setModal] = useState(false);
+  const [setCookie] = useCookies(['cookie']);
+
+  const [inputObj, setInputObj] = useState({});
+
   const navbarMenu = [
-    { name: "Home", link: "/" },
-    { name: "ABOUT US", link: "/about" },
-    { name: "CAR LISTING", link: "/car-lists" },
-    { name: "SPACIAL OFFER", link: "/offers" },
-    { name: "AUCTION", link: "/auction" },
-    { name: "CUSTOMER REVIEW", link: "/customer-review" },
-    { name: "CONTACT US", link: "/contact-us" },
+    { name: 'Home', link: '/' },
+    { name: 'ABOUT US', link: '/about' },
+    { name: 'CAR LISTING', link: '/car-lists' },
+    { name: 'SPACIAL OFFER', link: '/offers' },
+    { name: 'AUCTION', link: '/auction' },
+    { name: 'CUSTOMER REVIEW', link: '/customer-review' },
+    { name: 'CONTACT US', link: '/contact-us' },
   ];
   const { pathname } = useLocation();
+  const modalHandler = () => {
+    setModal(!modal);
+  };
+  const dispatch =useDispatch();
+  const submitHandler=(e)=>{
+    e.preventDefault();
+  dispatch(login(inputObj.email, inputObj.password))
+  }
   return (
     <>
-     <div className="flex items-center justify-between px-8 py-4 border-b border-gray-200">
+      <div className="flex items-center justify-between px-8 py-4 border-b border-gray-200">
         <img src={Logo} alt="logo" />
         <div className="hidden relative w-2/5 h-12">
           <input
@@ -55,14 +74,22 @@ const Header = () => {
         </div>
         <div className="hidden lg:flex items-center gap-4 text-sm font-medium">
           <div className="flex gap-1 items-center">
-        <AiOutlineTags className="h-6 w-6"/><span>SELL WITH US</span>
+            <AiOutlineTags className="h-6 w-6" />
+            <span>SELL WITH US</span>
           </div>
-          <div className="flex gap-1 items-center">
-         <LiaUserCircle className="h-6 w-6"/> <span>SING UP</span>
-          </div>    
+          <div className="flex gap-1 items-center" onClick={()=>dispatch(logout())}>
+            <AiOutlineTags className="h-6 w-6" />
+            <span>Logout</span>
+          </div>
+          <div
+            className="flex gap-1 items-center cursor-pointer"
+            onClick={modalHandler}
+          >
+            <LiaUserCircle className="h-6 w-6" /> <span>LOG IN</span>
+          </div>
         </div>
-        <div className="lg:hidden " onClick={()=>setOpen(true)}>
-              <CgMenuRightAlt className="h-7 w-7 cursor-pointer"/>
+        <div className="lg:hidden " onClick={() => setOpen(true)}>
+          <CgMenuRightAlt className="h-7 w-7 cursor-pointer" />
         </div>
       </div>
       <div className="hidden lg:flex justify-between px-3 py-2 border-b border-gray-200">
@@ -71,10 +98,10 @@ const Header = () => {
             <li
               key={i}
               className={`h-full relative flex items-center font-semibold tracking-wider text-sm px-4 ${
-                pathname === ele?.link && "custom-underline text-blue-500"
+                pathname === ele?.link && 'custom-underline text-blue-500'
               }`}
             >
-              <Link to={ele.link ? ele.link : "#"}>{ele.name}</Link>
+              <Link to={ele.link ? ele.link : '#'}>{ele.name}</Link>
             </li>
           ))}
         </ul>
@@ -88,8 +115,29 @@ const Header = () => {
           </div>
         </div>
       </div>
-
-      <MenuDrawer setOpen={setOpen} open={open}/>
+      {modal && (
+        <Modal setModal={modalHandler}>
+          <div className="p-4">
+            <div className="text-center p-4 mb-4">
+              <h1 className="text-2xl font-semibold">Log In</h1>
+              <p>
+                {' '}
+                Don't have an account?{' '}
+                <span className="font-bold cursor-pointer">Sign Up</span>
+              </p>
+            </div>
+            <form action="" onSubmit={submitHandler}>
+              <div>
+                <FormWrapper formObj={logInForm} setInputObj={setInputObj}/>
+              </div>
+              <div className="mt-5">
+                <Button type='submit' btnClass="primary" name="Log In" />
+              </div>
+            </form>
+          </div>
+        </Modal>
+      )}
+      <MenuDrawer setOpen={setOpen} open={open} />
     </>
   );
 };

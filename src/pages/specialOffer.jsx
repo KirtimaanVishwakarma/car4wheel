@@ -1,9 +1,10 @@
-import React from 'react';
+
 import HeroSection from '../components/heroSection';
 import SpecialOfferCard from '../components/specialOfferCard';
 import {offerForm} from '../utils/constant.js';
 import Button  from '../components/forms/button';
 import FormWrapper from '../components/forms/formWrapper';
+import Main from '../utils/main';
 
 const SpecialOffer = () => {
   const filterForm = [
@@ -24,7 +25,7 @@ const SpecialOffer = () => {
     },
   ];
   return (
-    <>
+    <Main>
       <div className="relative">
         <HeroSection />
 
@@ -59,7 +60,7 @@ const SpecialOffer = () => {
           ))}
         </div>
       </div>
-    </>
+    </Main>
   );
 };
 

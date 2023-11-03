@@ -37,6 +37,7 @@ export default {
           g7: '#F4F4F4',
           g8: '#E0E0E0',
           g9: '#9E9E9E',
+          g10: '#b3b3b3',
         },
         white: {
           0: '#FFFFFF',

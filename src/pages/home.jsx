@@ -1,82 +1,120 @@
-
 import { GiSpeedometer } from 'react-icons/gi';
 import QuickLinksHome from '../components/quickLinksHome';
 import CarListingCard from '../components/carListingCard';
 import MostSearchedCarousel from '../components/mostSearchedCarousel';
 import ReviewSlider from '../components/Reviewslider';
 import WhyChoose from '../components/whyChoose';
+import Main from '../utils/main';
+import { homeForm } from '../utils/constant.js';
+import FormWrapper from '../components/forms/formWrapper';
+import Button from '../components/forms/button';
 
 const Home = () => {
+  const carType = [
+    {
+      header: 'carType',
+      name: 'Sedan',
+      condition: 'Popular',
+    },
+    {
+      header: 'carType',
+      name: 'SUV',
+      condition: 'New Car',
+    },
+    {
+      header: 'carType',
+      name: 'Hach',
+      condition: 'Used Car',
+    },
+    {
+      header: 'carType',
+      name: 'Maruti',
+      condition: 'Auction Car',
+    },
+    {
+      header: 'carType',
+      name: 'Toyota',
+    }
+  ];
   return (
-    <>
-      <div className="lg:px-14 lg:py-14 bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
-        <div className="ps-4 pe-8 flex py-14">
-          <section className="lg:me-80">
-            <span className="flex items-center  lg:gap-2 font-semibold lg:font-bold text-lg lg:text-2xl">
+    <Main>
+      <div className="lg:px-14 px-3 lg:py-14 bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
+        <div className=" flex lg:flex-row  flex-col gap-8 py-14">
+          <section className="flex flex-col gap-4">
+            <span className="flex items-center  lg:gap-2 font-semibold lg:font-bold text-lg lg:text-2xl  text-blue-400">
               Fastest Speed
               <GiSpeedometer />
             </span>
-            <h1 className="flex flex-col font-bold text-5xl lg:text-7xl leading-tight">
+            <h1 className="flex flex-col font-bold text-5xl lg:text-7xl leading-tight text- text-blu text-blue-900">
               To Best Way Buy
               <span>Dream Car.</span>
             </h1>
-            <p className="text-xl leading-9 text-gray-500">
+            <p className="text-xl leading-9 text-slate text-slate-500">
               Car dealerships may sell new cars from one or several
               manufacturers, as well as used cars from a variety of sources.
             </p>
+            <div className="grid grid-cols-2 gap-8 mt-8">
+              <Button btnClass="primary" name="Buy Car" />
+              <Button btnClass="secondary" name="Sell Car" />
+            </div>
           </section>
           {/* banner-content */}
 
-          <section className="hidden lg:flex-[50%] border-solid border-2 rounded-lg bg-white">
-            <header>Find Your Dream Car</header>
+          <section className="lg:flex-[50%] shadow-lg p-8 rounded-lg  bg-white-0">
+            <header className="text-3xl font-bold mb-8 text-blue-900">
+              Find Your Dream Car
+            </header>
+            <FormWrapper formObj={homeForm} />
+            <div className="mt-5">
+              <Button btnClass="primary" name="Search Car" />
+            </div>
           </section>
         </div>
       </div>
 
       <QuickLinksHome className="border-r " />
       <div className="my-14 px-2">
-        <div className="w-full">
-          <div className="lg:flex lg:items-center lg:justify-between lg:pt-8 lg:pb-0 px-2 pb-2">
-            <div className="text-lg  tracking-widest font-medium">
-              <span className="text-green-g1">Available Brand Cars</span>
-              <h1 className="lg:text-4xl text-3xl font-bold mt:5 mb-6">
-                Most Searched Used Cars
-              </h1>
-            </div>
-            <ul className="flex justify-between lg:items-end text-normal font-normal border-b-2 border-black">
-              <li className="bg-black text-white px-2">Sedan</li>
-              <li className="hover:bg-black hover:text-white px-2">SUV</li>
-              <li className="hover:bg-black hover:text-white px-2">Hach</li>
-              <li className="hover:bg-black hover:text-white px-2">Suzuki</li>
-              <li className="hover:bg-black hover:text-white px-2">Tata</li>
-            </ul>
-          </div>
+        <div className='w-full'>
+        <div className="lg:flex lg:items-center lg:justify-between lg:pt-8 lg:pb-0 px-2 pb-2">
+        <div className="text-lg  tracking-widest font-medium">
+        <span className="text-blue-400">Available Brand Car</span>
+        <h1 className="lg:text-4xl text-3xl font-bold mt:5 mb-6">
+         Most Searched Used Car
+        </h1>
+      </div>
+        <ul className="flex justify-between lg:items-end text-normal font-normal  border-b-2 border-blue-900">
+          {carType.map((ele) => (
+            <li key={ele} className="hover:bg-blue-900 hover:text-white-0 text-blue-400 px-2">
+              {ele.name}
+            </li>
+          ))}
+        </ul>
         </div>
-
+        </div>
         <div className="lg:m-auto lg:flex-row lg:px-10">
           <MostSearchedCarousel />
         </div>
       </div>
       {/* recently-lanched */}
       <div className="my-14 px-2">
-        <div className="">
-          <div className="lg:flex lg:items-center lg:justify-between px-2 pb-2">
-            <div className="text-lg  tracking-widest font-medium">
-              <span className="text-green-g1">Available Brand Cars</span>
-              <h1 className="lg:text-4xl text-3xl font-bold mt:5 mb-6">
-                Most Searched Used Cars
-              </h1>
-            </div>
-            <ul className="flex justify-between lg:items-end text-normal font-normal border-b-2 border-black">
-              <li className="bg-black text-white px-2">Sedan</li>
-              <li className="hover:bg-black hover:text-white px-2">SUV</li>
-              <li className="hover:bg-black hover:text-white px-2">Hach</li>
-              <li className="hover:bg-black hover:text-white px-2">Suzuki</li>
-              <li className="hover:bg-black hover:text-white px-2">Tata</li>
-            </ul>
-          </div>
+      <div className='w-full'>
+        <div className="lg:flex lg:items-center lg:justify-between lg:pt-8 lg:pb-0 px-2 pb-2">
+        <div className="text-lg  tracking-widest font-medium">
+        <span className="text-blue-400">Recent Launched</span>
+        <h1 className="lg:text-4xl text-3xl font-bold mt:5 mb-6">
+         Recent Launched Car
+        </h1>
+      </div>
+        <ul className="flex justify-between lg:items-end text-normal font-normal border-b-2 border-blue-900">
+          {carType.map((ele) => (
+            <li key={ele} className="hover:bg-blue-900 hover:text-white-0 text-blue-400 px-2 ">
+              {ele.condition}
+            </li>
+          ))}
+        </ul>
         </div>
 
+        </div>
         <div className="lg:grid flex flex-col gap-6 items-center justify-center py-10 lg:grid-cols-3 lg:gap-3 lg:px-10 lg:py-14">
           {[1, 2, 3, 4, 5, 6].map((ele) => (
             <CarListingCard key={ele} />
@@ -90,7 +128,7 @@ const Home = () => {
         <div className="w-full">
           <div className="lg:flex lg:justify-between px-4 lg:px-2 lg:pb-2">
             <div className="text-lg  tracking-widest font-medium">
-              <span className="text-green-g1">On The Way</span>
+              <span className="text-blue-400">On The Way</span>
               <h1 className="text-4xl font-bold">Upcoming Cars</h1>
             </div>
           </div>
@@ -107,7 +145,7 @@ const Home = () => {
         <div className="w-full">
           <div className="lg:flex lg:justify-between px-4 lg:px-2 lg:pb-2">
             <div className="text-lg  tracking-widest font-medium">
-              <span className="text-green-g1">Used Cars</span>
+              <span className="text-blue-400">Used Cars</span>
               <h1 className="text-4xl font-bold">Top Rated Used Cars</h1>
             </div>
           </div>
@@ -125,7 +163,7 @@ const Home = () => {
         <div className="w-full">
           <div className="lg:flex lg:justify-between px-4 lg:px-2 lg:pb-2">
             <div className="text-lg  tracking-widest font-medium">
-              <span className="text-green-g1">Used Cars</span>
+              <span className="text-blue-400">Used Cars</span>
               <h1 className="text-4xl font-bold">Top Rated Used Cars</h1>
             </div>
           </div>
@@ -143,7 +181,7 @@ const Home = () => {
         <div className="w-full">
           <div className="lg:flex lg:justify-between px-4 lg:px-2 lg:pb-2">
             <div className="text-lg  tracking-widest font-medium">
-              <span className="text-green-g1">News and Articles</span>
+              <span className="text-blue-400">News and Articles</span>
               <h1 className="text-4xl font-bold">Latest News and Car Bids.</h1>
             </div>
           </div>
@@ -160,7 +198,7 @@ const Home = () => {
         <div className="w-full">
           <div className="flex justify-between px-2 pb-2">
             <div className="text-lg px-2  tracking-widest font-medium">
-              <span className="text-green-g1">Customer Review</span>
+              <span className="text-blue-400">Customer Review</span>
               <h1 className="text-4xl font-bold">
                 What our customers are saying
               </h1>
@@ -188,7 +226,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-    </>
+    </Main>
   );
 };
 
@@ -231,7 +269,7 @@ export default Home;
 //       <div className="my-6 md:my-14">
 //         <div className="container mx-auto p-2 md:p-4">
 //           <div className="text-lg tracking-wider font-medium">
-//             <span className="text-green-g1 text-sm md:text-base">Available Brand Cars</span>
+//             <span className="text-blue-400 text-sm md:text-base">Available Brand Cars</span>
 //             <h1 className="text-2xl md:text-4xl font-bold">Most Searched Used Cars</h1>
 //           </div>
 //           <ul className="flex flex-wrap text-xs md:text-sm font-normal border-b-2 border-black mt-2 md:mt-4">

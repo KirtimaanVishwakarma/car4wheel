@@ -7,6 +7,8 @@ import Map from '../components/map';
 import HeroSection from '../components/heroSection';
 import FormWrapper from '../components/forms/formWrapper';
 import { contactForm } from '../utils/constant';
+import Main from '../utils/main';
+import Button from '../components/forms/button';
 
 const ContactUs = () => {
   const contacts = [
@@ -33,7 +35,7 @@ const ContactUs = () => {
   ];
 
   return (
-    <>
+    <Main>
       <HeroSection/>
       {/* contact form  */}
       <div className="lg:m-14 m-4 flex lg:flex-row flex-col gap-4">
@@ -72,11 +74,12 @@ const ContactUs = () => {
         <div className="border w-full lg:w-3/5 rounded-md p-4 lg:p-6">
           <div>
           <FormWrapper formObj={contactForm}/>
+          <Button btnClass='primary' name='Submit Now' className={'lg:w-1/3'} />
           </div>
         </div>
       </div>
       <Map width={'100%'} height={'h-80'} />
-    </>
+    </Main>
   );
 };
 

@@ -4,6 +4,7 @@ import { TbEngine } from 'react-icons/tb';
 import { BiGasPump } from 'react-icons/bi';
 import { BsSpeedometer2 } from 'react-icons/bs';
 import { SlLocationPin } from 'react-icons/sl';
+import Button from './forms/button'
 
 export const SpecialOfferCard = () => {
   const carSpecification = [
@@ -55,10 +56,11 @@ export const SpecialOfferCard = () => {
             <h2>Electric</h2>
       </div> */}
           </div>
-          <div className="flex card-actions justify-between">
-            <button className="rounded px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white">
+          <div className="grid grid-flow-col card-actions justify-between">
+            <Button btnClass='primary' name='View Details'/>
+            {/* <button className="rounded px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white">
               View Details
-            </button>
+            </button> */}
             <div className="ps-2">
               <h2 className="font-bold text-lg">₹5000000</h2>
               <h3 className="text-sm text-gray-500 line-through">₹6000000</h3>

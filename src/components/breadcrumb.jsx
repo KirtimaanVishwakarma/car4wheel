@@ -3,7 +3,7 @@
 
 import { Breadcrumb } from 'antd';
 
-const BreadCrumb = ({items}) => (
+const BreadCrumb = ({items}) =>(
   <Breadcrumb
     items={items} className='mb-10'
   />
