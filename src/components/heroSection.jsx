@@ -1,11 +1,14 @@
 
 import BreadCrumb from '../components/breadcrumb';
-import { HomeOutlined, UserOutlined } from '@ant-design/icons';
+import { HomeOutlined, UserOutlined } from '@ant-design/icons'
+import {useLocation} from "react-router-dom"
 
 const HeroSection = () => {
+  const location= useLocation();
+ let pageName= location.pathname;
   const items = [
     {
-      href: '',
+      href: '/',
       title: (
         <>
           <HomeOutlined />
@@ -14,11 +17,11 @@ const HeroSection = () => {
       ),
     },
     {
-      href: '',
+      href: '/contact-us',
       title: (
         <>
           <UserOutlined />
-          <span>Contact Us</span>
+          <span>{pageName.slice(1)}</span>
         </>
       ),
     },

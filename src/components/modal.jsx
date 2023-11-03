@@ -2,7 +2,7 @@
 
 const Modal = ({ children, setModal,heading}) => {
   return (
-    <div className="absolute h-screen w-full left-0 top-0 flex justify-center items-center bg-gray-400 bg-opacity-40">
+    <div className="fixed h-screen w-full z-50 left-0 top-0 flex justify-center items-center bg-gray-400 bg-opacity-40">
       <div className="modal-box">
         <button
           className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"

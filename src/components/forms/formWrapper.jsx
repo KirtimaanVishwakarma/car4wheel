@@ -2,7 +2,7 @@ import React from 'react';
 import FormTextArea from '../../components/forms/textArea';
 import FormInput from '../../components/forms/input';
 import FormSelect from './select';
-const FormWrapper = ({ formObj }) => {
+const FormWrapper = ({ formObj,setInputObj}) => {
   return (
     <div className="grid grid-cols-6 gap-3 w-full">
       {formObj.map((ele) => {
@@ -49,7 +49,7 @@ const FormWrapper = ({ formObj }) => {
                 : 'col-span-6'
             }
           >
-            <FormInput item={ele} />
+            <FormInput item={ele} setInputObj={setInputObj}/>
           </span>
         );
       })}

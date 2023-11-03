@@ -7,9 +7,10 @@ import WhyChoose from '../components/whyChoose'
 import Main from '../utils/main';
 
 const About = () => {
+
   return (
     <Main>
-      <HeroSection />
+      <HeroSection name={'about'}/>
 
       {/* welcome section start  */}
       <div className="py-14 px-3 lg:p-14 w-full'">

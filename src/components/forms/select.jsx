@@ -9,8 +9,6 @@ const FormSelect = ({item}) => {
 //     setSelectedOption(event.target.value);
 //   };
 
-
-console.log(item);
   return (
     <div className="flex flex-col ">
     <label htmlFor={''} className="mb-2">
