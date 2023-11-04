@@ -10,14 +10,13 @@ import FormWrapper from './forms/formWrapper';
 import Modal from './modal';
 import Button from './forms/button';
 import { logInForm } from '../utils/constant';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login, logout } from '../redux/actions/user';
-import { useCookies } from 'react-cookie';
 
 const Header = () => {
+  const {isAuthenticated} =useSelector(state=>state.user)
   const [open, setOpen] = useState(false);
   const [modal, setModal] = useState(false);
-  const [setCookie] = useCookies(['cookie']);
 
   const [inputObj, setInputObj] = useState({});
 
@@ -77,16 +76,14 @@ const Header = () => {
             <AiOutlineTags className="h-6 w-6" />
             <span>SELL WITH US</span>
           </div>
-          <div className="flex gap-1 items-center" onClick={()=>dispatch(logout())}>
-            <AiOutlineTags className="h-6 w-6" />
-            <span>Logout</span>
-          </div>
+          {isAuthenticated? <Link to="/admin">Dashboard</Link>:
           <div
-            className="flex gap-1 items-center cursor-pointer"
-            onClick={modalHandler}
+          className="flex gap-1 items-center cursor-pointer"
+          onClick={modalHandler}
           >
             <LiaUserCircle className="h-6 w-6" /> <span>LOG IN</span>
           </div>
+          }
         </div>
         <div className="lg:hidden " onClick={() => setOpen(true)}>
           <CgMenuRightAlt className="h-7 w-7 cursor-pointer" />

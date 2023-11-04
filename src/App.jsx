@@ -9,23 +9,26 @@ import CustomerReview from './pages/customerReview';
 import ErrorPage from './pages/error';
 import Dashboard from './pages/admin/dashboard';
 import AdminCarListing from './pages/admin/carListing';
+import BrandListing from './pages/admin/brandListing';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProfile } from './redux/actions/user';
+import { ProtectedRoute } from 'protected-route-react';
 // import {BASE_URL} from "./utils/apiConstant"
 function App() {
-  const { isAuthenticated, loading, user, message, error } =
-    useSelector((state) => state.user);
+  const { isAuthenticated, loading, user, message, error } = useSelector(
+    (state) => state.user
+  );
   const dispatch = useDispatch();
-  useEffect(()=>{
-    if(error){
-      dispatch({type:'clearError'})
-    }if(message){
-      dispatch({type:'clearMessage'})
-    }
-  },[dispatch,error,message])
   useEffect(() => {
-    console.log("check");
+    if (error) {
+      dispatch({ type: 'clearError' });
+    }
+    if (message) {
+      dispatch({ type: 'clearMessage' });
+    }
+  }, [dispatch, error, message]);
+  useEffect(() => {
     dispatch(getProfile());
   }, [dispatch]);
   return (
@@ -40,10 +43,32 @@ function App() {
         <Route path="/customer-review" element={<CustomerReview />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="*" element={<ErrorPage />} />
-
         {/* admin routes  */}
-        <Route path="/admin" element={<Dashboard />} />
-        <Route path="/admin/car-lists" element={<AdminCarListing />} />
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated} redirect="/">
+              <Dashboard user={user} />
+            </ProtectedRoute>
+          }
+        />{' '}
+        <Route
+          path="/admin/brand"
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated} redirect="/">
+              <BrandListing user={user} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/car-list"
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated} redirect="/">
+              <AdminCarListing user={user} />
+            </ProtectedRoute>
+          }
+        />
+   
       </Routes>
       {/* <Footer /> */}
     </BrowserRouter>

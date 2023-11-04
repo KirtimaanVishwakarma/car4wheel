@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 
-const Modal = ({ children, setModal,heading}) => {
+const Modal = ({ children, setModal,heading, maxWidth}) => {
   return (
-    <div className="fixed h-screen w-full z-50 left-0 top-0 flex justify-center items-center bg-gray-400 bg-opacity-40">
-      <div className="modal-box">
+    <div className="fixed h-screen  w-full z-50 left-0 top-0 flex justify-center items-center bg-gray-400 bg-opacity-40">
+      <div className={`modal-box ${maxWidth && maxWidth}`}>
         <button
           className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
           onClick={setModal}

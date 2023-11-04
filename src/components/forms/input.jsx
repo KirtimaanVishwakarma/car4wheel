@@ -8,7 +8,7 @@ const FormInput = ({ item, setInputObj }) => {
       </label>
       <input
         id={item?.id}
-        type={'text'}
+        type={item?.type||'text'}
         className="out outline-none border border-grey-b1 rounded p-3.5"
         placeholder={item?.placeholder}
         onChange={onChange}
