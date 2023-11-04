@@ -31,7 +31,7 @@ export const logout=()=>async dispatch=>{
             withCredentials: true,
           }
         );
-        console.log(data);
+
         dispatch({ type: 'logoutSuccess',payload:data}); 
     } catch (error) {
         dispatch({ type: 'logoutFail',payload:error.response.data.message}); 
@@ -47,7 +47,7 @@ export const getProfile=()=>async dispatch=>{
             withCredentials: true,
           }
         );
-        console.log(data);
+   
         dispatch({ type: 'userProfileSuccess',payload:data}); 
     } catch (error) {
         dispatch({ type: 'userProfilefailed',payload:error.response.data.message}); 

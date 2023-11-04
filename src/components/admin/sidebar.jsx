@@ -3,9 +3,9 @@ import { Link, useLocation } from 'react-router-dom';
 
 const Sidebar = () => {
   const menuList = [
-    { name: 'Home', link: '/admin' },
-    { name: 'Car Lists', link: '/admin/car-lists' },
-    { name: 'Home', link: '' },
+    { name: 'Dashboard', link: '/admin' },
+    { name: 'Brand', link: '/admin/brand' },
+    { name: 'Car List', link: '/admin/car-list' },
 
   ];
   const { pathname } = useLocation();
