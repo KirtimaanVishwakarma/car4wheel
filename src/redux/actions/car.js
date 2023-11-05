@@ -33,6 +33,18 @@ export const getAllCars = (size) => async (dispatch) => {
   }
 };
 
+export const getCarDetails = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: 'getCardDetailRequest' });
+    const { data } = await axios.get(`${CAR}/${id}`, {
+      withCredentials: true,
+    });
+    dispatch({ type: 'getCardDetailSuccess', payload: data });
+  } catch (error) {
+    dispatch({ type: 'getCardDetailFail', payload: error.response.data.message });
+  }
+};
+
 export const deleteBrandHandler=async(id)=>{
   try {
     const {data}=await axios.delete(SINGLE_BRAND+id,{

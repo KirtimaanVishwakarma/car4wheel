@@ -13,6 +13,8 @@ addCarError: (state, action) =>{
     state.loading = false;
     state.error = action.payload; 
 },
+
+// all cars reducer 
 getAllCarRequest:(state)=>{
   state.loading=true;
 },
@@ -24,6 +26,20 @@ getAllCarError: (state, action) =>{
   state.loading = false;
   state.error = action.payload; 
 },
+
+//get car detail
+getCardDetailRequest:(state)=>{
+state.loading=true;
+},
+getCardDetailSuccess:(state,action)=>{
+state.loading=false;
+state.details=action.payload;
+},
+getCardDetailFail:(state,action)=>{
+state.loading=false;
+state.error=action.payload;
+},
+
 clearError: (state) => {
     state.error = null;
   },

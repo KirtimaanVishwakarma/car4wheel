@@ -1,9 +1,10 @@
+
 import AdminMain from '../../utils/adminMain';
 
 const Dashboard = () => {
-  
+
   return (
-    <AdminMain>
+    <AdminMain pageName={'Dashboard'}>
     Dashboard
     </AdminMain>
   );
