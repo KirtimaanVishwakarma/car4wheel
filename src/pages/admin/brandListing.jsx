@@ -3,18 +3,17 @@ import Modal from '../../components/modal';
 import AdminMain from '../../utils/adminMain';
 import Table from '../../components/forms/tabel';
 import FormWrapper from '../../components/forms/formWrapper';
-import { BrandForm, logInForm } from '../../utils/constant';
+import { BrandForm } from '../../utils/constant';
 import Button from '../../components/forms/button';
-import axios from 'axios';
-import { BRAND, SINGLE_BRAND } from '../../utils/apiConstant';
-import { useFetch } from '../../hooks/useFetch';
 import { Image } from 'antd';
+import Loader from '../../assets/loader/loader';
+import { useDispatch, useSelector } from 'react-redux';
+import { addBrand, deleteBrand, getBrandList } from '../../redux/actions/brandAction';
 
 const BrandListing = () => {
   const [modal, setModal] = useState(false);
   const modalHandler = () => setModal(!modal);
   const [file, setFile] = useState();
-  const [barndList,setBrandList]=useState([])
   const [formObj, setFormObj] = useState();
   const [refetch,setRefetch]=useState(false)
   const columns = useMemo(
@@ -46,49 +45,36 @@ const BrandListing = () => {
     ],
     []
   );
-  const deleteBrandHandler=async(id)=>{
-    try {
-      const {data}=await axios.delete(SINGLE_BRAND+id,{
-        withCredentials:true
-      })
-      console.log(data);
+
+  const {loading,brandList,getBrand,message,error}=useSelector(state=>state.brand)
+
+  const dispatch=useDispatch()
+  const deleteBrandHandler=(id)=>{
+      dispatch(deleteBrand(id))
       setRefetch(!refetch)
-    } catch (error) {
-      console.log(error);
-    }
   }
-  const submitHandler = async (e) => {
-    try {
+  const submitHandler = (e) => {
       e.preventDefault();
       const myForm = new FormData();
       myForm.append('file', file);
       myForm.append('name', formObj.name);
-
-      await axios.post(BRAND, myForm, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-        withCredentials: true,
-      });
+      dispatch(addBrand(myForm))
       setRefetch(!refetch)
      setModal(false)
-    } catch (error) {
-      console.log(error);
+  };
+
+  useEffect(()=>{dispatch(getBrandList())},[dispatch,getBrand,message])
+  useEffect(() => {
+    if (error) {
+      dispatch({ type: 'clearError' });
     }
-  };
-
-  const getBrandList = async () => {
-    try {
-      const {data} =await axios.get(BRAND, {
-        withCredentials: true,
-      });
-      setBrandList(data?.brands)
-    } catch (error) {}
-  };
-  
-
-  useEffect(()=>{getBrandList()},[refetch])
- 
+    if (message) {
+      dispatch({ type: 'clearMessage' });
+    }
+  }, [dispatch, error, message]);
+  if(loading){
+    return <Loader/>
+  } 
   return (
     <AdminMain pageName={'Brands'}>
       <div className="flex justify-end">
@@ -100,7 +86,7 @@ const BrandListing = () => {
           />
         </div>
       </div>
-      <Table columns={columns} data={barndList}/>
+      <Table columns={columns} data={brandList?.brands}/>
       {modal && (
         <Modal setModal={modalHandler} heading={'Add New Brand'} maxWidth={'max-w-[50%]'}>
           <div className="p-4">

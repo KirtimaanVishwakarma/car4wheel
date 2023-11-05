@@ -1,0 +1,10 @@
+import "../loader/loader.css"
+const Loader = () => {
+  return (
+    <div id="preloader">
+      <div id="loader"></div>
+    </div>
+  );
+};
+
+export default Loader;

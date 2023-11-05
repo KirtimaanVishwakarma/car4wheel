@@ -5,6 +5,7 @@ import {offerForm} from '../utils/constant.js';
 import Button  from '../components/forms/button';
 import FormWrapper from '../components/forms/formWrapper';
 import Main from '../utils/main';
+import { useEffect } from 'react';
 
 const SpecialOffer = () => {
   const filterForm = [
@@ -24,6 +25,7 @@ const SpecialOffer = () => {
       options: ['1500cc', '1800cc', '2500cc'],
     },
   ];
+  useEffect(()=>{window.scrollTo(0, 0)},[])
   return (
     <Main>
       <div className="relative">

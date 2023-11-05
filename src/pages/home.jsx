@@ -11,6 +11,8 @@ import Button from '../components/forms/button';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {getAllCars} from "../redux/actions/car"
+import { useNavigate } from 'react-router';
+import Loader from '../assets/loader/loader';
 const Home = () => {
   const carType = [
     {
@@ -38,11 +40,16 @@ const Home = () => {
       name: 'Toyota',
     }
   ];
+  const navigate=useNavigate()
   const dispatch=useDispatch()
   const {loading,carList}=useSelector(state=>state.cars)
   useEffect(()=>{
 dispatch(getAllCars(6))
   },[])
+  useEffect(()=>{window.scrollTo(0, 0)},[])
+  if(loading){
+    return <Loader/>
+  }
   return (
     <Main>
       <div className="lg:px-14 px-3 lg:py-14 bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
@@ -61,7 +68,7 @@ dispatch(getAllCars(6))
               manufacturers, as well as used cars from a variety of sources.
             </p>
             <div className="grid grid-cols-2 gap-8 mt-8">
-              <Button btnClass="primary" name="Buy Car" />
+              <Button btnClass="primary" name="Buy Car" onClick={()=>navigate('/car-lists')} />
               <Button btnClass="secondary" name="Sell Car" />
             </div>
           </section>
@@ -166,7 +173,7 @@ dispatch(getAllCars(6))
       </div>
 
       {/* Top Rate Used Cars */}
-      <div className="my-14 px-2">
+      {/* <div className="my-14 px-2">
         <div className="w-full">
           <div className="lg:flex lg:justify-between px-4 lg:px-2 lg:pb-2">
             <div className="text-lg  tracking-widest font-medium">
@@ -181,7 +188,7 @@ dispatch(getAllCars(6))
             <CarListingCard key={ele} />
           ))}
         </div>
-      </div>
+      </div> */}
 
       {/* News and Car Bids */}
       <div className="my-14 px-2">

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import HeroSection from '../components/heroSection';
 import { Image } from 'antd';
 import { PiCheckCircleThin, PiEngineLight,PiEngineThin, PiGasCan, PiCarThin, PiGasPumpThin, PiGaugeThin } from 'react-icons/pi';  
@@ -148,6 +148,7 @@ const Auction = () => {
       specification: 'front',
     },
   ];
+  useEffect(()=>{window.scrollTo(0, 0)},[])
   return (
     <Main>
       <HeroSection />
