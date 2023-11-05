@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import HeroSection from '../components/heroSection';
 import { Image } from 'antd';
 import { PiCheckCircleThin, PiEngineLight,PiEngineThin, PiGasCan, PiCarThin, PiGasPumpThin, PiGaugeThin } from 'react-icons/pi';  
@@ -8,9 +8,12 @@ import FormWrapper from '../components/forms/formWrapper';
 import { auctionForm } from '../utils/constant';
 import Button from '../components/forms/button'
 import {PiPaperPlaneTiltThin, PiHammerThin} from 'react-icons/pi'
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllCars } from '../redux/actions/car';
+import { formatCurrency } from '../utils/apiUtils';
 
 
-const Auction = () => {
+const CarInfo = () => {
   // car info data
 
   const carInfo = [
@@ -148,6 +151,13 @@ const Auction = () => {
       specification: 'front',
     },
   ];
+
+
+  const dispatch = useDispatch();
+  const { loading, carList } = useSelector((state) => state.cars);
+  useEffect(() => {
+    dispatch(getAllCars(4));
+  }, []);
   return (
     <Main>
       <HeroSection />
@@ -291,34 +301,34 @@ const Auction = () => {
                 Recent Used Car
               </header>
               <div className='flex flex-col gap-3'>
-                {[1,2,3,4].map(ele=>
-                <div key={ele} className="card w-full bg-base-100 outline-dashed shadow-xl flex gap-2 flex-row">
+                {carList && carList?.list?.map(ele=>
+                <div key={ele._id} className="card w-full bg-base-100 outline-dashed shadow-xl flex gap-2 flex-row">
                   <figure className="p-2 flex-1 h-40 relative">
                     <img
                       className="h-full object-cover rounded-lg"
-                      src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+                      src={ele?.images?.url}
                       alt="Shoes"
                     />
 
                     <div className="absolute bottom-2 left-1 w-2/3 text-center bg-white-0 bg-clip">
-                      <span className="m-auto">$7,656.007</span>
+                      <span className="m-auto">${formatCurrency(ele?.price)}</span>
                     </div>
                   </figure>
                   <div className="flex-1 py-2 flex flex-col justify-around">
                     <header className="font-bold pb-1 w-fit border-b">
-                      Mercedes-Benz-2023
+                      <span className='uppercase'>{ele?.model}</span>-<span>{ele?.modelYear}</span>
                     </header>
                     <div className="flex gap-2">
                       <GiGearStickPattern className="h-full" />
-                      <header>Automactic</header>
+                      <header>{ele?.transmission}</header>
                     </div>
                     <div className="flex gap-2">
                       <PiGasCan className="h-full" />
-                      <header>Automactic</header>
+                      <header>{ele?.fuelType[0]}</header>
                     </div>
                     <div className="flex gap-2">
                       <PiEngineLight className="h-full" />
-                      <header>Automactic</header>
+                      <header>{ele?.odometer}</header>
                     </div>
                   </div>
                 </div>
@@ -334,4 +344,4 @@ const Auction = () => {
   );
 };
 
-export default Auction;
+export default CarInfo;

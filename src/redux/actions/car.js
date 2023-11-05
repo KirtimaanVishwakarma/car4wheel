@@ -1,5 +1,6 @@
-import { CAR, GET_ALL_CARS } from '../../utils/apiConstant';
+import { CAR, GET_ALL_CARS, SINGLE_BRAND } from '../../utils/apiConstant';
 import axios from 'axios';
+import { attachParams } from '../../utils/apiUtils';
 
 export const addCar = (myForm) => async (dispatch) => {
   try {
@@ -16,10 +17,13 @@ export const addCar = (myForm) => async (dispatch) => {
   }
 };
 
-export const getAllCars = () => async (dispatch) => {
+export const getAllCars = (size) => async (dispatch) => {
+  const url=attachParams(GET_ALL_CARS,{
+    size:size||''
+  })
   try {
     dispatch({ type: 'getAllCarRequest' });
-    const { data } = await axios.get(GET_ALL_CARS, {
+    const { data } = await axios.get(url, {
       withCredentials: true,
     });
 
@@ -28,3 +32,17 @@ export const getAllCars = () => async (dispatch) => {
     dispatch({ type: 'getAllCarError', payload: error.response.data.message });
   }
 };
+
+export const deleteBrandHandler=async(id)=>{
+  try {
+    const {data}=await axios.delete(SINGLE_BRAND+id,{
+      withCredentials:true
+    })
+    console.log(data);
+   
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+

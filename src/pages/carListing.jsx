@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import HeroSection from '../components/heroSection';
 import { IoIosCloseCircleOutline, IoIosClose } from 'react-icons/io';
 import { Checkbox } from 'antd';
@@ -6,6 +6,8 @@ import CarListingCard from '../components/carListingCard';
 
 import { Slider, Switch } from 'antd';
 import Main from '../utils/main';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllCars } from '../redux/actions/car';
 
 const CarListing = () => {
   const [selectedOption, setSelectedOption] = useState('');
@@ -13,6 +15,12 @@ const CarListing = () => {
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
   };
+
+  const dispatch = useDispatch();
+  const { loading, carList } = useSelector((state) => state.cars);
+  useEffect(() => {
+    dispatch(getAllCars());
+  }, []);
 
   return (
     <Main>
@@ -47,7 +55,7 @@ const CarListing = () => {
             {/* filter-form */}
             <div className="mt-14">
               <div>
-                <div className="max-w-md mx-auto mt-8 p-4  rounded-lg bg-white bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
+                <div className="max-w-md mx-auto mt-8 p-4  rounded-lg bg-white-0 bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
                   <h2 className="font-bold text-xl ">Make</h2>
                   <div className="container">
                     <div>
@@ -83,7 +91,7 @@ const CarListing = () => {
                           value={selectedOption}
                           onChange={handleOptionChange}
                         >
-                          <option value="" disabled className=''>
+                          <option value="" disabled className="">
                             Min Year
                           </option>
                           {options.map((option, index) => (
@@ -185,14 +193,16 @@ const CarListing = () => {
                   <h2 className="text-xl font-semibold mb-4">Price</h2>
                   <Slider range defaultValue={[0, 10]} />
                   <div className="flex gap-6 h-10 rounded-lg items-center mt-5 mb-4">
-                    <span className="px-10 py-2 bg-white rounded-lg">$333</span>
-                    <span className="px-10 py-2 bg-white rounded-lg">
+                    <span className="px-10 py-2 bg-white-0 rounded-lg">
+                      $333
+                    </span>
+                    <span className="px-10 py-2 bg-white-0 rounded-lg">
                       {' '}
                       $444
                     </span>
                   </div>
                 </div>
-                <div className="max-w-md mx-auto mt-8 p-4 rounded-lg bg-white bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
+                <div className="max-w-md mx-auto mt-8 p-4 rounded-lg bg-white-0 bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
                   <h2 className="font-bold text-xl ">Colours</h2>
                   <div className="grid grid-cols-2 gap-2 mt-4">
                     {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((ele) => (
@@ -210,22 +220,20 @@ const CarListing = () => {
             </div>
           </section>
 
-          <section className="lg:w-2/3 w-auto">
-          <h1 className='mt-4 mb-10'>Showing 2,928 car available in stock</h1>
-<div className='grid lg:grid-cols-2 grid-row gap-5'>
-          {[1,2,3,4,5,6,7,8].map((ele)=>(
- <div key={ele} className=''>
-    <CarListingCard />
- </div>
-          ))}
-          </div>
-        </section>
-        </div>
+                      {/* listing  */}
 
-        
-</div>
-       
-    
+          <section className="lg:w-2/3 w-auto">
+            <h1 className="mt-4 mb-10">Showing {carList && carList?.totalElement} car available in stock</h1>
+            <div className="grid lg:grid-cols-2 grid-row gap-5">
+              {carList && carList?.list?.map((ele) => (
+                <div key={ele?._id} className="">
+                  <CarListingCard item={ele}/>
+                </div>
+              ))}
+            </div>
+          </section>
+        </div>
+      </div>
     </Main>
   );
 };

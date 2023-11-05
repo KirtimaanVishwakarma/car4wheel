@@ -14,6 +14,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProfile } from './redux/actions/user';
 import { ProtectedRoute } from 'protected-route-react';
+import CarInfo from './pages/carInfo';
 // import {BASE_URL} from "./utils/apiConstant"
 function App() {
   const { isAuthenticated, loading, user, message, error } = useSelector(
@@ -38,6 +39,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/car-lists" element={<CarListing />} />
+        <Route path="/car-lists/:id" element={<CarInfo/>} />
         <Route path="/offers" element={<SpecialOffer />} />
         <Route path="/auction" element={<Auction />} />
         <Route path="/customer-review" element={<CustomerReview />} />

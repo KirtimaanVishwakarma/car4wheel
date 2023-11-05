@@ -2,7 +2,7 @@ import React from 'react';
 
 export const AboutCard = () => {
   return (
-    <div className='w-full h-full p-8 py-10 border-solid border-2 rounded-lg flex flex-col'>
+    <div className='w-full h-full p-8 py-10 shadow shadow-blue-b1 rounded-lg flex flex-col'>
       <div className='flex justify-start gap-6 mb-3'> 
         <img
           src="https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/home1/icon/affordable.svg"

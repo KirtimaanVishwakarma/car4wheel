@@ -14,7 +14,7 @@ const ErrorPage = () => {
             <img src="https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/404.svg" alt="error-img" className='m-auto' />
         </div>
         <div>
-            <Link to="/" className='p-4 bg-green-g1 rounded-lg hover:bg-green-300 text-white font-semibold'>Back to Home</Link>
+            <Link to="/" className='p-4 bg-green-g1 rounded-lg hover:bg-green-300 text-white-0 font-semibold'>Back to Home</Link>
         </div>
     </div>
     </Main>
