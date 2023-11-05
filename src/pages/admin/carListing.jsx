@@ -94,12 +94,12 @@ const CarListing = () => {
     dispatch(getAllCars());
   }, [refetch]);
   return (
-    <AdminMain pageName={'Brands'}>
+    <AdminMain pageName={'Car Lists'}>
       <div className="flex justify-end">
         <div className="w-fit">
           <Button
             btnClass="primary"
-            name="Add New Brand"
+            name="Add New Car"
             onClick={modalHandler}
           />
         </div>
@@ -108,7 +108,7 @@ const CarListing = () => {
       {modal && (
         <Modal
           setModal={modalHandler}
-          heading={'Add New Brand'}
+          heading={'Add New Car'}
           maxWidth={'max-w-[65%]'}
         >
           <div className="p-4">
