@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { MdOutlineAlternateEmail } from 'react-icons/md';
 import { BsShop } from 'react-icons/bs';
 import { FiPhoneCall } from 'react-icons/fi';
@@ -33,7 +33,7 @@ const ContactUs = () => {
       icon: <BsShop className=" h-8 w-8 text-white-0" />,
     },
   ];
-
+  useEffect(()=>{window.scrollTo(0, 0)},[])
   return (
     <Main>
       <HeroSection/>

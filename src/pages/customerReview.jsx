@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import HeroSection from '../components/heroSection';
 import CustomerReviewCard from '../components/CustomerReviewCard';
 import Main from '../utils/main';
 
 const CustomerReview = () => {
+  useEffect(()=>{window.scrollTo(0, 0)},[])
   return (
     <Main>
     <HeroSection/>

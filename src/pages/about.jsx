@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import HeroSection from '../components/heroSection';
 import { AboutCard } from '../components/aboutCard';
 import { Button, Image } from 'antd';
@@ -7,7 +7,7 @@ import WhyChoose from '../components/whyChoose'
 import Main from '../utils/main';
 
 const About = () => {
-
+  useEffect(()=>{window.scrollTo(0, 0)},[])
   return (
     <Main>
       <HeroSection name={'about'}/>

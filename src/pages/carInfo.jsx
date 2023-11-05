@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllCars, getCarDetails } from '../redux/actions/car';
 import { formatCurrency } from '../utils/apiUtils';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import Loader from '../assets/loader/loader';
 
 
 const CarInfo = () => {
@@ -150,6 +151,9 @@ const CarInfo = () => {
   useEffect(()=>{window.scrollTo(0, 0)
     dispatch(getCarDetails(id))
 },[id])
+if(loading){
+    return <Loader/>
+  }
   return (
     <Main>
       <HeroSection />

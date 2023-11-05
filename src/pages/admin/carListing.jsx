@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addCar, getAllCars } from '../../redux/actions/car';
 import { formatCurrency } from '../../utils/apiUtils';
 import { Image } from 'antd';
+import Loader from '../../assets/loader/loader';
 
 
 
@@ -20,7 +21,6 @@ const CarListing = () => {
   const modalHandler = () => setModal(!modal);
   const [file, setFile] = useState();
   const [formObj, setFormObj] = useState();
-  const [refetch, setRefetch] = useState(false);
   const [arrayValue, setArrayValue] = useState([]);
   const dispatch = useDispatch();
   
@@ -72,10 +72,10 @@ const CarListing = () => {
     []
   );
 
-  const { loading, carList, error } = useSelector((state) => state.cars);
-  const submitHandler = async (e) => {
+  const { loading, carList, error,message} = useSelector((state) => state.cars);
+
+  const submitHandler = (e) => {
     e.preventDefault();
-    console.log(file);
     const myForm = new FormData();
     const multiInp = arrayValue.map((ele) => ele.value);
     setFormObj((prev) => {
@@ -87,12 +87,25 @@ const CarListing = () => {
       }
     }
     dispatch(addCar(myForm));
-    setRefetch(!refetch)
     setModal(false)
   };
+
   useEffect(() => {
     dispatch(getAllCars());
-  }, [refetch]);
+  }, [dispatch,message,error]);
+
+  useEffect(() => {
+    if (error) {
+      dispatch({ type: 'clearError' });
+    }
+    if (message) {
+      dispatch({ type: 'clearMessage' });
+    }
+  }, [dispatch, error, message]);
+  
+  if(loading){
+    return <Loader/>
+  }
   return (
     <AdminMain pageName={'Car Lists'}>
       <div className="flex justify-end">

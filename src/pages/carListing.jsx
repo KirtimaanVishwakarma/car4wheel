@@ -8,6 +8,7 @@ import { Slider, Switch } from 'antd';
 import Main from '../utils/main';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCars } from '../redux/actions/car';
+import Loader from '../assets/loader/loader';
 
 const CarListing = () => {
   const [selectedOption, setSelectedOption] = useState('');
@@ -21,7 +22,10 @@ const CarListing = () => {
   useEffect(() => {
     dispatch(getAllCars());
   }, []);
-
+  useEffect(()=>{window.scrollTo(0, 0)},[])
+  if(loading){
+    return <Loader/>
+  }
   return (
     <Main>
       <HeroSection />
