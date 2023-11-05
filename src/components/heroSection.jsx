@@ -27,7 +27,7 @@ const HeroSection = () => {
     },
   ];
   return (
-    <div className="ps-4 lg:px-14  bg-white bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
+    <div className="ps-4 lg:px-14  bg-white-0 bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
       <div className="lg:py-14 pb-8 pt-4">
         <BreadCrumb items={items} className='' />
 

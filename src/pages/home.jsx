@@ -8,7 +8,9 @@ import Main from '../utils/main';
 import { homeForm } from '../utils/constant.js';
 import FormWrapper from '../components/forms/formWrapper';
 import Button from '../components/forms/button';
-
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {getAllCars} from "../redux/actions/car"
 const Home = () => {
   const carType = [
     {
@@ -36,6 +38,11 @@ const Home = () => {
       name: 'Toyota',
     }
   ];
+  const dispatch=useDispatch()
+  const {loading,carList}=useSelector(state=>state.cars)
+  useEffect(()=>{
+dispatch(getAllCars(6))
+  },[])
   return (
     <Main>
       <div className="lg:px-14 px-3 lg:py-14 bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
@@ -116,8 +123,8 @@ const Home = () => {
 
         </div>
         <div className="lg:grid flex flex-col gap-6 items-center justify-center py-10 lg:grid-cols-3 lg:gap-3 lg:px-10 lg:py-14">
-          {[1, 2, 3, 4, 5, 6].map((ele) => (
-            <CarListingCard key={ele} />
+          {carList && carList?.list?.map((ele) => (
+            <CarListingCard key={ele?._id} item={ele} />
           ))}
         </div>
       </div>

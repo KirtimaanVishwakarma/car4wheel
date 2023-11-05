@@ -14,6 +14,7 @@ import { formatCurrency } from '../../utils/apiUtils';
 import { Image } from 'antd';
 
 
+
 const CarListing = () => {
   const [modal, setModal] = useState(false);
   const modalHandler = () => setModal(!modal);
@@ -22,6 +23,7 @@ const CarListing = () => {
   const [refetch, setRefetch] = useState(false);
   const [arrayValue, setArrayValue] = useState([]);
   const dispatch = useDispatch();
+  
   const columns = useMemo(
     () => [
       {

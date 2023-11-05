@@ -17,7 +17,7 @@ const AdminMain = ({ children,pageName}) => {
             <header className='cursor-pointer' onClick={()=>dispatch(logout())}>Logout</header>
           </div>
         </div>
-        <div className='p-6'>{children}</div>
+        <div className='p-6 overflow-y-auto'>{children}</div>
       </div>
     </div>
   );
