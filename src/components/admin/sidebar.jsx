@@ -6,6 +6,8 @@ const Sidebar = () => {
     { name: 'Dashboard', link: '/admin' },
     { name: 'Brand', link: '/admin/brand' },
     { name: 'Car List', link: '/admin/car-list' },
+    { name: 'Review List', link: '/admin/review-list' },
+
 
   ];
   const { pathname } = useLocation();

@@ -21,7 +21,7 @@ const FormWrapper = ({ formObj, setInputObj, setFile,setArrayValue,
                   : 'col-span-6'
               }
             >
-              <FormTextArea item={ele} />
+              <FormTextArea item={ele} setInputObj={setInputObj}/>
             </div>
           );
         }

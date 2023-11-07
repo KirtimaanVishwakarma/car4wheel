@@ -1,11 +1,11 @@
-import { CAR, GET_ALL_CARS, SINGLE_BRAND } from '../../utils/apiConstant';
+import { CAR, CREATE_CAR, GET_ALL_CARS } from '../../utils/apiConstant';
 import axios from 'axios';
 import { attachParams } from '../../utils/apiUtils';
 
 export const addCar = (myForm) => async (dispatch) => {
   try {
     dispatch({ type: 'addCarRequest' });
-    let { data } = await axios.post(CAR, myForm, {
+    let { data } = await axios.post(CREATE_CAR, myForm, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -36,7 +36,7 @@ export const getAllCars = (size) => async (dispatch) => {
 export const getCarDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: 'getCardDetailRequest' });
-    const { data } = await axios.get(`${CAR}/${id}`, {
+    const { data } = await axios.get(CAR+id, {
       withCredentials: true,
     });
     dispatch({ type: 'getCardDetailSuccess', payload: data });
@@ -45,15 +45,16 @@ export const getCarDetails = (id) => async (dispatch) => {
   }
 };
 
-export const deleteBrandHandler=async(id)=>{
+export const deleteCar=(id)=>async (dispatch)=>{
   try {
-    const {data}=await axios.delete(SINGLE_BRAND+id,{
+    dispatch({ type: 'deleteCarRequest' });
+    const {data}=await axios.delete(CAR+id,{
       withCredentials:true
     })
-    console.log(data);
+    dispatch({ type: 'deleteCarSuccess' ,payload: data});
    
   } catch (error) {
-    console.log(error);
+    dispatch({ type: 'deleteCarError',payload: error.response.data.message});
   }
 }
 
