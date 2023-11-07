@@ -1,10 +1,11 @@
-import React from "react";
+import React  from "react";
 import FooteLogo from "../assets/footer-logo.svg";
 import CallIcon from "../assets/hotline-icon.svg";
 import Map from './map.jsx'
 import {BsFacebook,BsInstagram} from "react-icons/bs"
 import {PiYoutubeLogoLight} from "react-icons/pi"
 import {PiAtThin} from 'react-icons/pi'
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const footerLists = [
@@ -62,9 +63,9 @@ const Footer = () => {
                 );
               }
               return (
-                <div className="text-blue-200 cursor-pointer" key={index}>
+                <Link to={ele.link} className="text-blue-200 cursor-pointer" key={index}>
                      {ele.name}
-                </div>
+                </Link>
               );
             })}
           </div>

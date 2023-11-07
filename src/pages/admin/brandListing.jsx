@@ -86,7 +86,7 @@ const BrandListing = () => {
           />
         </div>
       </div>
-      <Table columns={columns} data={brandList?.brands}/>
+      <Table columns={columns} data={brandList?.list}/>
       {modal && (
         <Modal setModal={modalHandler} heading={'Add New Brand'} maxWidth={'max-w-[50%]'}>
           <div className="p-4">

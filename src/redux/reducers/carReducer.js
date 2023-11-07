@@ -40,6 +40,19 @@ state.loading=false;
 state.error=action.payload;
 },
 
+// delete car 
+deleteCarRequest: (state) => {
+  state.loading = true;
+},
+deleteCarSuccess: (state, action) => {
+  state.loading = false;
+  state.message = action.payload.message;
+},
+deleteCarError: (state, action) => {
+  state.loading = false;
+  state.error = action.payload;
+},
+
 clearError: (state) => {
     state.error = null;
   },

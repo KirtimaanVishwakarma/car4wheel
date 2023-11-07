@@ -336,3 +336,40 @@ export const carForm = [
     label: 'Car Image',
   },
 ];
+export const ReviewForm = [
+  {
+    id: 'customerName',
+    type: 'text',
+    label: 'Customer Name',
+    placeholder: 'Enter Customer Name',
+  },
+  {
+    id: 'brand',
+    label: 'Brand',
+    type: 'select',
+    span: 'two',
+    placeholder: 'Select Brand',
+    options: [
+      { label: 'Maruti', value: 'Maruti' },
+      { label: 'Toyota', value: 'Toyota' },
+    ],
+  },
+  {
+    id: 'model',
+    type: 'text',
+    span: 'two',
+    label: 'Model Name',
+    placeholder: 'Enter Model Name',
+  },
+  {
+    label: 'Review',
+    type: 'textarea',
+    id: 'review',
+    placeholder: 'Write Something...',
+  },
+  {
+    id: 'file',
+    type: 'file',
+    label: 'Brand Logo',
+  },
+];

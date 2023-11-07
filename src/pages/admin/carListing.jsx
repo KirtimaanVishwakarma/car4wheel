@@ -9,10 +9,11 @@ import axios from 'axios';
 import { BRAND, SINGLE_BRAND } from '../../utils/apiConstant';
 import { useFetch } from '../../hooks/useFetch';
 import { useDispatch, useSelector } from 'react-redux';
-import { addCar, getAllCars } from '../../redux/actions/car';
+import { addCar, getAllCars,deleteCar } from '../../redux/actions/car';
 import { formatCurrency } from '../../utils/apiUtils';
 import { Image } from 'antd';
 import Loader from '../../assets/loader/loader';
+import { getBrandList } from '../../redux/actions/brandAction';
 
 
 
@@ -63,7 +64,7 @@ const CarListing = () => {
             <Button
               name="Delete"
               btnClass="secondaey"
-              onClick={() => deleteBrandHandler(row?.original?._id)}
+              onClick={() => deleteCarHandler(row?.original?._id)}
             />
           </div>
         ),
@@ -73,6 +74,7 @@ const CarListing = () => {
   );
 
   const { loading, carList, error,message} = useSelector((state) => state.cars);
+  const {brandList}=useSelector(state=>state.brand)
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -80,8 +82,7 @@ const CarListing = () => {
     const multiInp = arrayValue.map((ele) => ele.value);
     setFormObj((prev) => {
       return { ...prev, features: multiInp, file: file };
-    });
-    for (const key in formObj) {
+    });    for (const key in formObj) {
       if (Object.prototype.hasOwnProperty.call(formObj, key)) {
         myForm.append(key, formObj[key]);
       }
@@ -89,11 +90,21 @@ const CarListing = () => {
     dispatch(addCar(myForm));
     setModal(false)
   };
-
+ const deleteCarHandler=(id)=>{
+      dispatch(deleteCar(id))
+  }
   useEffect(() => {
     dispatch(getAllCars());
   }, [dispatch,message,error]);
 
+  useEffect(()=>{dispatch(getBrandList())},[dispatch])
+
+  useEffect(()=>{
+    const brand= carForm.find(ele=>ele.id==='brand');
+    const list=brandList?.list?.map(ele=>{return{label:ele.name, value:ele.name}})
+    brand.options=list
+   },[dispatch,brandList])
+   
   useEffect(() => {
     if (error) {
       dispatch({ type: 'clearError' });
