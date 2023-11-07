@@ -17,10 +17,13 @@ export const addReview = (myForm) => async (dispatch) => {
     }
   };
 
-  export const getReviewList = () => async (dispatch) => {
+  export const getReviewList = (size) => async (dispatch) => {
     try {
       dispatch({ type: 'getReviewListRequest' });
-      const {data} =await axios.get(REVIEWS, {
+      const res= attachParams(REVIEWS,{
+        size:size||10
+      })
+      const {data} =await axios.get(res, {
         withCredentials: true,
       });
       dispatch({ type: 'getReviewListSuccess', payload: data });

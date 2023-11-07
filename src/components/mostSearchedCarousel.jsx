@@ -6,7 +6,7 @@ import CarListingCard from './carListingCard.jsx'
 import {MdArrowForwardIos} from 'react-icons/md'
 
 
-const MostSearchedCarousel = () => {
+const MostSearchedCarousel = ({item}) => {
   let [viewportWidth, setViewportWidth] = useState(window.innerWidth);
   useEffect(() => {
     let handleResize = () => {
@@ -65,9 +65,9 @@ let slidesToShow =
     <div className="lg:my-4 lg:flex-row lg:w-full">
       <Slider {...settings} prevArrow={<CustomPrevArrow />} nextArrow={<CustomNextArrow />} className='flex justify-between'>
        
-       {[1,2,3,4].map(ele=>
-        <div key={ele} className="lg:p-4 p-2">
-          <CarListingCard />
+       {item?.map(ele=>
+        <div key={ele._id} className="lg:p-4 p-2">
+          <CarListingCard item={ele}/>
         </div>)}
       </Slider>
     </div>

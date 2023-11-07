@@ -45,7 +45,7 @@ const Home = () => {
   const {loading,carList}=useSelector(state=>state.cars)
   useEffect(()=>{
 dispatch(getAllCars(6))
-  },[])
+  },[dispatch])
   useEffect(()=>{window.scrollTo(0, 0)},[])
   if(loading){
     return <Loader/>
@@ -106,7 +106,7 @@ dispatch(getAllCars(6))
         </div>
         </div>
         <div className="lg:m-auto lg:flex-row lg:px-10">
-          <MostSearchedCarousel />
+          <MostSearchedCarousel item={carList?.list}/>
         </div>
       </div>
       {/* recently-lanched */}
@@ -149,8 +149,8 @@ dispatch(getAllCars(6))
         </div>
 
         <div className="lg:grid flex flex-col gap-6 items-center justify-center py-10 lg:grid-cols-3 lg:gap-3 lg:px-10 lg:py-14">
-          {[1, 2, 3].map((ele) => (
-            <CarListingCard key={ele} />
+          {carList && carList?.list?.filter((ele,i)=>i<3)?.map((ele) => (
+            <CarListingCard key={ele._id} item={ele}/>
           ))}
         </div>
       </div>
@@ -166,29 +166,11 @@ dispatch(getAllCars(6))
         </div>
 
         <div className="lg:grid flex flex-col gap-6 items-center justify-center py-10 lg:grid-cols-3 lg:gap-3 lg:px-10 lg:py-14">
-          {[1, 2, 3].map((ele) => (
-            <CarListingCard key={ele} />
+          {carList && carList?.list?.filter((ele,i)=>i<3)?.map((ele) => (
+            <CarListingCard key={ele._id} item={ele}/>
           ))}
         </div>
       </div>
-
-      {/* Top Rate Used Cars */}
-      {/* <div className="my-14 px-2">
-        <div className="w-full">
-          <div className="lg:flex lg:justify-between px-4 lg:px-2 lg:pb-2">
-            <div className="text-lg  tracking-widest font-medium">
-              <span className="text-blue-400">Used Cars</span>
-              <h1 className="text-4xl font-bold">Top Rated Used Cars</h1>
-            </div>
-          </div>
-        </div>
-
-        <div className="lg:grid flex flex-col gap-6 items-center justify-center py-10 lg:grid-cols-3 lg:gap-3 lg:px-10 lg:py-14">
-          {[1, 2, 3].map((ele) => (
-            <CarListingCard key={ele} />
-          ))}
-        </div>
-      </div> */}
 
       {/* News and Car Bids */}
       <div className="my-14 px-2">
@@ -202,8 +184,8 @@ dispatch(getAllCars(6))
         </div>
 
         <div className="lg:grid lg:grid-cols-3 lg:gap-3 lg:px-10 lg:py-14 flex flex-col gap-6 items-center">
-          {[1, 2, 3].map((ele) => (
-            <CarListingCard key={ele} />
+          {carList && carList?.list?.filter((ele,i)=>i<3)?.map((ele) => (
+            <CarListingCard key={ele._id} item={ele} />
           ))}
         </div>
       </div>
