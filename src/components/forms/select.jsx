@@ -11,7 +11,7 @@ const FormSelect = ({item,setInputObj}) => {
     <label htmlFor={''} className="mb-2">
       {item?.label} <span className='text-red-500'>*</span>
     </label>
-      <Select placeholder={item?.placeholder} name={item.id} onChange={handleOptionChange} className="h-12 w-full">
+      <Select placeholder={item?.placeholder} value={item?.value} name={item.id} onChange={handleOptionChange} className="h-12 w-full">
       <Option disabled>
             {item?.placeholder}
           </Option>

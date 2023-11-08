@@ -13,22 +13,22 @@ const Footer = () => {
       {
         header: "About Company",
       },
-      { name: "About Us", link: "/about-us" },
-      { name: "Return & Exchange", link: "/about-us" },
-      { name: "Refund Policy", link: "/about-us" },
-      { name: "Reviews", link: "/about-us" },
-      { name: "FAQ’s", link: "/about-us" },
+      { name: "About Us", link: "/about" },
+      { name: "Return & Exchange", link: "#" },
+      { name: "Refund Policy", link: "#" },
+      { name: "Reviews", link: "#" },
+      { name: "FAQ’s", link: "#" },
       { name: "Contact Us", link: "/contact-us" },
     ],
     [
       {
         header: "Search & Explore",
       },
-      { name: "Car Listing", link: "/about-us" },
-      { name: "New Arrives", link: "/about-us" },
-      { name: "Auction Cars", link: "/about-us" },
-      { name: "Sell My Car", link: "/about-us" },
-      { name: "Shop Now", link: "/about-us" },
+      { name: "Car Listing", link: "/car-lists" },
+      { name: "New Arrives", link: "#" },
+      { name: "Auction Cars", link: "/auction" },
+      { name: "Sell My Car", link: "#" },
+      { name: "Shop Now", link: "/car-lists" },
     ],
     [
       {
@@ -79,20 +79,20 @@ const Footer = () => {
       <div className="flex lg:flex-row flex-col gap-4 lg:px-0 px-10 items-center lg:justify-between py-4 border-b border-gray-100">
         <img src={FooteLogo} alt="FooteLogo" />
         <div className="flex items-center gap-2">
-          <img src={CallIcon} className="h-10 filter-invert" alt="" />
+          <img src={CallIcon} className="h-10 invert" alt="" />
           <div>
             <header className="text-blue-200 text-sm font-semibold">To More Inquiry</header>
             <header>
-              <a href="tel:+917985936925" className="font-semibold text-xl">+990-737 621 432</a>
+            <a href="tel:+917985936925" className="font-semibold text-lg">+990-737 621 432</a>
             </header>
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <PiAtThin className="h-12  w-12"/>
+          <PiAtThin className="h-12  w-12 invert"/>
           <div>
             <header className="text-blue-200 text-sm font-semibold">To Send Email</header>
             <header className="font-semibold text-xl">
-              <a href="">abc@example.com</a>
+            <a href='mailto:Smart4Wheels2628@gmail.com' className="font-semibold text-lg">Smart4Wheels2628@gmail.com</a>
             </header>
           </div>
         </div>

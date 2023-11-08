@@ -313,7 +313,6 @@ export const carForm = [
     span: 'one',
     placeholder: 'select Engine Location',
     options: [
-      { label: 'Select Engine Location', value: '' },
       { label: 'front', value: 'front' },
       { label: 'back', value: 'back' },
     ],

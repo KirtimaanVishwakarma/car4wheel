@@ -15,28 +15,32 @@ const ContactUs = () => {
     {
       mainHeader: 'Mobile Number',
       header: 'Call Now',
-      content: '1234567890',
+      contact: ['+91-9129430979', '+91-9598110333', '+91-7905898709'],
+
       icon: <FiPhoneCall className=" h-8 w-8  text-white-0" />,
     },
 
     {
       mainHeader: 'Email Id',
       header: 'To Know More',
-      content: 'abc@emil.com',
+      content:  <a href='mailto:Smart4Wheels2628@gmail.com' className="font-normal text-lg">Smart4Wheels2628@gmail.com</a>,
       icon: <MdOutlineAlternateEmail className=" h-8 w-8 text-white-0" />,
     },
 
     {
       mainHeader: 'Office Address',
       header: 'Visit Us',
-      content: 'Address: village-Maktapar, post-Sahjanwa, District- Gorakhpur, Uttar-Pradesh, India, Pin-273209',
+      content:
+        'Address: Near Lala Bazar Chauraha, Pipraich Road, Padri Bazar Gorakhpur 273014',
       icon: <BsShop className=" h-8 w-8 text-white-0" />,
     },
   ];
-  useEffect(()=>{window.scrollTo(0, 0)},[])
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <Main>
-      <HeroSection/>
+      <HeroSection />
       {/* contact form  */}
       <div className="lg:m-14 m-4 flex lg:flex-row flex-col gap-4">
         <div className="flex flex-col justify-between gap-6 w-full lg:w-2/5 ">
@@ -53,15 +57,24 @@ const ContactUs = () => {
               <span className=" absolute -top-3 px-3 bg-white-0 ">
                 {item.mainHeader}
               </span>
-              <div className="flex  gap-4">
+              <div className="flex   gap-4">
                 <div className="flex items-center h-fit p-2 bg-blue-500 rounded-lg">
                   {item.icon}
                 </div>
                 <div className="flex flex-col gap-0 justify-center">
-                  <header className="text-sm font-semibold">
+                  <header className="text-sm text-blue-500 font-semibold">
                     {item.header}
                   </header>
-                  <header className="text-lg font-semibold">
+                  {item.contact &&
+                    item.contact.map((ele, ind) => (
+                      <header key={ind} className="text-lg font-normal">
+                        <a href={`tel:${ele}`} className="font-normal text-lg">
+                          {ele}
+                        </a>
+                      </header>
+                    ))}
+
+                  <header className="text-lg font-normal">
                     {item.content}
                   </header>
                 </div>
@@ -73,8 +86,12 @@ const ContactUs = () => {
         {/* form  */}
         <div className="border w-full lg:w-3/5 rounded-md p-4 lg:p-6">
           <div>
-          <FormWrapper formObj={contactForm}/>
-          <Button btnClass='primary' name='Submit Now' className={'lg:w-1/3'} />
+            <FormWrapper formObj={contactForm} />
+            <Button
+              btnClass="primary"
+              name="Submit Now"
+              className={'lg:w-1/3'}
+            />
           </div>
         </div>
       </div>
