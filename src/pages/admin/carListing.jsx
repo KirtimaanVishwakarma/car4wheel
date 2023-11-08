@@ -79,10 +79,10 @@ const CarListing = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     const myForm = new FormData();
+    myForm.append('file', file);
     const multiInp = arrayValue.map((ele) => ele.value);
-    setFormObj((prev) => {
-      return { ...prev, features: multiInp, file: file };
-    });    for (const key in formObj) {
+    myForm.append('features', multiInp);
+   for (const key in formObj) {
       if (Object.prototype.hasOwnProperty.call(formObj, key)) {
         myForm.append(key, formObj[key]);
       }

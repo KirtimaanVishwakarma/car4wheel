@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Logo from '../assets/logo.svg';
 import CallIcon from '../assets/hotline-icon.svg';
 import { Link, useLocation } from 'react-router-dom';
@@ -12,9 +12,10 @@ import Button from './forms/button';
 import { logInForm } from '../utils/constant';
 import { useDispatch, useSelector } from 'react-redux';
 import { login, logout } from '../redux/actions/user';
+import Loader from '../assets/loader/loader';
 
 const Header = () => {
-  const {isAuthenticated} =useSelector(state=>state.user)
+  const {isAuthenticated,loading} =useSelector(state=>state.user)
   const [open, setOpen] = useState(false);
   const [modal, setModal] = useState(false);
 
@@ -37,6 +38,16 @@ const Header = () => {
   const submitHandler=(e)=>{
     e.preventDefault();
   dispatch(login(inputObj.email, inputObj.password))
+  }
+  useEffect(()=>{
+    if(isAuthenticated){
+      setModal(false)
+    }
+  },[dispatch,isAuthenticated])
+  if(loading){
+    return(
+      <Loader/>
+    )
   }
   return (
     <>

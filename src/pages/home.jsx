@@ -96,7 +96,7 @@ dispatch(getAllCars(6))
          Most Searched Used Car
         </h1>
       </div>
-        <ul className="flex justify-between lg:items-end text-normal font-normal  border-b-2 border-blue-900">
+        <ul className="lg:flex hidden justify-between items-end text-normal font-normal  border-b-2 border-blue-900">
           {carType.map((ele) => (
             <li key={ele} className="hover:bg-blue-900 hover:text-white-0 text-blue-400 px-2">
               {ele.name}
@@ -119,7 +119,7 @@ dispatch(getAllCars(6))
          Recent Launched Car
         </h1>
       </div>
-        <ul className="flex justify-between lg:items-end text-normal font-normal border-b-2 border-blue-900">
+        <ul className="lg:flex hidden justify-between lg:items-end text-normal font-normal border-b-2 border-blue-900">
           {carType.map((ele) => (
             <li key={ele} className="hover:bg-blue-900 hover:text-white-0 text-blue-400 px-2 ">
               {ele.condition}
