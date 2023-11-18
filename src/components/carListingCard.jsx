@@ -1,16 +1,16 @@
-import React from 'react';
-import { Image } from 'antd';
-import { TbEngine } from 'react-icons/tb';
-import { BiGasPump } from 'react-icons/bi';
-import { BsSpeedometer2 } from 'react-icons/bs';
-import { formatCurrency } from '../utils/apiUtils';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Image } from "antd";
+import { TbEngine } from "react-icons/tb";
+import { BiGasPump } from "react-icons/bi";
+import { BsSpeedometer2 } from "react-icons/bs";
+import { formatCurrency } from "../utils/apiUtils";
+import { Link } from "react-router-dom";
 
 export const CarListingCard = ({ item }) => {
   const carSpecification = [
     {
       icon: <BsSpeedometer2 className="text-gray-600" />,
-      specification: `${item?.odometer} kms`,
+      specification: `${formatCurrency(item?.odometer)} kms`,
     },
     {
       icon: <BiGasPump className="text-gray-600" />,
@@ -34,7 +34,7 @@ export const CarListingCard = ({ item }) => {
           </span>
         </h2>
         <p>₹{formatCurrency(item?.price)}</p>
-        <div className="gap-4 flex">
+        <div className="gap-2 flex justify-between">
           {carSpecification.map((item, index) => (
             <div key={index} className="flex items-center gap-1">
               {item.icon}
@@ -43,7 +43,10 @@ export const CarListingCard = ({ item }) => {
           ))}
         </div>
         <div className="card-actions items-center justify-between">
-          <Link to={`/car-lists/${item?._id}`} className="">
+          <Link
+            to={`/car-lists/${item?._id}`}
+            className="text-blue-b1 hover:underline"
+          >
             view more
           </Link>
           <img src={item?.brand?.logo?.url} className="h-8 w-8" alt="" />

@@ -1,5 +1,5 @@
 export const formatCurrency = (amount) => {
-  return amount?.toLocaleString('en-IN', {
+  return amount?.toLocaleString("en-IN", {
     maximumFractionDigits: 2,
     // style: 'currency',
     // currency: 'INR',
@@ -15,11 +15,11 @@ export const capitalize = (input) => {
     if (word.length > 0) {
       return word[0].toUpperCase() + word.slice(1).toLowerCase();
     }
-    return '';
+    return "";
   });
 
   // Join the words back together with a space as the separator
-  return formattedWords.join(' ');
+  return formattedWords.join(" ");
 };
 
 export const attachParams = (baseUrl, params) => {
@@ -29,7 +29,7 @@ export const attachParams = (baseUrl, params) => {
 };
 
 export const debounce = (func) => {
-  let timer= null;
+  let timer = null;
   return (...args) => {
     const context = this;
     if (timer) clearTimeout(timer);
@@ -41,11 +41,11 @@ export const debounce = (func) => {
 };
 
 export const getTrimmedData = (obj) => {
-  if (obj && typeof obj === 'object') {
+  if (obj && typeof obj === "object") {
     Object.keys(obj).map((key) => {
-      if (typeof obj[key] === 'object') {
+      if (typeof obj[key] === "object") {
         getTrimmedData(obj[key]);
-      } else if (typeof obj[key] === 'string') {
+      } else if (typeof obj[key] === "string") {
         obj[key] = obj[key].trim();
       }
     });
@@ -75,13 +75,12 @@ export const getValueAndLabel = (columnData) => {
 
 export const getHiddenColumnId = (columnData) => {
   return columnData
-    .filter((column) => ('show' in column ? !column.show : null))
+    .filter((column) => ("show" in column ? !column.show : null))
     .map((column) => column.accessor);
 };
 
-
 export function getDateIntoMS(date) {
-  const [day, month, year] = date.split('-');
+  const [day, month, year] = date.split("-");
 
   // Create a new Date object using the parsed values
   const myDate = new Date(`${year}-${month}-${day}`);
@@ -91,23 +90,21 @@ export function getDateIntoMS(date) {
   return milliseconds;
 }
 
-
-
-const FetchApi = async (url,method, headers, data) => {
-    const options = {
-      method,
-      headers: {
-        'Content-Type': 'application/json',
-        ...headers,
-      },
-      body: data ? JSON.stringify(data) : null,
-    };
-  
-    const response = await fetch(url, options);
-  
-    const result = await response.json();
-  
-    return result;
+const FetchApi = async (url, method, headers, data) => {
+  const options = {
+    method,
+    headers: {
+      "Content-Type": "application/json",
+      ...headers,
+    },
+    body: data ? JSON.stringify(data) : null,
   };
-  
-  export default FetchApi;
+
+  const response = await fetch(url, options);
+
+  const result = await response.json();
+
+  return result;
+};
+
+export default FetchApi;

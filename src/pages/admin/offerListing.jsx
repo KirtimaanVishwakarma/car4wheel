@@ -13,10 +13,14 @@ import {
   deleteBrand,
   getBrandList,
 } from "../../redux/actions/brandAction";
-import { CiEdit } from "react-icons/ci";
+import { deleteOffer, getOfferList } from "../../redux/actions/offerAction";
+import { formatCurrency } from "../../utils/apiUtils";
+import moment from "moment/moment";
 import { MdDeleteForever } from "react-icons/md";
+import { CiEdit } from "react-icons/ci";
+import { LuBadgeInfo } from "react-icons/lu";
 
-const BrandListing = () => {
+const OfferListing = () => {
   const [modal, setModal] = useState(false);
   const modalHandler = () => setModal(!modal);
   const [file, setFile] = useState();
@@ -25,30 +29,80 @@ const BrandListing = () => {
   const columns = useMemo(
     () => [
       {
-        Header: "Id",
-        accessor: "_id",
-      },
-      {
-        Header: "Brand Name",
-        accessor: "name",
-      },
-      {
         Header: "Image",
         accessor: "logo",
-        Cell: ({ value }) => (
+        Cell: ({ cell }) => (
           <Image
-            src={value?.url}
-            className="!h-8 !w-8"
-            alt={value?.public_id}
+            src={cell?.row?.original?.car?.images?.url}
+            className="!h-14"
+            alt={"carLogo"}
           />
         ),
       },
+
+      {
+        Header: "Original Price",
+        accessor: "price",
+        Cell: ({ cell }) => (
+          <span> {formatCurrency(cell?.row?.original?.car?.price)}</span>
+        ),
+      },
+
+      {
+        Header: "Discount %",
+        accessor: "discountPercentage",
+        Cell: ({ value }) => {
+          return <span>{`${value}%`}</span>;
+        },
+      },
+      {
+        Header: "Discounted Price",
+        accessor: "specialOfferPrice",
+        Cell: ({ value }) => {
+          return <span className="capitalize">{formatCurrency(value)}</span>;
+        },
+      },
+
+      {
+        Header: "Offer Starts",
+        accessor: "offerStartDate",
+        Cell: ({ value }) => {
+          return (
+            <span className="capitalize">
+              {moment(value).format("DD-MM-YYYY")}
+            </span>
+          );
+        },
+      },
+
+      {
+        Header: "Offer Ends",
+        accessor: "offerEndDate",
+        Cell: ({ value }) => {
+          return (
+            <span className="capitalize">
+              {moment(value).format("DD-MM-YYYY")}
+            </span>
+          );
+        },
+      },
+
       {
         Header: "Action",
         accessor: "action",
         Cell: ({ row }) => (
           <div className="flex gap-2">
-            {" "}
+            <div data-tip="View" className="tooltip">
+              <button
+                className="btn  btn-square btn-sm  hover:bg-blue-b1"
+                // onClick={() => deleteCarHandler(row?.original?._id)}
+              >
+                <LuBadgeInfo
+                  style={{ width: "65%", height: "100%" }}
+                  className="text-blue-700  hover:text-white-0"
+                />
+              </button>
+            </div>
             <div data-tip="Edit" className="tooltip">
               <button
                 className="btn btn-square btn-sm  hover:bg-green-300"
@@ -63,7 +117,7 @@ const BrandListing = () => {
             <div data-tip="Delete" className="tooltip">
               <button
                 className="btn  btn-square btn-sm  hover:bg-red-300"
-                onClick={() => deleteBrandHandler(row?.original?._id)}
+                onClick={() => deleteHandler(row?.original?._id)}
               >
                 <MdDeleteForever
                   style={{ width: "65%", height: "100%" }}
@@ -78,14 +132,13 @@ const BrandListing = () => {
     []
   );
 
-  const { loading, brandList, getBrand, message, error } = useSelector(
-    (state) => state.brand
+  const { loading, offerList, getOffer, message, error } = useSelector(
+    (state) => state.offer
   );
 
   const dispatch = useDispatch();
-  const deleteBrandHandler = (id) => {
-    dispatch(deleteBrand(id));
-    setRefetch(!refetch);
+  const deleteHandler = (id) => {
+    dispatch(deleteOffer(id));
   };
   const submitHandler = (e) => {
     e.preventDefault();
@@ -98,8 +151,8 @@ const BrandListing = () => {
   };
 
   useEffect(() => {
-    dispatch(getBrandList());
-  }, [dispatch, getBrand, message]);
+    dispatch(getOfferList());
+  }, [dispatch, getOffer, message]);
   useEffect(() => {
     if (error) {
       dispatch({ type: "clearError" });
@@ -112,7 +165,7 @@ const BrandListing = () => {
     return <Loader />;
   }
   return (
-    <AdminMain pageName={"Brands"}>
+    <AdminMain pageName={"Offers"}>
       <div className="flex justify-end">
         <div className="w-fit">
           <Button
@@ -122,7 +175,7 @@ const BrandListing = () => {
           />
         </div>
       </div>
-      <Table columns={columns} data={brandList?.list} />
+      <Table columns={columns} data={offerList?.list} />
       {modal && (
         <Modal
           setModal={modalHandler}
@@ -149,4 +202,4 @@ const BrandListing = () => {
   );
 };
 
-export default BrandListing;
+export default OfferListing;
