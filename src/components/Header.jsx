@@ -1,53 +1,51 @@
-import { useEffect, useState } from 'react';
-import Logo from '../assets/logo.svg';
-import CallIcon from '../assets/hotline-icon.svg';
-import { Link, useLocation } from 'react-router-dom';
-import { AiOutlineTags } from 'react-icons/ai';
-import { LiaUserCircle } from 'react-icons/lia';
-import { CgMenuRightAlt } from 'react-icons/cg';
-import MenuDrawer from './menuDrawer';
-import FormWrapper from './forms/formWrapper';
-import Modal from './modal';
-import Button from './forms/button';
-import { logInForm } from '../utils/constant';
-import { useDispatch, useSelector } from 'react-redux';
-import { login, logout } from '../redux/actions/user';
-import Loader from '../assets/loader/loader';
+import { useEffect, useState } from "react";
+import Logo from "../assets/logo.svg";
+import CallIcon from "../assets/hotline-icon.svg";
+import { Link, useLocation } from "react-router-dom";
+import { AiOutlineTags } from "react-icons/ai";
+import { LiaUserCircle } from "react-icons/lia";
+import { CgMenuRightAlt } from "react-icons/cg";
+import MenuDrawer from "./menuDrawer";
+import FormWrapper from "./forms/formWrapper";
+import Modal from "./modal";
+import Button from "./forms/button";
+import { logInForm } from "../utils/constant";
+import { useDispatch, useSelector } from "react-redux";
+import { login, logout } from "../redux/actions/user";
+import Loader from "../assets/loader/loader";
 
 const Header = () => {
-  const {isAuthenticated,loading} =useSelector(state=>state.user)
+  const { isAuthenticated, loading } = useSelector((state) => state.user);
   const [open, setOpen] = useState(false);
   const [modal, setModal] = useState(false);
 
   const [inputObj, setInputObj] = useState({});
 
   const navbarMenu = [
-    { name: 'Home', link: '/' },
-    { name: 'ABOUT US', link: '/about' },
-    { name: 'CAR LISTING', link: '/car-lists' },
-    { name: 'SPACIAL OFFER', link: '/offers' },
-    { name: 'AUCTION', link: '/auction' },
-    { name: 'CUSTOMER REVIEW', link: '/customer-review' },
-    { name: 'CONTACT US', link: '/contact-us' },
+    { name: "Home", link: "/" },
+    { name: "ABOUT US", link: "/about" },
+    { name: "CAR LISTING", link: "/car-lists" },
+    { name: "SPACIAL OFFER", link: "/offers" },
+    { name: "AUCTION", link: "/auction" },
+    { name: "CUSTOMER REVIEW", link: "/customer-review" },
+    { name: "CONTACT US", link: "/contact-us" },
   ];
   const { pathname } = useLocation();
   const modalHandler = () => {
     setModal(!modal);
   };
-  const dispatch =useDispatch();
-  const submitHandler=(e)=>{
+  const dispatch = useDispatch();
+  const submitHandler = (e) => {
     e.preventDefault();
-  dispatch(login(inputObj.email, inputObj.password))
-  }
-  useEffect(()=>{
-    if(isAuthenticated){
-      setModal(false)
+    dispatch(login(inputObj.email, inputObj.password));
+  };
+  useEffect(() => {
+    if (isAuthenticated) {
+      setModal(false);
     }
-  },[dispatch,isAuthenticated])
-  if(loading){
-    return(
-      <Loader/>
-    )
+  }, [dispatch, isAuthenticated]);
+  if (loading) {
+    return <Loader />;
   }
   return (
     <>
@@ -87,14 +85,16 @@ const Header = () => {
             <AiOutlineTags className="h-6 w-6" />
             <span>SELL WITH US</span>
           </div>
-          {isAuthenticated? <Link to="/admin">Dashboard</Link>:
-          <div
-          className="flex gap-1 items-center cursor-pointer"
-          onClick={modalHandler}
-          >
-            <LiaUserCircle className="h-6 w-6" /> <span>LOG IN</span>
-          </div>
-          }
+          {isAuthenticated ? (
+            <Link to="/admin">Dashboard</Link>
+          ) : (
+            <div
+              className="flex gap-1 items-center cursor-pointer"
+              onClick={modalHandler}
+            >
+              <LiaUserCircle className="h-6 w-6" /> <span>LOG IN</span>
+            </div>
+          )}
         </div>
         <div className="lg:hidden " onClick={() => setOpen(true)}>
           <CgMenuRightAlt className="h-7 w-7 cursor-pointer" />
@@ -106,10 +106,10 @@ const Header = () => {
             <li
               key={i}
               className={`h-full relative flex items-center font-semibold tracking-wider text-sm px-4 ${
-                pathname === ele?.link && 'custom-underline text-blue-500'
+                pathname === ele?.link && "custom-underline text-blue-500"
               }`}
             >
-              <Link to={ele.link ? ele.link : '#'}>{ele.name}</Link>
+              <Link to={ele.link ? ele.link : "#"}>{ele.name}</Link>
             </li>
           ))}
         </ul>
@@ -129,17 +129,17 @@ const Header = () => {
             <div className="text-center p-4 mb-4">
               <h1 className="text-2xl font-semibold">Log In</h1>
               <p>
-                {' '}
-                Don't have an account?{' '}
+                {" "}
+                Don't have an account?{" "}
                 <span className="font-bold cursor-pointer">Sign Up</span>
               </p>
             </div>
             <form action="" onSubmit={submitHandler}>
               <div>
-                <FormWrapper formObj={logInForm} setInputObj={setInputObj}/>
+                <FormWrapper formObj={logInForm} setInputObj={setInputObj} />
               </div>
               <div className="mt-5">
-                <Button type='submit' btnClass="primary" name="Log In" />
+                <Button type="submit" btnClass="primary" name="Log In" />
               </div>
             </form>
           </div>
