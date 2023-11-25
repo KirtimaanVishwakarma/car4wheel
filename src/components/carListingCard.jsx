@@ -23,8 +23,12 @@ export const CarListingCard = ({ item }) => {
   ];
   return (
     <div className="card w-full bg-base-100 shadow-xl m-auto">
-      <figure className="px-3  pt-3">
-        <Image src={item?.images?.url} alt="Shoes" className="rounded-xl" />
+      <figure className="px-3 pt-3">
+        <Image
+          src={item?.images?.url}
+          alt="Shoes"
+          className="rounded-xl !h-60 !object-cover "
+        />
       </figure>
       <div className="card-body">
         <h2 className="card-title">
@@ -49,7 +53,11 @@ export const CarListingCard = ({ item }) => {
           >
             view more
           </Link>
-          <img src={item?.brand?.logo?.url} className="h-8 w-8" alt="" />
+          <img
+            src={item?.brand?.logo?.url}
+            className="h-8 object-contain"
+            alt=""
+          />
         </div>
       </div>
     </div>

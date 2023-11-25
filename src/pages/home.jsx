@@ -1,54 +1,69 @@
-import { GiSpeedometer } from 'react-icons/gi';
-import QuickLinksHome from '../components/quickLinksHome';
-import CarListingCard from '../components/carListingCard';
-import MostSearchedCarousel from '../components/mostSearchedCarousel';
-import ReviewSlider from '../components/Reviewslider';
-import WhyChoose from '../components/whyChoose';
-import Main from '../utils/main';
-import { homeForm } from '../utils/constant.js';
-import FormWrapper from '../components/forms/formWrapper';
-import Button from '../components/forms/button';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import {getAllCars} from "../redux/actions/car"
-import { useNavigate } from 'react-router';
-import Loader from '../assets/loader/loader';
+import { GiSpeedometer } from "react-icons/gi";
+import QuickLinksHome from "../components/quickLinksHome";
+import CarListingCard from "../components/carListingCard";
+import MostSearchedCarousel from "../components/mostSearchedCarousel";
+import ReviewSlider from "../components/Reviewslider";
+import WhyChoose from "../components/whyChoose";
+import Main from "../utils/main";
+import { homeForm } from "../utils/constant.js";
+import FormWrapper from "../components/forms/formWrapper";
+import Button from "../components/forms/button";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllCars } from "../redux/actions/car";
+import { useNavigate } from "react-router";
+import Loader from "../assets/loader/loader";
+import { useState } from "react";
 const Home = () => {
   const carType = [
     {
-      header: 'carType',
-      name: 'Sedan',
-      condition: 'Popular',
+      header: "carType",
+      name: "Sedan",
+      condition: "Popular",
     },
     {
-      header: 'carType',
-      name: 'SUV',
-      condition: 'New Car',
+      header: "carType",
+      name: "SUV",
+      condition: "New Car",
     },
     {
-      header: 'carType',
-      name: 'Hach',
-      condition: 'Used Car',
+      header: "carType",
+      name: "Hach",
+      condition: "Used Car",
     },
     {
-      header: 'carType',
-      name: 'Maruti',
-      condition: 'Auction Car',
+      header: "carType",
+      name: "Maruti",
+      condition: "Auction Car",
     },
     {
-      header: 'carType',
-      name: 'Toyota',
-    }
+      header: "carType",
+      name: "Toyota",
+    },
   ];
-  const navigate=useNavigate()
-  const dispatch=useDispatch()
-  const {loading,carList}=useSelector(state=>state.cars)
-  useEffect(()=>{
-dispatch(getAllCars(6))
-  },[dispatch])
-  useEffect(()=>{window.scrollTo(0, 0)},[])
-  if(loading){
-    return <Loader/>
+  const [inputObj, setInputObj] = useState();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { loading, carList } = useSelector((state) => state.cars);
+  useEffect(() => {
+    // dispatch(getAllCars(6, 1, "", { status: "most-searched" }));
+    dispatch(getAllCars(6));
+  }, [dispatch]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const price = inputObj.budget.split("-");
+    console.log({
+      ["price[gte]"]: price[0],
+      ["price[lte]"]: price[1],
+      bodyType: inputObj.vehicles,
+    });
+  };
+  if (loading) {
+    return <Loader />;
   }
   return (
     <Main>
@@ -68,7 +83,11 @@ dispatch(getAllCars(6))
               manufacturers, as well as used cars from a variety of sources.
             </p>
             <div className="grid grid-cols-2 gap-8 mt-8">
-              <Button btnClass="primary" name="Buy Car" onClick={()=>navigate('/car-lists')} />
+              <Button
+                btnClass="primary"
+                name="Buy Car"
+                onClick={() => navigate("/car-lists")}
+              />
               <Button btnClass="secondary" name="Sell Car" />
             </div>
           </section>
@@ -78,61 +97,69 @@ dispatch(getAllCars(6))
             <header className="text-3xl font-bold mb-8 text-blue-900">
               Find Your Dream Car
             </header>
-            <FormWrapper formObj={homeForm} />
-            <div className="mt-5">
-              <Button btnClass="primary" name="Search Car" />
-            </div>
+            <form onSubmit={submitHandler}>
+              <FormWrapper formObj={homeForm} setInputObj={setInputObj} />
+              <div className="mt-5">
+                <Button btnClass="primary" type={"submit"} name="Search Car" />
+              </div>
+            </form>
           </section>
         </div>
       </div>
 
       <QuickLinksHome className="border-r " />
       <div className="my-14 px-2">
-        <div className='w-full'>
-        <div className="lg:flex lg:items-center lg:justify-between lg:pt-8 lg:pb-0 px-2 pb-2">
-        <div className="text-lg  tracking-widest font-medium">
-        <span className="text-blue-400">Available Brand Car</span>
-        <h1 className="lg:text-4xl text-3xl font-bold mt:5 mb-6">
-         Most Searched Used Car
-        </h1>
-      </div>
-        <ul className="lg:flex hidden justify-between items-end text-normal font-normal  border-b-2 border-blue-900">
-          {carType.map((ele) => (
-            <li key={ele} className="hover:bg-blue-900 hover:text-white-0 text-blue-400 px-2">
-              {ele.name}
-            </li>
-          ))}
-        </ul>
-        </div>
+        <div className="w-full">
+          <div className="lg:flex lg:items-center lg:justify-between lg:pt-8 lg:pb-0 px-2 pb-2">
+            <div className="text-lg  tracking-widest font-medium">
+              <span className="text-blue-400">Available Brand Car</span>
+              <h1 className="lg:text-4xl text-3xl font-bold mt:5 mb-6">
+                Most Searched Used Car
+              </h1>
+            </div>
+            <ul className="lg:flex hidden justify-between items-end text-normal font-normal  border-b-2 border-blue-900">
+              {carType.map((ele) => (
+                <li
+                  key={ele}
+                  className="hover:bg-blue-900 hover:text-white-0 text-blue-400 px-2"
+                >
+                  {ele.name}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
         <div className="lg:m-auto lg:flex-row lg:px-10">
-          <MostSearchedCarousel item={carList?.list}/>
+          <MostSearchedCarousel item={carList?.list} />
         </div>
       </div>
       {/* recently-lanched */}
       <div className="my-14 px-2">
-      <div className='w-full'>
-        <div className="lg:flex lg:items-center lg:justify-between lg:pt-8 lg:pb-0 px-2 pb-2">
-        <div className="text-lg  tracking-widest font-medium">
-        <span className="text-blue-400">Recent Launched</span>
-        <h1 className="lg:text-4xl text-3xl font-bold mt:5 mb-6">
-         Recent Launched Car
-        </h1>
-      </div>
-        <ul className="lg:flex hidden justify-between lg:items-end text-normal font-normal border-b-2 border-blue-900">
-          {carType.map((ele) => (
-            <li key={ele} className="hover:bg-blue-900 hover:text-white-0 text-blue-400 px-2 ">
-              {ele.condition}
-            </li>
-          ))}
-        </ul>
-        </div>
-
+        <div className="w-full">
+          <div className="lg:flex lg:items-center lg:justify-between lg:pt-8 lg:pb-0 px-2 pb-2">
+            <div className="text-lg  tracking-widest font-medium">
+              <span className="text-blue-400">Recent Launched</span>
+              <h1 className="lg:text-4xl text-3xl font-bold mt:5 mb-6">
+                Recent Launched Car
+              </h1>
+            </div>
+            <ul className="lg:flex hidden justify-between lg:items-end text-normal font-normal border-b-2 border-blue-900">
+              {carType.map((ele) => (
+                <li
+                  key={ele}
+                  className="hover:bg-blue-900 hover:text-white-0 text-blue-400 px-2 "
+                >
+                  {ele.condition}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
         <div className="lg:grid flex flex-col gap-6 items-center justify-center py-10 lg:grid-cols-3 lg:gap-3 lg:px-10 lg:py-14">
-          {carList && carList?.list?.map((ele) => (
-            <CarListingCard key={ele?._id} item={ele} />
-          ))}
+          {carList &&
+            carList?.list?.map((ele) => (
+              <CarListingCard key={ele?._id} item={ele} />
+            ))}
         </div>
       </div>
       {/* about */}
@@ -149,9 +176,10 @@ dispatch(getAllCars(6))
         </div>
 
         <div className="lg:grid flex flex-col gap-6 items-center justify-center py-10 lg:grid-cols-3 lg:gap-3 lg:px-10 lg:py-14">
-          {carList && carList?.list?.filter((ele,i)=>i<3)?.map((ele) => (
-            <CarListingCard key={ele._id} item={ele}/>
-          ))}
+          {carList &&
+            carList?.list
+              ?.filter((ele, i) => i < 3)
+              ?.map((ele) => <CarListingCard key={ele._id} item={ele} />)}
         </div>
       </div>
       {/* used-cars*/}
@@ -166,9 +194,10 @@ dispatch(getAllCars(6))
         </div>
 
         <div className="lg:grid flex flex-col gap-6 items-center justify-center py-10 lg:grid-cols-3 lg:gap-3 lg:px-10 lg:py-14">
-          {carList && carList?.list?.filter((ele,i)=>i<3)?.map((ele) => (
-            <CarListingCard key={ele._id} item={ele}/>
-          ))}
+          {carList &&
+            carList?.list
+              ?.filter((ele, i) => i < 3)
+              ?.map((ele) => <CarListingCard key={ele._id} item={ele} />)}
         </div>
       </div>
 
@@ -184,9 +213,10 @@ dispatch(getAllCars(6))
         </div>
 
         <div className="lg:grid lg:grid-cols-3 lg:gap-3 lg:px-10 lg:py-14 flex flex-col gap-6 items-center">
-          {carList && carList?.list?.filter((ele,i)=>i<3)?.map((ele) => (
-            <CarListingCard key={ele._id} item={ele} />
-          ))}
+          {carList &&
+            carList?.list
+              ?.filter((ele, i) => i < 3)
+              ?.map((ele) => <CarListingCard key={ele._id} item={ele} />)}
         </div>
       </div>
       {/* customers-review */}

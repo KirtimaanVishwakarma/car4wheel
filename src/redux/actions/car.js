@@ -17,21 +17,38 @@ export const addCar = (myForm) => async (dispatch) => {
   }
 };
 
-export const getAllCars = (size) => async (dispatch) => {
-  const url = attachParams(GET_ALL_CARS, {
-    size: size || "",
-  });
-  try {
-    dispatch({ type: "getAllCarRequest" });
-    const { data } = await axios.get(url, {
-      withCredentials: true,
-    });
+export const getAllCars =
+  (size, page, keyword, ...query) =>
+  async (dispatch) => {
+    const params = {
+      size: size || "",
+      page: page || 1,
+      keyword: keyword || "",
+      ...query[0],
+    };
+    const url = attachParams(
+      GET_ALL_CARS,
+      params
+      //   {
+      //   size: size || "",
+      //   page: page || 1,
+      //   keyword: keyword || "",
+      // }
+    );
+    try {
+      dispatch({ type: "getAllCarRequest" });
+      const { data } = await axios.get(url, {
+        withCredentials: true,
+      });
 
-    dispatch({ type: "getAllCarSuccess", payload: data });
-  } catch (error) {
-    dispatch({ type: "getAllCarError", payload: error.response.data.message });
-  }
-};
+      dispatch({ type: "getAllCarSuccess", payload: data });
+    } catch (error) {
+      dispatch({
+        type: "getAllCarError",
+        payload: error.response.data.message,
+      });
+    }
+  };
 
 export const getCarDetails = (id) => async (dispatch) => {
   try {
