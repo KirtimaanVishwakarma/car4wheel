@@ -166,15 +166,6 @@ const OfferListing = () => {
   }
   return (
     <AdminMain pageName={"Offers"}>
-      <div className="flex justify-end">
-        <div className="w-fit">
-          <Button
-            btnClass="primary"
-            name="Add New Brand"
-            onClick={modalHandler}
-          />
-        </div>
-      </div>
       <Table columns={columns} data={offerList?.list} />
       {modal && (
         <Modal

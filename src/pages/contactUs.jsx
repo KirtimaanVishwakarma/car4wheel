@@ -1,43 +1,73 @@
-import React, { useEffect } from 'react';
-import { MdOutlineAlternateEmail } from 'react-icons/md';
-import { BsShop } from 'react-icons/bs';
-import { FiPhoneCall } from 'react-icons/fi';
-import ContactForm from '../components/contactForm';
-import Map from '../components/map';
-import HeroSection from '../components/heroSection';
-import FormWrapper from '../components/forms/formWrapper';
-import { contactForm } from '../utils/constant';
-import Main from '../utils/main';
-import Button from '../components/forms/button';
+import React, { useEffect } from "react";
+import { MdOutlineAlternateEmail } from "react-icons/md";
+import { BsShop } from "react-icons/bs";
+import { FiPhoneCall } from "react-icons/fi";
+import ContactForm from "../components/contactForm";
+import Map from "../components/map";
+import HeroSection from "../components/heroSection";
+import FormWrapper from "../components/forms/formWrapper";
+import { contactForm } from "../utils/constant";
+import Main from "../utils/main";
+import Button from "../components/forms/button";
+import { useState } from "react";
+import { addContact } from "../redux/actions/contactAction";
+import { useDispatch, useSelector } from "react-redux";
+import Loader from "../assets/loader/loader";
 
 const ContactUs = () => {
+  const [inputObj, setInputObj] = useState({});
+  const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.contact);
   const contacts = [
     {
-      mainHeader: 'Mobile Number',
-      header: 'Call Now',
-      contact: ['+91-9129430979', '+91-9598110333', '+91-7905898709'],
+      mainHeader: "Mobile Number",
+      header: "Call Now",
+      contact: ["+91-9129430979", "+91-9598110333", "+91-7905898709"],
 
       icon: <FiPhoneCall className=" h-8 w-8  text-white-0" />,
     },
 
     {
-      mainHeader: 'Email Id',
-      header: 'To Know More',
-      content:  <a href='mailto:Smart4Wheels2628@gmail.com' className="font-normal text-lg">Smart4Wheels2628@gmail.com</a>,
+      mainHeader: "Email Id",
+      header: "To Know More",
+      content: (
+        <a
+          href="mailto:Smart4Wheels2628@gmail.com"
+          className="font-normal text-lg"
+        >
+          Smart4Wheels2628@gmail.com
+        </a>
+      ),
       icon: <MdOutlineAlternateEmail className=" h-8 w-8 text-white-0" />,
     },
 
     {
-      mainHeader: 'Office Address',
-      header: 'Visit Us',
+      mainHeader: "Office Address",
+      header: "Visit Us",
       content:
-        'Address: Near Lala Bazar Chauraha, Pipraich Road, Padri Bazar Gorakhpur 273014',
+        "Address: Near Lala Bazar Chauraha, Pipraich Road, Padri Bazar Gorakhpur 273014",
       icon: <BsShop className=" h-8 w-8 text-white-0" />,
     },
   ];
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    const body = {
+      name: inputObj?.fullName,
+      email: inputObj?.email,
+      contact: inputObj?.contactNumber,
+      subject: inputObj?.subject,
+      message: inputObj?.message,
+    };
+    dispatch(addContact(body));
+  };
+
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <Main>
       <HeroSection />
@@ -86,16 +116,19 @@ const ContactUs = () => {
         {/* form  */}
         <div className="border w-full lg:w-3/5 rounded-md p-4 lg:p-6">
           <div>
-            <FormWrapper formObj={contactForm} />
-            <Button
-              btnClass="primary"
-              name="Submit Now"
-              className={'lg:w-1/3'}
-            />
+            <form onSubmit={submitHandler}>
+              <FormWrapper formObj={contactForm} setInputObj={setInputObj} />
+              <Button
+                type={"submit"}
+                btnClass="primary"
+                name="Submit Now"
+                className={"lg:w-1/3"}
+              />
+            </form>
           </div>
         </div>
       </div>
-      <Map width={'100%'} height={'h-80'} />
+      <Map width={"100%"} height={"h-80"} />
     </Main>
   );
 };

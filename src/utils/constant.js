@@ -6,11 +6,11 @@ export const contactForm = [
     placeholder: "Enter your full name",
   },
   {
-    label: "Phone",
-    type: "number",
+    id: "contactNumber",
     span: "two",
-    id: "PhoneNumber",
-    placeholder: "Enter your mobile number",
+    type: "number",
+    label: "Phone",
+    placeholder: "+91",
   },
   {
     label: "Email(Optional)",
@@ -22,7 +22,7 @@ export const contactForm = [
   {
     label: "Subject",
     type: "text",
-    id: "Subject",
+    id: "subject",
     placeholder: "Write Something...",
   },
   {

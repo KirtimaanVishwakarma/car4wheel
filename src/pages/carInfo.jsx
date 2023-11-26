@@ -21,11 +21,14 @@ import { getAllCars, getCarDetails } from "../redux/actions/car";
 import { formatCurrency } from "../utils/apiUtils";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Loader from "../assets/loader/loader";
+import { useState } from "react";
+import { addInquiry } from "../redux/actions/inquiryAction";
 
 const CarInfo = () => {
   const { loading, carList } = useSelector((state) => state.cars);
+  const { loading: inquiryLoading } = useSelector((state) => state.inquiry);
   const { details } = useSelector((state) => state.cars);
-
+  const [inputObj, setInputObj] = useState({});
   const overviews = [
     {
       specificationLabel: "Make",
@@ -145,7 +148,17 @@ const CarInfo = () => {
       subheader: "Condition",
     },
   ];
-
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    const body = {
+      carId: id,
+      name: inputObj?.name,
+      email: inputObj?.email,
+      contact: inputObj?.contactNumber,
+      message: inputObj?.message,
+    };
+    dispatch(addInquiry(body));
+  };
   useEffect(() => {
     dispatch(getAllCars(4));
   }, []);
@@ -154,7 +167,9 @@ const CarInfo = () => {
     window.scrollTo(0, 0);
     dispatch(getCarDetails(id));
   }, [id, dispatch]);
-  if (loading) {
+
+  const loader = inquiryLoading || loading;
+  if (loader) {
     return <Loader />;
   }
   return (
@@ -234,7 +249,7 @@ const CarInfo = () => {
         </section>
         {/* form section */}
         <section className="flex flex-col flex-[35%] gap-11">
-          <div className="w-full outline-gray-200 outline-dashed outline-blue-b1 rounded-lg h-fit">
+          <div className="w-full outline-dashed outline-blue-b1 rounded-lg h-fit">
             <div className="p-6 flex flex-col gap-4">
               <div className="m-auto mb-4">
                 <div className="grid grid-flow-col w-full gap-5 text-center auto-cols-max">
@@ -285,17 +300,20 @@ const CarInfo = () => {
           <div className="w-full rounded-lg bg-white-0 bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
             <div className="p-4 lg:p-8 flex flex-col gap-3">
               <header className="font-semibold text-2xl">
-                To More inquiry
+                To More Inquiry
               </header>
               <header className="text-sm">
                 If choose this car to contact easily with us.
               </header>
-              <FormWrapper formObj={auctionForm} />
-              <Button
-                btnClass="primary"
-                name="Send Message"
-                icon={<PiPaperPlaneTiltThin className="w-6 h-6" />}
-              />
+              <form onSubmit={submitHandler}>
+                <FormWrapper formObj={auctionForm} setInputObj={setInputObj} />
+                <Button
+                  type={"submit"}
+                  btnClass="primary"
+                  name="Send Message"
+                  icon={<PiPaperPlaneTiltThin className="w-6 h-6" />}
+                />
+              </form>
               {/* <div>
                 <ContactForm />
               </div> */}
@@ -325,7 +343,7 @@ const CarInfo = () => {
 
                         <div className="absolute bottom-2 left-1 w-2/3 text-center bg-white-0 bg-clip">
                           <span className="m-auto">
-                            ${formatCurrency(ele?.price)}
+                            ₹{formatCurrency(ele?.price)}
                           </span>
                         </div>
                       </figure>

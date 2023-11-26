@@ -8,7 +8,8 @@ const Sidebar = () => {
     { name: "Offer List", link: "/admin/offer-list" },
     { name: "Auction Cars", link: "/admin/auction-list" },
     { name: "Review List", link: "/admin/review-list" },
-    { name: "Inquiry", link: "/admin/inquiry" },
+    { name: "Inquiry List", link: "/admin/inquiry" },
+    { name: "Contact List", link: "/admin/contact" },
   ];
   const { pathname } = useLocation();
   return (
