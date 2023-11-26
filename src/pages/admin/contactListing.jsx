@@ -9,21 +9,11 @@ import { CiEdit } from "react-icons/ci";
 import Table from "../../components/forms/tabel";
 import { Image } from "antd";
 import { LuBadgeInfo } from "react-icons/lu";
+import { deleteContact, getContact } from "../../redux/actions/contactAction";
 
 const Inquiry = () => {
   const columns = useMemo(
     () => [
-      {
-        Header: "Image",
-        accessor: "logo",
-        Cell: ({ row }) => (
-          <Image
-            src={row?.original?.carId?.images?.url}
-            className="!h-14 "
-            alt={"car"}
-          />
-        ),
-      },
       {
         Header: "User Name",
         accessor: "name",
@@ -85,17 +75,17 @@ const Inquiry = () => {
     []
   );
 
-  const { loading, Inquiry, message, error } = useSelector(
-    (state) => state.inquiry
+  const { loading, contact, message, error } = useSelector(
+    (state) => state.contact
   );
 
   const dispatch = useDispatch();
   const deleteBrandHandler = (id) => {
-    dispatch(deleteInuqiry(id));
+    dispatch(deleteContact(id));
   };
 
   useEffect(() => {
-    dispatch(getInquiry());
+    dispatch(getContact());
   }, [dispatch, message]);
   useEffect(() => {
     if (error) {
@@ -111,7 +101,7 @@ const Inquiry = () => {
 
   return (
     <AdminMain pageName={"Brands"}>
-      <Table columns={columns} data={Inquiry?.list} />
+      <Table columns={columns} data={contact?.list} />
     </AdminMain>
   );
 };

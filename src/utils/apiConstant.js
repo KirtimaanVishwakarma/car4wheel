@@ -21,3 +21,5 @@ export const OFFERS = `${URL}/offer`;
 export const SINGLE_OFFER = `${URL}/offer/`;
 
 export const INQUIRY = `${URL}/inquiry`;
+
+export const CONTACT = `${URL}/contact`;

@@ -26,3 +26,18 @@ export const getInquiry = () => async (dispatch) => {
     dispatch({ type: "getInquiryeError", payload: err.response.data.message });
   }
 };
+
+export const deleteInuqiry = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: "deleteInquiryRequest" });
+    const { data } = await axios.delete(`${INQUIRY}/${id}`, {
+      withCredentials: true,
+    });
+    dispatch({ type: "deleteInquirySuccess", payload: data });
+  } catch (err) {
+    dispatch({
+      type: "deleteInquiryError",
+      payload: err.response.data.message,
+    });
+  }
+};

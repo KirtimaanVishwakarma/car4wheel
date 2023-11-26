@@ -19,7 +19,8 @@ import { ProtectedRoute } from "protected-route-react";
 import CarInfo from "./pages/carInfo";
 import AdminReviewListing from "./pages/admin/reviewListing";
 import AdminInquiry from "./pages/admin/inquiry";
-// import {BASE_URL} from "./utils/apiConstant"
+import AdminContact from "./pages/admin/contactListing";
+
 function App() {
   const { isAuthenticated, loading, user, message, error } = useSelector(
     (state) => state.user
@@ -103,6 +104,14 @@ function App() {
           element={
             <ProtectedRoute isAuthenticated={isAuthenticated} redirect="/">
               <AdminInquiry user={user} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/contact"
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated} redirect="/">
+              <AdminContact user={user} />
             </ProtectedRoute>
           }
         />

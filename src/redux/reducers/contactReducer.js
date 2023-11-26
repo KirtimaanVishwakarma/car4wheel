@@ -1,45 +1,45 @@
 import { createReducer } from "@reduxjs/toolkit";
 
-export const inquiryReducer = createReducer(
+export const contactReducer = createReducer(
   {},
   {
-    //add Inquiry
-    addInquiryRequest: (state) => {
+    //add Contact
+    addContactRequest: (state) => {
       state.loading = true;
     },
-    addInquirySuccess: (state, action) => {
+    addContactSuccess: (state, action) => {
       state.loading = false;
-      state.getInquiry = action.payload;
+      state.getContact = action.payload;
       state.message = action.payload.message;
     },
-    addInquiryError: (state, action) => {
+    addContactError: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },
 
-    //get Inquiry
-    getInquiryRequest: (state) => {
+    //get Contact
+    getContactRequest: (state) => {
       state.loading = true;
     },
-    getInquirySuccess: (state, action) => {
+    getContactSuccess: (state, action) => {
       state.loading = false;
-      state.Inquiry = action.payload;
+      state.contact = action.payload;
       state.message = action.payload.message;
     },
-    getInquiryError: (state, action) => {
+    getContactError: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },
 
-    // delete inquiry
-    deleteInquiryRequest: (state) => {
+    // delete Contact
+    deleteContactRequest: (state) => {
       state.loading = true;
     },
-    deleteInquirySuccess: (state, action) => {
+    deleteContactSuccess: (state, action) => {
       state.loading = false;
       state.message = action.payload.message;
     },
-    deleteInquiryError: (state, action) => {
+    deleteContactError: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },

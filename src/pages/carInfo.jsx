@@ -343,7 +343,7 @@ const CarInfo = () => {
 
                         <div className="absolute bottom-2 left-1 w-2/3 text-center bg-white-0 bg-clip">
                           <span className="m-auto">
-                            ${formatCurrency(ele?.price)}
+                            ₹{formatCurrency(ele?.price)}
                           </span>
                         </div>
                       </figure>
