@@ -19,3 +19,5 @@ export const SINGLE_REVIEW = `${URL}/review`;
 
 export const OFFERS = `${URL}/offer`;
 export const SINGLE_OFFER = `${URL}/offer/`;
+
+export const INQUIRY = `${URL}/inquiry`;

@@ -1,158 +1,161 @@
-import React, { useEffect } from 'react';
-import HeroSection from '../components/heroSection';
-import { Image } from 'antd';
-import { PiCheckCircleThin, PiEngineLight,PiEngineThin, PiGasCan, PiCarThin, PiGasPumpThin, PiGaugeThin } from 'react-icons/pi';  
-import { GiGearStickPattern } from 'react-icons/gi';
-import Main from '../utils/main';
-import FormWrapper from '../components/forms/formWrapper';
-import { auctionForm } from '../utils/constant';
-import Button from '../components/forms/button'
-import {PiPaperPlaneTiltThin, PiHammerThin} from 'react-icons/pi'
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllCars, getCarDetails } from '../redux/actions/car';
-import { formatCurrency } from '../utils/apiUtils';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import Loader from '../assets/loader/loader';
-
+import React, { useEffect } from "react";
+import HeroSection from "../components/heroSection";
+import { Image } from "antd";
+import {
+  PiCheckCircleThin,
+  PiEngineLight,
+  PiEngineThin,
+  PiGasCan,
+  PiCarThin,
+  PiGasPumpThin,
+  PiGaugeThin,
+} from "react-icons/pi";
+import { GiGearStickPattern } from "react-icons/gi";
+import Main from "../utils/main";
+import FormWrapper from "../components/forms/formWrapper";
+import { auctionForm } from "../utils/constant";
+import Button from "../components/forms/button";
+import { PiPaperPlaneTiltThin, PiHammerThin } from "react-icons/pi";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllCars, getCarDetails } from "../redux/actions/car";
+import { formatCurrency } from "../utils/apiUtils";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import Loader from "../assets/loader/loader";
 
 const CarInfo = () => {
-
   const { loading, carList } = useSelector((state) => state.cars);
-  const {  details } = useSelector((state) => state.cars);
+  const { details } = useSelector((state) => state.cars);
 
   const overviews = [
     {
-      specificationLabel: 'Make',
-      specification: details?.car?.brand?.name||'----',
+      specificationLabel: "Make",
+      specification: details?.car?.brand?.name || "----",
     },
     {
-      specificationLabel: 'Model',
-      specification: details?.car?.model||'----',
+      specificationLabel: "Model",
+      specification: details?.car?.model || "----",
     },
     {
-      specificationLabel: 'Year/Month',
-      specification: details?.car?.modelYear||'----',
+      specificationLabel: "Year/Month",
+      specification: details?.car?.modelYear || "----",
     },
     {
-      specificationLabel: 'Mileage',
+      specificationLabel: "Mileage",
       specification: `${details?.car?.mileage} kmpl`,
     },
     {
-      specificationLabel: 'Door’s',
-      specification: details?.car?.doors||'----',
+      specificationLabel: "Door’s",
+      specification: details?.car?.doors || "----",
     },
     {
-      specificationLabel: 'Engine',
-      specification: details?.car?.engine||'----',
+      specificationLabel: "Engine",
+      specification: details?.car?.engine || "----",
     },
     {
-      specificationLabel: 'Color’s',
-      specification: details?.car?.color||'----',
+      specificationLabel: "Color’s",
+      specification: details?.car?.color || "----",
     },
     {
-      specificationLabel: 'Repaired',
-      specification: details?.car?.repaire?'Yes':'No',
+      specificationLabel: "Repaired",
+      specification: details?.car?.repaire ? "Yes" : "No",
     },
     {
-      specificationLabel: 'Steering',
-      specification: details?.car?.steering||'----',
+      specificationLabel: "Steering",
+      specification: details?.car?.steering || "----",
     },
     {
-      specificationLabel: 'Steating Catacity',
-      specification: details?.car?.catacity||'----',
+      specificationLabel: "Steating Catacity",
+      specification: details?.car?.catacity || "----",
     },
     {
-      specificationLabel: 'Fuel Type',
-      specification: details?.car?.fuelType[0]||'----',
+      specificationLabel: "Fuel Type",
+      specification: details?.car?.fuelType[0] || "----",
     },
     {
-      specificationLabel: 'No. of Cylinder',
-      specification: details?.car?.cylinder||'----',
+      specificationLabel: "No. of Cylinder",
+      specification: details?.car?.cylinder || "----",
     },
     {
-      specificationLabel: 'Transmission',
-      specification: details?.car?.transmission||'----',
+      specificationLabel: "Transmission",
+      specification: details?.car?.transmission || "----",
     },
     {
-      specificationLabel: 'Wheel’s',
-      specification: details?.car?.wheel||'----',
+      specificationLabel: "Wheel’s",
+      specification: details?.car?.wheel || "----",
     },
   ];
   const enginePerformance = [
     {
-      specificationLabel: 'Engine Size',
-      specification: details?.car?.engineSize||'----',
+      specificationLabel: "Engine Size",
+      specification: details?.car?.engineSize || "----",
     },
     {
-      specificationLabel: 'Valve Gear',
-      specification: details?.car?.valveGear||'----',
+      specificationLabel: "Valve Gear",
+      specification: details?.car?.valveGear || "----",
     },
     {
-      specificationLabel: 'Induction',
-      specification: details?.car?.induction||'----',
+      specificationLabel: "Induction",
+      specification: details?.car?.induction || "----",
     },
     {
-      specificationLabel: 'Fuel Injection',
-      specification: details?.car?.fuleInjection||'----',
+      specificationLabel: "Fuel Injection",
+      specification: details?.car?.fuleInjection || "----",
     },
     {
-      specificationLabel: 'Cylinders',
-      specification: details?.car?.cylinder||'----',
+      specificationLabel: "Cylinders",
+      specification: details?.car?.cylinder || "----",
     },
     {
-      specificationLabel: 'Power',
-      specification: details?.car?.power||'----',
+      specificationLabel: "Power",
+      specification: details?.car?.power || "----",
     },
     {
-      specificationLabel: 'Engine Config',
-      specification: details?.car?.engineConfig||'----',
+      specificationLabel: "Engine Config",
+      specification: details?.car?.engineConfig || "----",
     },
     {
-      specificationLabel: 'Engine Location',
-      specification: details?.car?.engineLocation||'----',
+      specificationLabel: "Engine Location",
+      specification: details?.car?.engineLocation || "----",
     },
   ];
 
-
   const dispatch = useDispatch();
-  const {id}=useParams()
-  const navigate=useNavigate()
-
+  const { id } = useParams();
+  const navigate = useNavigate();
 
   const carInfo = [
     {
       img: <PiGaugeThin className="w-8 h-8  lg:mb-4  text-gray-400" />,
       header: `${details?.car?.odometer} kms`,
-      subheader: 'Odometer',
+      subheader: "Odometer",
     },
     {
       img: <PiEngineThin className="w-8 h-8 mb-4  text-gray-400" />,
       header: `${formatCurrency(details?.car?.engineSize)} cc`,
-      subheader: 'Engine',
+      subheader: "Engine",
     },
     {
       img: <PiGasPumpThin className="w-8 h-8 mb-4  text-gray-400" />,
       header: details?.car?.fuelType[0],
-      subheader: 'Fuel Type',
+      subheader: "Fuel Type",
     },
     {
-      img: (
-        <PiCarThin className="w-8 h-8 mb-4  text-gray-400" />
-      ),
+      img: <PiCarThin className="w-8 h-8 mb-4  text-gray-400" />,
       header: details?.car?.condition,
-      subheader: 'Condition',
+      subheader: "Condition",
     },
   ];
 
   useEffect(() => {
     dispatch(getAllCars(4));
   }, []);
-  
-  useEffect(()=>{window.scrollTo(0, 0)
-    dispatch(getCarDetails(id))
-},[id])
-if(loading){
-    return <Loader/>
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    dispatch(getCarDetails(id));
+  }, [id, dispatch]);
+  if (loading) {
+    return <Loader />;
   }
   return (
     <Main>
@@ -173,7 +176,7 @@ if(loading){
                 <div key={i} className="flex justify-center items-center gap-2">
                   {ele.img}
                   <header>
-                    <h1 className='font-bold'>{ele.header}</h1>
+                    <h1 className="font-bold">{ele.header}</h1>
                     <h2 className="font-normal text-gray-500 text-sm">
                       {ele.subheader}
                     </h2>
@@ -186,14 +189,15 @@ if(loading){
             <div className="mt-14 ">
               <h1 className="font-bold  text-xl">Key Features</h1>
               <div className="grid rounded-lg p-4 border  lg:grid-cols-4 mx-0 gap-4 mt-4">
-                {details && details?.car?.features[0]?.split(",")?.map((item, i) => (
-                  <div key={i} className="flex items-center gap-2">
-                    <PiCheckCircleThin />
-                    <span className="text-gray-500 text-sm font-semibold">
-                      {item}
-                    </span>
-                  </div>
-                ))}
+                {details &&
+                  details?.car?.features[0]?.split(",")?.map((item, i) => (
+                    <div key={i} className="flex items-center gap-2">
+                      <PiCheckCircleThin />
+                      <span className="text-gray-500 text-sm font-semibold">
+                        {item}
+                      </span>
+                    </div>
+                  ))}
               </div>
             </div>
           </div>
@@ -206,7 +210,7 @@ if(loading){
                 <div key={i} className="">
                   <ul className="flex justify-between h-10 items-center">
                     <li>{item.specificationLabel}</li>
-                    <span className='text-gray-500'>{item.specification}</span>
+                    <span className="text-gray-500">{item.specification}</span>
                   </ul>
                 </div>
               ))}
@@ -228,7 +232,7 @@ if(loading){
             </div>
           </div>
         </section>
-{/* form section */}
+        {/* form section */}
         <section className="flex flex-col flex-[35%] gap-11">
           <div className="w-full outline-gray-200 outline-dashed outline-blue-b1 rounded-lg h-fit">
             <div className="p-6 flex flex-col gap-4">
@@ -236,25 +240,25 @@ if(loading){
                 <div className="grid grid-flow-col w-full gap-5 text-center auto-cols-max">
                   <div className="flex flex-col bg-pink-50 p-2 rounded-lg">
                     <span className="countdown font-mono text-4xl">
-                      <span style={{ '--value': 15 }}></span>
+                      <span style={{ "--value": 15 }}></span>
                     </span>
                     days
                   </div>
                   <div className="flex flex-col bg-pink-50 p-2 rounded-lg">
                     <span className="countdown font-mono text-4xl">
-                      <span style={{ '--value': 10 }}></span>
+                      <span style={{ "--value": 10 }}></span>
                     </span>
                     hours
                   </div>
                   <div className="flex flex-col bg-pink-50 p-2 rounded-lg">
                     <span className="countdown font-mono text-4xl">
-                      <span style={{ '--value': 24 }}></span>
+                      <span style={{ "--value": 24 }}></span>
                     </span>
                     min
                   </div>
                   <div className="flex flex-col bg-pink-50 p-2 rounded-lg">
                     <span className="countdown font-mono text-4xl">
-                      <span style={{ '--value': 20 }}></span>
+                      <span style={{ "--value": 20 }}></span>
                     </span>
                     sec
                   </div>
@@ -268,7 +272,11 @@ if(loading){
                 <span>Total Bids</span>
                 <span>10 Person</span>
               </div>
-              <Button btnClass='primary' name='Place Bids' icon={<PiHammerThin className='w-6 h-6'/>}/>
+              <Button
+                btnClass="primary"
+                name="Place Bids"
+                icon={<PiHammerThin className="w-6 h-6" />}
+              />
               {/* <Button className="h-11">Place Bids</Button> */}
             </div>
           </div>
@@ -283,7 +291,11 @@ if(loading){
                 If choose this car to contact easily with us.
               </header>
               <FormWrapper formObj={auctionForm} />
-              <Button btnClass='primary' name='Send Message' icon={<PiPaperPlaneTiltThin className='w-6 h-6'/>}/>
+              <Button
+                btnClass="primary"
+                name="Send Message"
+                icon={<PiPaperPlaneTiltThin className="w-6 h-6" />}
+              />
               {/* <div>
                 <ContactForm />
               </div> */}
@@ -296,46 +308,59 @@ if(loading){
               <header className="font-semibold text-2xl">
                 Recent Used Car
               </header>
-              <div className='flex flex-col gap-3'>
-                {carList && carList?.list?.map(ele=>
-                <div onClick={()=>navigate(`/car-lists/${ele._id}`)} key={ele._id} className="card cursor-pointer w-full bg-base-100 outline-dashed outline-blue-b1 flex gap-2 flex-row">
-                  <figure className="p-2 flex-1 h-40 relative">
-                    <img
-                      className="h-full object-cover rounded-lg"
-                      src={ele?.images?.url}
-                      alt="Shoes"
-                    />
+              <div className="flex flex-col gap-3">
+                {carList &&
+                  carList?.list?.map((ele) => (
+                    <div
+                      onClick={() => navigate(`/car-lists/${ele._id}`)}
+                      key={ele._id}
+                      className="card cursor-pointer w-full bg-base-100 outline-dashed outline-blue-b1 flex gap-2 flex-row"
+                    >
+                      <figure className="p-2 flex-1 h-40 relative">
+                        <img
+                          className="h-full object-cover rounded-lg"
+                          src={ele?.images?.url}
+                          alt="Shoes"
+                        />
 
-                    <div className="absolute bottom-2 left-1 w-2/3 text-center bg-white-0 bg-clip">
-                      <span className="m-auto">${formatCurrency(ele?.price)}</span>
+                        <div className="absolute bottom-2 left-1 w-2/3 text-center bg-white-0 bg-clip">
+                          <span className="m-auto">
+                            ${formatCurrency(ele?.price)}
+                          </span>
+                        </div>
+                      </figure>
+                      <div className="flex-1 py-2 flex flex-col justify-around">
+                        <header className="font-bold pb-1 w-fit border-b">
+                          <span className="uppercase">{ele?.model}</span>-
+                          <span>{ele?.modelYear}</span>
+                        </header>
+                        <div className="flex gap-2">
+                          <GiGearStickPattern className="h-full" />
+                          <header>{ele?.transmission}</header>
+                        </div>
+                        <div className="flex gap-2">
+                          <PiGasCan className="h-full" />
+                          <header>{ele?.fuelType[0]}</header>
+                        </div>
+                        <div className="flex gap-2">
+                          <PiEngineLight className="h-full" />
+                          <header>{ele?.odometer}</header>
+                        </div>
+                      </div>
                     </div>
-                  </figure>
-                  <div className="flex-1 py-2 flex flex-col justify-around">
-                    <header className="font-bold pb-1 w-fit border-b">
-                      <span className='uppercase'>{ele?.model}</span>-<span>{ele?.modelYear}</span>
-                    </header>
-                    <div className="flex gap-2">
-                      <GiGearStickPattern className="h-full" />
-                      <header>{ele?.transmission}</header>
-                    </div>
-                    <div className="flex gap-2">
-                      <PiGasCan className="h-full" />
-                      <header>{ele?.fuelType[0]}</header>
-                    </div>
-                    <div className="flex gap-2">
-                      <PiEngineLight className="h-full" />
-                      <header>{ele?.odometer}</header>
-                    </div>
-                  </div>
-                </div>
-                )}
-                <Link className='border text-center py-1 text-blue-b1 border-blue-b1 rounded hover:text-white-0 hover:bg-blue-b1' to='/car-lists'>View All Cars</Link>
+                  ))}
+                <Link
+                  className="border text-center py-1 text-blue-b1 border-blue-b1 rounded hover:text-white-0 hover:bg-blue-b1"
+                  to="/car-lists"
+                >
+                  View All Cars
+                </Link>
               </div>
             </div>
           </div>
         </section>
       </div>
-      </Main>
+    </Main>
   );
 };
 

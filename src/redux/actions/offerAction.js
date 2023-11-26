@@ -1,9 +1,4 @@
-import {
-  BRAND,
-  SINGLE_BRAND,
-  OFFERS,
-  SINGLE_OFFER,
-} from "../../utils/apiConstant";
+import { OFFERS, SINGLE_OFFER } from "../../utils/apiConstant";
 import axios from "axios";
 import { attachParams } from "../../utils/apiUtils";
 
