@@ -1,31 +1,41 @@
-
-import HeroSection from '../components/heroSection';
-import SpecialOfferCard from '../components/specialOfferCard';
-import {offerForm} from '../utils/constant.js';
-import Button  from '../components/forms/button';
-import FormWrapper from '../components/forms/formWrapper';
-import Main from '../utils/main';
-import { useEffect } from 'react';
-
+import HeroSection from "../components/heroSection";
+import SpecialOfferCard from "../components/specialOfferCard";
+import { offerForm } from "../utils/constant.js";
+import Button from "../components/forms/button";
+import FormWrapper from "../components/forms/formWrapper";
+import Main from "../utils/main";
+import { useEffect } from "react";
+import { getOfferList } from "../redux/actions/offerAction.js";
+import { useDispatch, useSelector } from "react-redux";
 const SpecialOffer = () => {
   const filterForm = [
     {
-      header: 'Brand',
-      placeholder: 'Select Brand',
-      options: ['Maruti', 'Tata'],
+      header: "Brand",
+      placeholder: "Select Brand",
+      options: ["Maruti", "Tata"],
     },
     {
-      header: 'Model',
-      placeholder: 'Select Modal',
-      options: ['Baleno', 'breeza'],
+      header: "Model",
+      placeholder: "Select Modal",
+      options: ["Baleno", "breeza"],
     },
     {
-      header: 'Engine',
-      placeholder: 'Enter Engine Type',
-      options: ['1500cc', '1800cc', '2500cc'],
+      header: "Engine",
+      placeholder: "Enter Engine Type",
+      options: ["1500cc", "1800cc", "2500cc"],
     },
   ];
-  useEffect(()=>{window.scrollTo(0, 0)},[])
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getOfferList());
+  }, [dispatch]);
+  const { loading, offerList } = useSelector((state) => state.offer);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <Main>
       <div className="relative">
@@ -42,12 +52,11 @@ const SpecialOffer = () => {
                 />
               </div>
             ))} */}
-            <div className='w-full flex-[75]'>
-
-            <FormWrapper formObj={offerForm}/>
+            <div className="w-full flex-[75]">
+              <FormWrapper formObj={offerForm} />
             </div>
             <div className="w-full  flex justify-center items-center flex-[25]">
-              <Button className={'lg:mt-[9%] mt-0'}/>
+              <Button className={"lg:mt-[9%] mt-0"} />
             </div>
           </div>
         </div>
@@ -57,9 +66,10 @@ const SpecialOffer = () => {
           Showing 2,928 car available in stock
         </h1>
         <div className="grid lg:grid-cols-3 gap-8">
-          {[1, 2, 3, 4, 5, 6].map((ele) => (
-            <SpecialOfferCard key={ele} />
-          ))}
+          {offerList &&
+            offerList?.list?.map((ele) => (
+              <SpecialOfferCard key={ele._id} item={ele} />
+            ))}
         </div>
       </div>
     </Main>

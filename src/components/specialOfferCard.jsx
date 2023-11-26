@@ -1,35 +1,39 @@
-import { Image } from 'antd';
-import React from 'react';
-import { TbEngine } from 'react-icons/tb';
-import { BiGasPump } from 'react-icons/bi';
-import { BsSpeedometer2 } from 'react-icons/bs';
-import { SlLocationPin } from 'react-icons/sl';
-import Button from './forms/button'
+import { Image } from "antd";
+import React from "react";
+import { TbEngine } from "react-icons/tb";
+import { BiGasPump } from "react-icons/bi";
+import { BsSpeedometer2 } from "react-icons/bs";
+import { SlLocationPin } from "react-icons/sl";
+import Button from "./forms/button";
+import { formatCurrency } from "../utils/apiUtils";
+import { Link } from "react-router-dom";
 
-export const SpecialOfferCard = () => {
+export const SpecialOfferCard = ({ item }) => {
   const carSpecification = [
     {
       icon: <BsSpeedometer2 className="text-gray-600" />,
-      specification: '2500 miles',
+      specification: item?.car?.mileage,
     },
     {
       icon: <BiGasPump className="text-gray-600" />,
-      specification: 'Petrol+Gas',
+      specification: item?.car?.fuelType[0],
     },
     {
       icon: <TbEngine className="text-gray-600" />,
-      specification: 'Electric',
+      specification: item?.car?.transmission,
     },
   ];
   return (
     <div className="card card-compact bg-base-100 shadow-xl rounded-lg w-full bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
       <div className="m-4">
         <figure className="mb-4">
-          <Image
-            src="https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/product-sb-img-04.png"
-            className="rounded-lg  borded-solid border-2 "
-            alt="Shoes"
-          />
+          <div className="h-56 w-full">
+            <Image
+              src={item?.car?.images?.url}
+              className="rounded-lg  borded-solid border-2 !h-full !w-full !object-contain"
+              alt="Shoes"
+            />
+          </div>
         </figure>
         <div className="card-body flex flex-col gap-4 p-4">
           <div className="flex gap-2 items-center">
@@ -38,8 +42,12 @@ export const SpecialOfferCard = () => {
             </div>
             <h2 className="text-sm font-semibold">Padri Bazar, Gorakhpur</h2>
           </div>
-          <h1 className='font-bold text-lg'>Mercedes-Benz C-Class-2023</h1>
-          <div className="gap-4 flex">
+
+          <div className="font-semibold text-lg">
+            <span className="capitalize mr-2"> {item?.car?.brand?.name}</span>
+            <span className="uppercase">{item?.car?.model}</span>
+          </div>
+          <div className="border-b border-t py-3 border-gray-300 gap-4 flex">
             {carSpecification.map((item, index) => (
               <div key={index} className="flex items-center gap-1">
                 {item.icon}
@@ -57,13 +65,19 @@ export const SpecialOfferCard = () => {
       </div> */}
           </div>
           <div className="grid grid-flow-col card-actions justify-between">
-            <Button btnClass='primary' name='View Details'/>
-            {/* <button className="rounded px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white">
-              View Details
-            </button> */}
+            <Link
+              to={`/car-lists/${item?.car?._id}`}
+              className="text-blue-b1 hover:underline"
+            >
+              view more
+            </Link>
             <div className="ps-2">
-              <h2 className="font-bold text-lg">₹5000000</h2>
-              <h3 className="text-sm text-gray-500 line-through">₹6000000</h3>
+              <h2 className="font-bold text-lg">
+                ₹{formatCurrency(item?.specialOfferPrice)}
+              </h2>
+              <h3 className="text-sm text-gray-500 line-through">
+                ₹{formatCurrency(item?.car?.price)}
+              </h3>
             </div>
           </div>
         </div>

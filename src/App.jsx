@@ -18,6 +18,7 @@ import { getProfile } from "./redux/actions/user";
 import { ProtectedRoute } from "protected-route-react";
 import CarInfo from "./pages/carInfo";
 import AdminReviewListing from "./pages/admin/reviewListing";
+import AdminInquiry from "./pages/admin/inquiry";
 // import {BASE_URL} from "./utils/apiConstant"
 function App() {
   const { isAuthenticated, loading, user, message, error } = useSelector(
@@ -94,6 +95,14 @@ function App() {
           element={
             <ProtectedRoute isAuthenticated={isAuthenticated} redirect="/">
               <AdminReviewListing user={user} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/inquiry"
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated} redirect="/">
+              <AdminInquiry user={user} />
             </ProtectedRoute>
           }
         />
