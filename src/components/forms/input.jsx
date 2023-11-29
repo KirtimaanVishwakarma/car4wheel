@@ -11,10 +11,11 @@ const FormInput = ({ item, setInputObj }) => {
   return (
     <div className="flex flex-col ">
       <label htmlFor={""} className="mb-2">
-        {item?.label} <span className="text-red-500">*</span>
+        {item?.label}  {item?.required &&<span className='text-red-500'>*</span>}
       </label>
       <input
         id={item?.id}
+        required= {item?.required && true}
         min={1}
         onKeyDown={handleKeyDown}
         type={item?.type || "text"}
@@ -22,7 +23,6 @@ const FormInput = ({ item, setInputObj }) => {
         placeholder={item?.placeholder}
         onChange={onChange}
       />
-      <span className="text-red-500">Please enter your name</span>
     </div>
   );
 };

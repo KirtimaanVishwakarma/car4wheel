@@ -28,7 +28,7 @@ const AdminMain = ({ children,pageName}) => {
           
           </div>
         </div>
-        <div className='p-6 overflow-y-auto'>{children}</div>
+        <div className='p-6 overflow-y-auto h-full'>{children}</div>
       </div>
     </div>
   );

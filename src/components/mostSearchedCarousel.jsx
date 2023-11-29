@@ -62,11 +62,11 @@ let slidesToShow =
     return null;
   };
   return (
-    <div className="lg:my-4 lg:flex-row lg:w-full">
+    <div className="lg:!my-4 lg:!flex-row lg:!w-full">
       <Slider {...settings} prevArrow={<CustomPrevArrow />} nextArrow={<CustomNextArrow />} className='flex justify-between'>
        
        {item?.map(ele=>
-        <div key={ele._id} className="lg:p-4 p-2">
+        <div key={ele._id} className="lg:!p-4 p-2">
           <CarListingCard item={ele}/>
         </div>)}
       </Slider>

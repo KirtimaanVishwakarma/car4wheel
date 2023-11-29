@@ -24,7 +24,7 @@ const Auction = () => {
 
   const carInfo = [
     {
-      img: <PiGaugeThin className="w-8 h-8  lg:mb-4  text-gray-400" />,
+      img: <PiGaugeThin className="w-8 h-8  lg:!mb-4  text-gray-400" />,
       header: "25,100 miles",
       subheader: "Mileage",
     },
@@ -169,7 +169,7 @@ const Auction = () => {
   return (
     <Main>
       <HeroSection />
-      <div className="flex lg:flex-row flex-col gap-6 px-2 lg:my-14 py-14 lg:px-10">
+      <div className="flex lg:!flex-row flex-col gap-6 px-2 lg:!my-14 py-14 lg:!px-10">
         <section className="flex flex-[65%] flex-col">
           <Image
             src="https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/color-car-05.png"
@@ -180,7 +180,7 @@ const Auction = () => {
           {/* car info */}
           <div className="mt-10">
             <div className="font-bold  text-xl">Car Info</div>
-            <div className="grid grid-cols-2 gap-y-3 items-center justify-between lg:flex mt-5">
+            <div className="grid grid-cols-2 gap-y-3 items-center justify-between lg:!flex mt-5">
               {carInfo.map((ele, i) => (
                 <div key={i} className="flex justify-center items-center gap-2">
                   {ele.img}
@@ -197,7 +197,7 @@ const Auction = () => {
             {/* key features */}
             <div className="mt-14 ">
               <h1 className="font-bold  text-xl">Key Features</h1>
-              <div className="grid rounded-lg p-4 border  lg:grid-cols-4 mx-0 gap-4 mt-4">
+              <div className="grid rounded-lg p-4 border  lg:!grid-cols-4 mx-0 gap-4 mt-4">
                 {keyFeatures.map((item, i) => (
                   <div key={i} className="flex items-center gap-2">
                     <PiCheckCircleThin />
@@ -213,7 +213,7 @@ const Auction = () => {
           {/* overviews */}
           <div className="mt-14">
             <h1 className="font-bold  text-xl">Overviews</h1>
-            <div className="lg:grid rounded-lg p-4 border lg:grid-cols-2 gap-x-14 mt-4">
+            <div className="lg:!grid rounded-lg p-4 border lg:!grid-cols-2 gap-x-14 mt-4">
               {overviews.map((item, i) => (
                 <div key={i} className="">
                   <ul className="flex justify-between h-10 items-center">
@@ -228,7 +228,7 @@ const Auction = () => {
           {/* Engine Performance */}
           <div className="mt-14">
             <h1 className="font-bold  text-xl">Engine Performance</h1>
-            <div className="lg:grid rounded-lg p-4 border lg:grid-cols-2 gap-x-14 mt-4">
+            <div className="lg:!grid rounded-lg p-4 border lg:!grid-cols-2 gap-x-14 mt-4">
               {enginePerformance.map((item, i) => (
                 <div key={i} className="">
                   <ul className="flex justify-between h-10 items-center">
@@ -291,7 +291,7 @@ const Auction = () => {
 
           {/* form  */}
           <div className="w-full rounded-lg bg-white-0 bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
-            <div className="p-4 lg:p-8 flex flex-col gap-3">
+            <div className="p-4 lg:!p-8 flex flex-col gap-3">
               <header className="font-semibold text-2xl">
                 To More inquiry
               </header>

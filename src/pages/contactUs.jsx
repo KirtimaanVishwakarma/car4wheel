@@ -72,8 +72,8 @@ const ContactUs = () => {
     <Main>
       <HeroSection />
       {/* contact form  */}
-      <div className="lg:m-14 m-4 flex lg:flex-row flex-col gap-4">
-        <div className="flex flex-col justify-between gap-6 w-full lg:w-2/5 ">
+      <div className="lg:!m-14 m-4 flex lg:!flex-row flex-col gap-4">
+        <div className="flex flex-col justify-between gap-6 w-full lg:!w-2/5 ">
           <header className="text- text-3xl font-semibold mb-4">
             Contact Us With Support Line
           </header>
@@ -82,7 +82,7 @@ const ContactUs = () => {
           {contacts.map((item, i) => (
             <div
               key={i}
-              className="px-4 lg:px-12 py-8 border rounded-lg relative flex flex-col "
+              className="px-4 lg:!px-12 py-8 border rounded-lg relative flex flex-col "
             >
               <span className=" absolute -top-3 px-3 bg-white-0 ">
                 {item.mainHeader}
@@ -114,7 +114,7 @@ const ContactUs = () => {
         </div>
 
         {/* form  */}
-        <div className="border w-full lg:w-3/5 rounded-md p-4 lg:p-6">
+        <div className="border w-full lg:!w-3/5 rounded-md p-4 lg:!p-6">
           <div>
             <form onSubmit={submitHandler}>
               <FormWrapper formObj={contactForm} setInputObj={setInputObj} />
@@ -122,7 +122,7 @@ const ContactUs = () => {
                 type={"submit"}
                 btnClass="primary"
                 name="Submit Now"
-                className={"lg:w-1/3"}
+                className={"lg:!w-1/3"}
               />
             </form>
           </div>

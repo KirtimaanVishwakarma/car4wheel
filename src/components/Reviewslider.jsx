@@ -41,7 +41,7 @@ const ReviewSlider = () => {
     dispatch(getReviewList(6));
   }, [dispatch]);
     return (
-    <Slider {...settings} className="lg:flex m-auto">
+    <Slider {...settings} className="lg:!flex m-auto">
       {reviewList &&
         reviewList?.list?.map((ele, i) => (
           <div key={i} className="p-4">

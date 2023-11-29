@@ -9,6 +9,7 @@ import { CiEdit } from "react-icons/ci";
 import Table from "../../components/forms/tabel";
 import { Image } from "antd";
 import { LuBadgeInfo } from "react-icons/lu";
+import Modal from "../../components/modal";
 
 const Inquiry = () => {
   const columns = useMemo(
@@ -84,7 +85,7 @@ const Inquiry = () => {
     ],
     []
   );
-
+const [pageIndex,setPageIndex]=useState(0)
   const { loading, Inquiry, message, error } = useSelector(
     (state) => state.inquiry
   );
@@ -95,8 +96,8 @@ const Inquiry = () => {
   };
 
   useEffect(() => {
-    dispatch(getInquiry());
-  }, [dispatch, message]);
+    dispatch(getInquiry(10,pageIndex+1));
+  }, [dispatch, message,pageIndex]);
   useEffect(() => {
     if (error) {
       dispatch({ type: "clearError" });
@@ -105,13 +106,21 @@ const Inquiry = () => {
       dispatch({ type: "clearMessage" });
     }
   }, [dispatch, error, message]);
-  if (loading) {
-    return <Loader />;
-  }
 
+  // const getInquiryHandler = (id) => {
+  //   dispatch(getInuqiry(id));
+  // };
+ 
   return (
     <AdminMain pageName={"Brands"}>
-      <Table columns={columns} data={Inquiry?.list} />
+      <Table columns={columns}
+       data={Inquiry?.list} 
+       loading={loading}
+       pageCount={Math.ceil(Inquiry?.totalElement/Inquiry?.size)}
+       totalElements ={Inquiry?.totalElement}
+       setPageIndex={setPageIndex}
+       manualPage={pageIndex}
+      />
     </AdminMain>
   );
 };

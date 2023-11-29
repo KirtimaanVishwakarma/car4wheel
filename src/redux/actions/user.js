@@ -1,6 +1,7 @@
 import { GET_PROFILE, LOGIN, LOGOUT } from '../../utils/apiConstant';
 
 import axios from 'axios';
+import {toast} from "react-toastify"
 
 export const login = (email, password) => async (dispatch) => {
     
@@ -16,8 +17,10 @@ export const login = (email, password) => async (dispatch) => {
         withCredentials: true,
       }
     );
+    toast.success("Logged in successfuly!")
     dispatch({ type: 'loginSuccess',payload:data});
   } catch (error) {
+    toast.error(error.response.data.message)
     dispatch({ type: 'loginfailed',payload:error.response.data.message});
   }
 };
