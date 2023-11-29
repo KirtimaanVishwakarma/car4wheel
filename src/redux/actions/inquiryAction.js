@@ -1,5 +1,7 @@
 import axios from "axios";
+import {  toast } from 'react-toastify';
 import { INQUIRY } from "../../utils/apiConstant";
+import { attachParams } from "../../utils/apiUtils";
 export const addInquiry = (myForm) => async (dispatch) => {
   try {
     dispatch({ type: "addInquiryRequest" });
@@ -10,15 +12,22 @@ export const addInquiry = (myForm) => async (dispatch) => {
       withCredentials: true,
     });
     dispatch({ type: "addInquirySuccess", payload: data });
+    console.log(data);
+    toast.success('Message sent successfully, we will get back to you soon!')
   } catch (err) {
+    console.log(err);
     dispatch({ type: "addInquiryError", payload: err.response.data.message });
   }
 };
 
-export const getInquiry = () => async (dispatch) => {
+export const getInquiry = (size,page) => async (dispatch) => {
+
+  const url=attachParams(INQUIRY,{
+size:size||'',page:page||''
+  })
   try {
     dispatch({ type: "getInquiryRequest" });
-    const { data } = await axios.get(INQUIRY, {
+    const { data } = await axios.get(url, {
       withCredentials: true,
     });
     dispatch({ type: "getInquirySuccess", payload: data });

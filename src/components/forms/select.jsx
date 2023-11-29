@@ -9,9 +9,9 @@ const FormSelect = ({item,setInputObj}) => {
   return (
     <div className="flex flex-col">
     <label htmlFor={''} className="mb-2">
-      {item?.label} <span className='text-red-500'>*</span>
+      {item?.label} {item?.required && <span className='text-red-500'>*</span>}
     </label>
-      <Select placeholder={item?.placeholder} value={item?.value} name={item.id} onChange={handleOptionChange} className="h-12 w-full">
+      <Select placeholder={item?.placeholder} required={item?.required && true} value={item?.value} name={item.id} onChange={handleOptionChange} className="h-12 w-full">
       <Option disabled>
             {item?.placeholder}
           </Option>

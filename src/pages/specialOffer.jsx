@@ -41,8 +41,8 @@ const SpecialOffer = () => {
       <div className="relative">
         <HeroSection />
 
-        <div className="border w-[90%]  right-5 rounded-2xl p-5 absolute lg:w-[95%] top-[90%] bg-white-0 shadow lg:top-[82%] lg:left-8">
-          <div className="h-full flex flex-col lg:flex-row lg:flex-1 gap-2 justify-between w-full">
+        <div className="border w-[90%]  right-5 rounded-2xl p-5 absolute lg:!w-[95%] top-[90%] bg-white-0 shadow lg:!top-[82%] lg:!left-8">
+          <div className="h-full flex flex-col lg:!flex-row lg:!flex-1 gap-2 justify-between w-full">
             {/* {filterForm.map((ele, i) => (
               <div key={i} className="flex-1">
                 <OfferForm
@@ -56,16 +56,16 @@ const SpecialOffer = () => {
               <FormWrapper formObj={offerForm} />
             </div>
             <div className="w-full  flex justify-center items-center flex-[25]">
-              <Button className={"lg:mt-[9%] mt-0"} />
+              <Button className={"lg:!mt-[9%] mt-0"} />
             </div>
           </div>
         </div>
       </div>
-      <div className="block mt-52 lg:mt-26 mb-10 lg:my-[11rem] mx-4  lg:mx-14">
+      <div className="block mt-52 lg:!mt-26 mb-10 lg:!my-[11rem] mx-4  lg:!mx-14">
         <h1 className="ps-4 mb-4 mt-4 text-gray-500">
           Showing 2,928 car available in stock
         </h1>
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid lg:!grid-cols-3 gap-8">
           {offerList &&
             offerList?.list?.map((ele) => (
               <SpecialOfferCard key={ele._id} item={ele} />

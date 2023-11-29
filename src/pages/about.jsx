@@ -13,10 +13,10 @@ const About = () => {
       <HeroSection name={'about'}/>
 
       {/* welcome section start  */}
-      <div className="py-14 px-3 lg:p-14 w-full'">
+      <div className="py-14 px-3 lg:!p-14 w-full'">
         <div className="flex flex-col items-center">
           {' '}
-          <div className="lg:w-4/5 w-auto flex flex-col gap-7 ">
+          <div className="lg:!w-4/5 w-auto flex flex-col gap-7 ">
             <div>
               <header className="font-medium text-lg text-center text-blue-400">
                 (Since-1994)
@@ -89,11 +89,11 @@ const About = () => {
       </div> */}
 
       {/* gallery section */}
-      <div className="lg:mx-10 mx-3 mt-24">
+      <div className="lg:!mx-10 mx-3 mt-24">
         <h2 className="font-bold text-4xl text-center mb-8"> Drivco Gallery</h2>
 
         <div className="flex justify-center">
-          <div className="grid lg:grid-cols-3 gap-6 lg:gap-4">
+          <div className="grid lg:!grid-cols-3 gap-6 lg:!gap-4">
             {[1, 2, 3, 4, 5, 6].map((ele) => (
               <Image
                 key={ele}
@@ -122,7 +122,7 @@ const About = () => {
         </div>
         {/* <div className="flex flex-col"> */}
         {/* <Stepper /> */}
-        <div className="flex lg:flex-row flex-col text-center">
+        <div className="flex lg:!flex-row flex-col text-center">
           {[1, 2, 3, 4].map((ele) => (
             <Stepper key={ele} step={ele}>
               <div className=" px-4 py-8 flex items-center flex-col gap-6 mx-8 mt-2">

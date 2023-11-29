@@ -67,14 +67,14 @@ const Home = () => {
   }
   return (
     <Main>
-      <div className="lg:px-14 px-3 lg:py-14 bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
-        <div className=" flex lg:flex-row  flex-col gap-8 py-14">
+      <div className="lg:!px-14 px-3 lg:!py-14 bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
+        <div className=" flex lg:!flex-row  flex-col gap-8 py-14">
           <section className="flex flex-col gap-4">
-            <span className="flex items-center  lg:gap-2 font-semibold lg:font-bold text-lg lg:text-2xl  text-blue-400">
+            <span className="flex items-center  lg:!gap-2 font-semibold lg:!font-bold text-lg lg:!text-2xl  text-blue-400">
               Fastest Speed
               <GiSpeedometer />
             </span>
-            <h1 className="flex flex-col font-bold text-5xl lg:text-7xl leading-tight text- text-blu text-blue-900">
+            <h1 className="flex flex-col font-bold text-5xl lg:!text-7xl leading-tight text- text-blu text-blue-900">
               To Best Way Buy
               <span>Dream Car.</span>
             </h1>
@@ -93,7 +93,7 @@ const Home = () => {
           </section>
           {/* banner-content */}
 
-          <section className="lg:flex-[50%] shadow-lg p-8 rounded-lg  bg-white-0">
+          <section className="lg:!flex-[50%] shadow-lg p-8 rounded-lg  bg-white-0">
             <header className="text-3xl font-bold mb-8 text-blue-900">
               Find Your Dream Car
             </header>
@@ -110,14 +110,14 @@ const Home = () => {
       <QuickLinksHome className="border-r " />
       <div className="my-14 px-2">
         <div className="w-full">
-          <div className="lg:flex lg:items-center lg:justify-between lg:pt-8 lg:pb-0 px-2 pb-2">
+          <div className="lg:!flex lg:!items-center lg:!justify-between lg:!pt-8 lg:!pb-0 px-2 pb-2">
             <div className="text-lg  tracking-widest font-medium">
               <span className="text-blue-400">Available Brand Car</span>
-              <h1 className="lg:text-4xl text-3xl font-bold mt:5 mb-6">
+              <h1 className="lg:!text-4xl text-3xl font-bold mt:5 mb-6">
                 Most Searched Used Car
               </h1>
             </div>
-            <ul className="lg:flex hidden justify-between items-end text-normal font-normal  border-b-2 border-blue-900">
+            <ul className="lg:!flex hidden justify-between items-end text-normal font-normal  border-b-2 border-blue-900">
               {carType.map((ele) => (
                 <li
                   key={ele}
@@ -129,21 +129,21 @@ const Home = () => {
             </ul>
           </div>
         </div>
-        <div className="lg:m-auto lg:flex-row lg:px-10">
+        <div className="lg:!m-auto lg:!flex-row lg:!px-10">
           <MostSearchedCarousel item={carList?.list} />
         </div>
       </div>
       {/* recently-lanched */}
       <div className="my-14 px-2">
         <div className="w-full">
-          <div className="lg:flex lg:items-center lg:justify-between lg:pt-8 lg:pb-0 px-2 pb-2">
+          <div className="lg:!flex lg:!items-center lg:!justify-between lg:!pt-8 lg:!pb-0 px-2 pb-2">
             <div className="text-lg  tracking-widest font-medium">
               <span className="text-blue-400">Recent Launched</span>
-              <h1 className="lg:text-4xl text-3xl font-bold mt:5 mb-6">
+              <h1 className="lg:!text-4xl text-3xl font-bold mt:5 mb-6">
                 Recent Launched Car
               </h1>
             </div>
-            <ul className="lg:flex hidden justify-between lg:items-end text-normal font-normal border-b-2 border-blue-900">
+            <ul className="lg:!flex hidden justify-between lg:!items-end text-normal font-normal border-b-2 border-blue-900">
               {carType.map((ele) => (
                 <li
                   key={ele}
@@ -155,7 +155,7 @@ const Home = () => {
             </ul>
           </div>
         </div>
-        <div className="lg:grid flex flex-col gap-6 items-center justify-center py-10 lg:grid-cols-3 lg:gap-3 lg:px-10 lg:py-14">
+        <div className="lg:!grid flex flex-col gap-6 items-center justify-center py-10 lg:!grid-cols-3 lg:!gap-3 lg:!px-10 lg:!py-14">
           {carList &&
             carList?.list?.map((ele) => (
               <CarListingCard key={ele?._id} item={ele} />
@@ -167,7 +167,7 @@ const Home = () => {
       {/* upcoming-cars */}
       <div className="my-14 px-2">
         <div className="w-full">
-          <div className="lg:flex lg:justify-between px-4 lg:px-2 lg:pb-2">
+          <div className="lg:!flex lg:!justify-between px-4 lg:!px-2 lg:!pb-2">
             <div className="text-lg  tracking-widest font-medium">
               <span className="text-blue-400">On The Way</span>
               <h1 className="text-4xl font-bold">Upcoming Cars</h1>
@@ -175,7 +175,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="lg:grid flex flex-col gap-6 items-center justify-center py-10 lg:grid-cols-3 lg:gap-3 lg:px-10 lg:py-14">
+        <div className="lg:!grid flex flex-col gap-6 items-center justify-center py-10 lg:!grid-cols-3 lg:!gap-3 lg:!px-10 lg:!py-14">
           {carList &&
             carList?.list
               ?.filter((ele, i) => i < 3)
@@ -185,7 +185,7 @@ const Home = () => {
       {/* used-cars*/}
       <div className="my-14 px-2">
         <div className="w-full">
-          <div className="lg:flex lg:justify-between px-4 lg:px-2 lg:pb-2">
+          <div className="lg:!flex lg:!justify-between px-4 lg:!px-2 lg:!pb-2">
             <div className="text-lg  tracking-widest font-medium">
               <span className="text-blue-400">Used Cars</span>
               <h1 className="text-4xl font-bold">Top Rated Used Cars</h1>
@@ -193,7 +193,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="lg:grid flex flex-col gap-6 items-center justify-center py-10 lg:grid-cols-3 lg:gap-3 lg:px-10 lg:py-14">
+        <div className="lg:!grid flex flex-col gap-6 items-center justify-center py-10 lg:!grid-cols-3 lg:!gap-3 lg:!px-10 lg:!py-14">
           {carList &&
             carList?.list
               ?.filter((ele, i) => i < 3)
@@ -204,7 +204,7 @@ const Home = () => {
       {/* News and Car Bids */}
       <div className="my-14 px-2">
         <div className="w-full">
-          <div className="lg:flex lg:justify-between px-4 lg:px-2 lg:pb-2">
+          <div className="lg:!flex lg:!justify-between px-4 lg:!px-2 lg:!pb-2">
             <div className="text-lg  tracking-widest font-medium">
               <span className="text-blue-400">News and Articles</span>
               <h1 className="text-4xl font-bold">Latest News and Car Bids.</h1>
@@ -212,7 +212,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="lg:grid lg:grid-cols-3 lg:gap-3 lg:px-10 lg:py-14 flex flex-col gap-6 items-center">
+        <div className="lg:!grid lg:!grid-cols-3 lg:!gap-3 lg:!px-10 lg:!py-14 flex flex-col gap-6 items-center">
           {carList &&
             carList?.list
               ?.filter((ele, i) => i < 3)
@@ -232,18 +232,18 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="lg:flex w-full lg:h-full lg:px-14 py-14 relative">
-          <div className="hidden lg:block w-1/4 h-auto">
+        <div className="lg:!flex w-full lg:!h-full lg:!px-14 py-14 relative">
+          <div className="hidden lg:!block w-1/4 h-auto">
             <img
               src="https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/home1/recommended-img.png"
               alt=""
               className="object-contain"
             />
           </div>
-          <div className="lg:w-3/4 m-auto">
+          <div className="lg:!w-3/4 m-auto">
             <ReviewSlider />
           </div>
-          <div className="lg:hidden w-1/4 h-auto absolute  left-1 bottom-0">
+          <div className="lg:!hidden w-1/4 h-auto absolute  left-1 bottom-0">
             <img
               src="https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/home1/recommended-img.png"
               alt=""

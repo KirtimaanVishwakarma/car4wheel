@@ -29,9 +29,9 @@ const CarListing = () => {
   return (
     <Main>
       <HeroSection />
-      <div className="flex w-full py-4 pb-10 lg:py-14 lg:px-12 px-4">
-        <div className="flex flex-col-reverse lg:flex-row w-full gap-4 justify-between mt-6 ">
-          <section className="lg:w-1/3 w-auto">
+      <div className="flex w-full py-4 pb-10 lg:!py-14 lg:!px-12 px-4">
+        <div className="flex flex-col-reverse lg:!flex-row w-full gap-4 justify-between mt-6 ">
+          <section className="lg:!w-1/3 w-auto">
             <div className="flex gap-8 mb-2 max-w-md mx-auto mt-8 py-2">
               <h1>Search filter</h1>
               <div className="flex items-center">
@@ -226,9 +226,9 @@ const CarListing = () => {
 
                       {/* listing  */}
 
-          <section className="lg:w-2/3 w-auto">
+          <section className="lg:!w-2/3 w-auto">
             <h1 className="mt-4 mb-10">Showing {carList && carList?.totalElement} car available in stock</h1>
-            <div className="grid lg:grid-cols-2 grid-row gap-5">
+            <div className="grid lg:!grid-cols-2 grid-row gap-5">
               {carList && carList?.list?.map((ele) => (
                 <div key={ele?._id} className="">
                   <CarListingCard item={ele}/>

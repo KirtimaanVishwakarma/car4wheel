@@ -1,20 +1,19 @@
-import { useEffect, useMemo, useState } from "react";
-import Modal from "../../components/modal";
-import AdminMain from "../../utils/adminMain";
-import Table from "../../components/forms/tabel";
-import FormWrapper from "../../components/forms/formWrapper";
-import { BrandForm } from "../../utils/constant";
-import Button from "../../components/forms/button";
-import { Image } from "antd";
-import Loader from "../../assets/loader/loader";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useMemo, useState } from 'react';
+import Modal from '../../components/modal';
+import AdminMain from '../../utils/adminMain';
+import Table from '../../components/forms/tabel';
+import FormWrapper from '../../components/forms/formWrapper';
+import { BrandForm } from '../../utils/constant';
+import Button from '../../components/forms/button';
+import { Image } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   addBrand,
   deleteBrand,
   getBrandList,
-} from "../../redux/actions/brandAction";
-import { CiEdit } from "react-icons/ci";
-import { MdDeleteForever } from "react-icons/md";
+} from '../../redux/actions/brandAction';
+import { CiEdit } from 'react-icons/ci';
+import { MdDeleteForever } from 'react-icons/md';
 
 const BrandListing = () => {
   const [modal, setModal] = useState(false);
@@ -22,19 +21,20 @@ const BrandListing = () => {
   const [file, setFile] = useState();
   const [formObj, setFormObj] = useState();
   const [refetch, setRefetch] = useState(false);
+  const [pageIndex,setPageIndex]=useState(0)
   const columns = useMemo(
     () => [
       {
-        Header: "Id",
-        accessor: "_id",
+        Header: 'Id',
+        accessor: '_id',
       },
       {
-        Header: "Brand Name",
-        accessor: "name",
+        Header: 'Brand Name',
+        accessor: 'name',
       },
       {
-        Header: "Image",
-        accessor: "logo",
+        Header: 'Image',
+        accessor: 'logo',
         Cell: ({ value }) => (
           <Image
             src={value?.url}
@@ -44,18 +44,18 @@ const BrandListing = () => {
         ),
       },
       {
-        Header: "Action",
-        accessor: "action",
+        Header: 'Action',
+        accessor: 'action',
         Cell: ({ row }) => (
           <div className="flex gap-2">
-            {" "}
+            {' '}
             <div data-tip="Edit" className="tooltip">
               <button
                 className="btn btn-square btn-sm  hover:bg-green-300"
                 // onClick={() => deleteCarHandler(row?.original?._id)}
               >
                 <CiEdit
-                  style={{ width: "65%", height: "100%" }}
+                  style={{ width: '65%', height: '100%' }}
                   className="text-green-700  hover:text-white-0"
                 />
               </button>
@@ -66,7 +66,7 @@ const BrandListing = () => {
                 onClick={() => deleteBrandHandler(row?.original?._id)}
               >
                 <MdDeleteForever
-                  style={{ width: "65%", height: "100%" }}
+                  style={{ width: '65%', height: '100%' }}
                   className="text-red-700  hover:text-white-0"
                 />
               </button>
@@ -90,8 +90,8 @@ const BrandListing = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     const myForm = new FormData();
-    myForm.append("file", file);
-    myForm.append("name", formObj.name);
+    myForm.append('file', file);
+    myForm.append('name', formObj.name);
     dispatch(addBrand(myForm));
     setRefetch(!refetch);
     setModal(false);
@@ -102,17 +102,15 @@ const BrandListing = () => {
   }, [dispatch, getBrand, message]);
   useEffect(() => {
     if (error) {
-      dispatch({ type: "clearError" });
+      dispatch({ type: 'clearError' });
     }
     if (message) {
-      dispatch({ type: "clearMessage" });
+      dispatch({ type: 'clearMessage' });
     }
   }, [dispatch, error, message]);
-  if (loading) {
-    return <Loader />;
-  }
+
   return (
-    <AdminMain pageName={"Brands"}>
+    <AdminMain pageName={'Brands'}>
       <div className="flex justify-end">
         <div className="w-fit">
           <Button
@@ -122,12 +120,20 @@ const BrandListing = () => {
           />
         </div>
       </div>
-      <Table columns={columns} data={brandList?.list} />
+      <Table
+        columns={columns}
+        data={brandList?.list}
+        loading={loading}
+        pageCount={Math.ceil(brandList?.totalElement / brandList?.size)}
+        totalElements={brandList?.totalElement}
+        setPageIndex={setPageIndex}
+        manualPage={pageIndex}
+      />
       {modal && (
         <Modal
           setModal={modalHandler}
-          heading={"Add New Brand"}
-          maxWidth={"max-w-[50%]"}
+          heading={'Add New Brand'}
+          maxWidth={'max-w-[50%]'}
         >
           <div className="p-4">
             <form onSubmit={submitHandler}>

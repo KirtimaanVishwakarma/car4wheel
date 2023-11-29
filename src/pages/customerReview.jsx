@@ -23,8 +23,8 @@ const CustomerReview = () => {
   return (
     <Main>
       <HeroSection />
-      <div className="lg:mx-14 my-20 mx-4">
-        <div className="grid lg:grid-cols-3 gap-6">
+      <div className="lg:!mx-14 my-20 mx-4">
+        <div className="grid lg:!grid-cols-3 gap-6">
           {reviewList &&
             reviewList?.list?.map((ele) => (
               <CustomerReviewCard  item={ele} />

@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
+// import { useForm } from 'react-hook-form';
 import HeroSection from "../components/heroSection";
+import {  toast } from 'react-toastify';
 import { Image } from "antd";
 import {
   PiCheckCircleThin,
@@ -128,26 +130,33 @@ const CarInfo = () => {
 
   const carInfo = [
     {
-      img: <PiGaugeThin className="w-8 h-8  lg:mb-4  text-gray-400" />,
-      header: `${details?.car?.odometer} kms`,
-      subheader: "Odometer",
+      img: <PiGaugeThin className="w-8 h-8  lg:!mb-4  text-gray-400" />,
+      header: 'Odometer',
+      subheader: `${details?.car?.odometer} kms`,
     },
     {
       img: <PiEngineThin className="w-8 h-8 mb-4  text-gray-400" />,
-      header: `${formatCurrency(details?.car?.engineSize)} cc`,
-      subheader: "Engine",
+      header: 'Engine',
+      subheader: `${formatCurrency(details?.car?.engineSize)} cc`,
     },
     {
       img: <PiGasPumpThin className="w-8 h-8 mb-4  text-gray-400" />,
-      header: details?.car?.fuelType[0],
-      subheader: "Fuel Type",
+      header: 'Fuel type',
+      subheader: details?.car?.fuelType[0],
     },
     {
       img: <PiCarThin className="w-8 h-8 mb-4  text-gray-400" />,
-      header: details?.car?.condition,
-      subheader: "Condition",
+      header: 'Condition',
+      subheader: details?.car?.condition,
     },
   ];
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   setValue,
+  //   // getValues,
+  //   formState: { errors },
+  // } = useForm();
   const submitHandler = async (e) => {
     e.preventDefault();
     const body = {
@@ -158,6 +167,11 @@ const CarInfo = () => {
       message: inputObj?.message,
     };
     dispatch(addInquiry(body));
+
+    // toast.success("Message sent successfully");
+  
+      
+    
   };
   useEffect(() => {
     dispatch(getAllCars(4));
@@ -175,7 +189,7 @@ const CarInfo = () => {
   return (
     <Main>
       <HeroSection />
-      <div className="flex lg:flex-row flex-col gap-6 px-2 lg:my-14 py-14 lg:px-10">
+      <div className="flex lg:!flex-row flex-col gap-6 px-2 lg:!my-14 py-14 lg:!px-10">
         <section className="flex flex-[65%] flex-col">
           <Image
             src={details?.car?.images?.url}
@@ -186,7 +200,7 @@ const CarInfo = () => {
           {/* car info */}
           <div className="mt-10">
             <div className="font-bold  text-xl">Car Info</div>
-            <div className="grid grid-cols-2 gap-y-3 items-center justify-between lg:flex mt-5">
+            <div className="grid grid-cols-2 gap-y-3 items-center justify-between lg:!flex mt-5">
               {carInfo.map((ele, i) => (
                 <div key={i} className="flex justify-center items-center gap-2">
                   {ele.img}
@@ -203,7 +217,7 @@ const CarInfo = () => {
             {/* key features */}
             <div className="mt-14 ">
               <h1 className="font-bold  text-xl">Key Features</h1>
-              <div className="grid rounded-lg p-4 border  lg:grid-cols-4 mx-0 gap-4 mt-4">
+              <div className="grid rounded-lg p-4 border  lg:!grid-cols-4 mx-0 gap-4 mt-4">
                 {details &&
                   details?.car?.features[0]?.split(",")?.map((item, i) => (
                     <div key={i} className="flex items-center gap-2">
@@ -220,7 +234,7 @@ const CarInfo = () => {
           {/* overviews */}
           <div className="mt-14">
             <h1 className="font-bold  text-xl">Overviews</h1>
-            <div className="lg:grid rounded-lg p-4 border lg:grid-cols-2 gap-x-14 mt-4">
+            <div className="lg:!grid rounded-lg p-4 border lg:!grid-cols-2 gap-x-14 mt-4">
               {overviews.map((item, i) => (
                 <div key={i} className="">
                   <ul className="flex justify-between h-10 items-center">
@@ -235,7 +249,7 @@ const CarInfo = () => {
           {/* Engine Performance */}
           <div className="mt-14">
             <h1 className="font-bold  text-xl">Engine Performance</h1>
-            <div className="lg:grid rounded-lg p-4 border lg:grid-cols-2 gap-x-14 mt-4">
+            <div className="lg:!grid rounded-lg p-4 border lg:!grid-cols-2 gap-x-14 mt-4">
               {enginePerformance.map((item, i) => (
                 <div key={i} className="">
                   <ul className="flex justify-between h-10 items-center">
@@ -298,7 +312,7 @@ const CarInfo = () => {
 
           {/* form  */}
           <div className="w-full rounded-lg bg-white-0 bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
-            <div className="p-4 lg:p-8 flex flex-col gap-3">
+            <div className="p-4 lg:!p-8 flex flex-col gap-3">
               <header className="font-semibold text-2xl">
                 To More Inquiry
               </header>

@@ -1,21 +1,20 @@
-import { useEffect, useMemo, useState } from "react";
-import Modal from "../../components/modal";
-import AdminMain from "../../utils/adminMain";
-import Table from "../../components/forms/tabel";
-import FormWrapper from "../../components/forms/formWrapper";
-import { ReviewForm } from "../../utils/constant";
-import Button from "../../components/forms/button";
-import { Image } from "antd";
-import Loader from "../../assets/loader/loader";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useMemo, useState } from 'react';
+import Modal from '../../components/modal';
+import AdminMain from '../../utils/adminMain';
+import Table from '../../components/forms/tabel';
+import FormWrapper from '../../components/forms/formWrapper';
+import { ReviewForm } from '../../utils/constant';
+import Button from '../../components/forms/button';
+import { Image } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   addReview,
   deleteReview,
   getReviewList,
-} from "../../redux/actions/reviewAction";
-import { getBrandList } from "../../redux/actions/brandAction";
-import { MdDeleteForever } from "react-icons/md";
-import { CiEdit } from "react-icons/ci";
+} from '../../redux/actions/reviewAction';
+import { getBrandList } from '../../redux/actions/brandAction';
+import { MdDeleteForever } from 'react-icons/md';
+import { CiEdit } from 'react-icons/ci';
 
 const ReviewListing = () => {
   const [modal, setModal] = useState(false);
@@ -23,30 +22,31 @@ const ReviewListing = () => {
   const [file, setFile] = useState();
   const [formObj, setFormObj] = useState();
   const [refetch, setRefetch] = useState(false);
+  const [pageIndex, setPageIndex] = useState(0);
   const columns = useMemo(
     () => [
       {
-        Header: "Image",
-        accessor: "image",
+        Header: 'Image',
+        accessor: 'image',
         Cell: ({ value }) => (
           <Image src={value?.url} className="!h-12" alt={value?.public_id} />
         ),
       },
       {
-        Header: "Customer Name",
-        accessor: "customerName",
+        Header: 'Customer Name',
+        accessor: 'customerName',
       },
       {
-        Header: "Brand Name",
-        accessor: "brand",
+        Header: 'Brand Name',
+        accessor: 'brand',
       },
       {
-        Header: "Model",
-        accessor: "model",
+        Header: 'Model',
+        accessor: 'model',
       },
       {
-        Header: "Review",
-        accessor: "review",
+        Header: 'Review',
+        accessor: 'review',
         Cell: ({ value }) => (
           <div className="group relative whitespace-nowrap">
             <div className="pointer-events-none w-44 overflow-hidden truncate">
@@ -59,8 +59,8 @@ const ReviewListing = () => {
         ),
       },
       {
-        Header: "Action",
-        accessor: "action",
+        Header: 'Action',
+        accessor: 'action',
         Cell: ({ row }) => (
           <div className="flex gap-2">
             <div data-tip="Edit" className="tooltip">
@@ -69,7 +69,7 @@ const ReviewListing = () => {
                 // onClick={() => deleteCarHandler(row?.original?._id)}
               >
                 <CiEdit
-                  style={{ width: "65%", height: "100%" }}
+                  style={{ width: '65%', height: '100%' }}
                   className="text-green-700  hover:text-white-0"
                 />
               </button>
@@ -80,7 +80,7 @@ const ReviewListing = () => {
                 onClick={() => deleteReviewHandler(row?.original?._id)}
               >
                 <MdDeleteForever
-                  style={{ width: "65%", height: "100%" }}
+                  style={{ width: '65%', height: '100%' }}
                   className="text-red-700  hover:text-white-0"
                 />
               </button>
@@ -105,11 +105,11 @@ const ReviewListing = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     const myForm = new FormData();
-    myForm.append("file", file);
-    myForm.append("customerName", formObj.customerName);
-    myForm.append("brand", formObj.brand);
-    myForm.append("model", formObj.model);
-    myForm.append("review", formObj.review);
+    myForm.append('file', file);
+    myForm.append('customerName', formObj.customerName);
+    myForm.append('brand', formObj.brand);
+    myForm.append('model', formObj.model);
+    myForm.append('review', formObj.review);
     dispatch(addReview(myForm));
     setRefetch(!refetch);
     setModal(false);
@@ -122,7 +122,7 @@ const ReviewListing = () => {
     dispatch(getBrandList());
   }, [dispatch]);
   useEffect(() => {
-    const brand = ReviewForm.find((ele) => ele.id === "brand");
+    const brand = ReviewForm.find((ele) => ele.id === 'brand');
     const list = brandList?.list?.map((ele) => {
       return { label: ele.name, value: ele.name };
     });
@@ -130,17 +130,15 @@ const ReviewListing = () => {
   }, [dispatch, brandList]);
   useEffect(() => {
     if (error) {
-      dispatch({ type: "clearError" });
+      dispatch({ type: 'clearError' });
     }
     if (message) {
-      dispatch({ type: "clearMessage" });
+      dispatch({ type: 'clearMessage' });
     }
   }, [dispatch, error, message]);
-  if (loading) {
-    return <Loader />;
-  }
+
   return (
-    <AdminMain pageName={"Reviews"}>
+    <AdminMain pageName={'Reviews'}>
       <div className="flex justify-end">
         <div className="w-fit">
           <Button
@@ -150,12 +148,20 @@ const ReviewListing = () => {
           />
         </div>
       </div>
-      <Table columns={columns} data={reviewList?.list} />
+      <Table
+        columns={columns}
+        data={reviewList?.list}
+        loading={loading}
+        pageCount={Math.ceil(reviewList?.totalElement / reviewList?.size)}
+        totalElements={reviewList?.totalElement}
+        setPageIndex={setPageIndex}
+        manualPage={pageIndex}
+      />
       {modal && (
         <Modal
           setModal={modalHandler}
-          heading={"Add New Review"}
-          maxWidth={"max-w-[50%]"}
+          heading={'Add New Review'}
+          maxWidth={'max-w-[50%]'}
         >
           <div className="p-4">
             <form onSubmit={submitHandler}>

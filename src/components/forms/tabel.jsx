@@ -5,6 +5,7 @@ import { usePagination, useTable } from 'react-table';
 // import Loader from '../loader';
 import TablePagination from '../forms/tablePagination';
 import { Empty } from 'antd';
+import Loader from '../tableLoader';
 
 
 const Table = ({
@@ -61,11 +62,10 @@ const Table = ({
 
   return (
     <>
-      <div className="relative mb-6 overflow-x-auto">
+      <div className="relative mb-6 overflow-x-auto min-h-[80%]">
         {loading && (
           <div className="absolute left-1/2 flex h-96 items-center justify-center">
-            {/* <Loader /> */}
-            Loading...
+            <Loader />
           </div>
         )}
         <table
@@ -135,7 +135,7 @@ const Table = ({
               gotoPage(pageNum);
             }}
             totalElements={totalElements}
-            activePage={pageIndex}
+            activePage={manualPage}
           />
         </div>
       )}

@@ -44,14 +44,14 @@ const Footer = () => {
 
   ];
   const socailLinks = [
-    { icon: <BsFacebook className="h-[80%] lg:h-6 lg:w-6"/>, link: "" },
-    { icon: <BsInstagram className="h-[80%] lg:h-6 lg:w-6 instagram rounded-lg"/>, link: "" },
-    { icon: <PiYoutubeLogoLight className="h-[80%] w-full lg:h-6 lg:w-6 rounded-lg border-solid border border-blue-200 bg-red-700 overflow-none"/>, link: "" },
+    { icon: <BsFacebook className="h-[80%] lg:!h-6 lg:!w-6"/>, link: "" },
+    { icon: <BsInstagram className="h-[80%] lg:!h-6 lg:!w-6 instagram rounded-lg"/>, link: "" },
+    { icon: <PiYoutubeLogoLight className="h-[80%] w-full lg:!h-6 lg:!w-6 rounded-lg border-solid border border-blue-200 bg-red-700 overflow-none"/>, link: "" },
   ]
   return (
-    <div className="bg-blue-500 py-14 pb-0 lg:px-6 p-3 ">
-      <div className="flex lg:flex-row gap-10 flex-col lg:h-full items-center  lg:gap-20 mb-12">
-      <div className="flex w-full ps-5 lg:justify-between gap-12 lg:text-start">
+    <div className="bg-blue-500 py-14 pb-0 lg:!px-6 p-3 ">
+      <div className="flex lg:!flex-row gap-10 flex-col lg:!h-full items-center  lg:!gap-20 mb-12">
+      <div className="flex w-full ps-5 lg:!justify-between gap-12 lg:!text-start">
         {footerLists.map((item, i) => (
           <div key={i} className=" flex flex-col gap-4">
             {item.map((ele, index) => {
@@ -76,14 +76,14 @@ const Footer = () => {
       </div>
       </div>
           
-      <div className="flex lg:flex-row flex-col gap-4 lg:px-0 px-10 items-center lg:justify-between py-4 border-b border-gray-100">
+      <div className="flex lg:!flex-row flex-col gap-4 lg:!px-0 px-10 items-center lg:!justify-between py-4 border-b border-gray-100">
         <img src={FooteLogo} alt="FooteLogo" />
         <div className="flex items-center gap-2">
           <img src={CallIcon} className="h-10 invert" alt="" />
           <div>
             <header className="text-blue-200 text-sm font-semibold">To More Inquiry</header>
             <header>
-            <a href="tel:+917985936925" className="font-semibold text-lg">+990-737 621 432</a>
+            <a href="tel:+919129430979" className="font-semibold text-lg text-white-0">+91-9129430979</a>
             </header>
           </div>
         </div>
@@ -92,15 +92,15 @@ const Footer = () => {
           <div>
             <header className="text-blue-200 text-sm font-semibold">To Send Email</header>
             <header className="font-semibold text-xl">
-            <a href='mailto:Smart4Wheels2628@gmail.com' className="font-semibold text-lg">Smart4Wheels2628@gmail.com</a>
+            <a href='mailto:Smart4Wheels2628@gmail.com' className="font-semibold text-lg text-white-0">Smart4Wheels2628@gmail.com</a>
             </header>
           </div>
         </div>
         <header className="text-sm font-semibold text-blue-200">Advertise With Us</header>
       </div>
-      <div className="py-4 flex lg:flex-row flex-col gap-3 items-center lg:justify-between">
+      <div className="py-4 flex lg:!flex-row flex-col gap-3 items-center lg:!justify-between">
         <header className="flex flex-row gap-2 items-center">Copyright 2023 <div className="text- text-blue-200">DRIVCO</div> <div className="flex gap-2 items-center">| Design By  <div className="text-blue-200">Egens Lab</div> </div> </header>
-        <div className="flex lg:gap-4 gap-6 items-center text-blue-200">
+        <div className="flex lg:!gap-4 gap-6 items-center text-blue-200">
           <header>Follow Drivco:</header>
           
           {socailLinks.map((ele,i)=>(

@@ -11,9 +11,9 @@ const DateInput = ({ item, setInputObj }) => {
   return (
     <div className="flex flex-col ">
       <label htmlFor={""} className="mb-2">
-        {item?.label} <span className="text-red-500">*</span>
+        {item?.label} {item?.required &&<span className='text-red-500'>*</span>}
       </label>
-      <DatePicker
+      <DatePicker required= {item?.required && true}
         placeholder={item?.placeholder}
         size={"large"}
         onChange={onChange}
