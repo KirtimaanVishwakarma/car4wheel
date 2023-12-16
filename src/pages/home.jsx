@@ -55,12 +55,16 @@ const Home = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    const price = inputObj.budget.split("-");
-    console.log({
-      ["price[gte]"]: price[0],
-      ["price[lte]"]: price[1],
+    // const price = inputObj?.budget?.split("-");
+    const param = {
+      // ["price[gte]"]: price[0],
+      // ["price[lte]"]: price[1],
+      price: inputObj?.budget,
       bodyType: inputObj.vehicles,
-    });
+    };
+    const queryParams = new URLSearchParams(param).toString();
+    const url = `/car-lists?${queryParams}`;
+    navigate(url);
   };
   if (loading) {
     return <Loader />;

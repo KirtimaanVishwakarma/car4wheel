@@ -76,6 +76,7 @@ export const homeForm = [
     id: "budget",
     label: "Select Budget (in Lakhs)",
     type: "select",
+    required: true,
     placeholder: "Ex: 1-5 lakhs",
     options: [
       { label: "1-3 Lakh", value: "100000-300000" },
@@ -88,6 +89,7 @@ export const homeForm = [
     id: "vehicles",
     label: "Select Vehicle",
     type: "select",
+    required: true,
     placeholder: "Ex: Sedan",
     options: [
       { label: "Hatchback", value: "hatchback" },
