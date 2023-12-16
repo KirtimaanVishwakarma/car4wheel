@@ -63,7 +63,7 @@ const SpecialOffer = () => {
       </div>
       <div className="block mt-52 lg:!mt-26 mb-10 lg:!my-[11rem] mx-4  lg:!mx-14">
         <h1 className="ps-4 mb-4 mt-4 text-gray-500">
-          Showing 2,928 car available in stock
+          Showing {offerList && offerList?.elements} car available in stock
         </h1>
         <div className="grid lg:!grid-cols-3 gap-8">
           {offerList &&

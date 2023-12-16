@@ -12,7 +12,7 @@ export const SpecialOfferCard = ({ item }) => {
   const carSpecification = [
     {
       icon: <BsSpeedometer2 className="text-gray-600" />,
-      specification: item?.car?.mileage,
+      specification: `${item?.car?.mileage} kmpl`,
     },
     {
       icon: <BiGasPump className="text-gray-600" />,
@@ -35,34 +35,25 @@ export const SpecialOfferCard = ({ item }) => {
             />
           </div>
         </figure>
-        <div className="card-body flex flex-col gap-4 p-4">
+        <div className="card-body flex flex-col gap-2 !p-2">
           <div className="flex gap-2 items-center">
-            <div className="w-8 h-8 border border-blue-500 rounded-full flex items-center justify-center">
-              <SlLocationPin className="h-6 w-6 text-blue-500" />
+            <div className="w-6 h-6 border border-blue-500 rounded-full flex items-center justify-center">
+              <SlLocationPin className="w-4/5 text-blue-500" />
             </div>
             <h2 className="text-sm font-semibold">Padri Bazar, Gorakhpur</h2>
           </div>
 
-          <div className="font-semibold text-lg">
+          <div className="font-semibold text-base">
             <span className="capitalize mr-2"> {item?.car?.brand?.name}</span>
             <span className="uppercase">{item?.car?.model}</span>
           </div>
-          <div className="border-b border-t py-3 border-gray-300 gap-4 flex">
+          <div className="border-b border-t py-2  border-gray-300 gap-4 flex justify-between">
             {carSpecification.map((item, index) => (
               <div key={index} className="flex items-center gap-1">
                 {item.icon}
                 <h2 className="text-gray-500 text-sm">{item.specification} </h2>
               </div>
             ))}
-
-            {/* <div>
-            <BiGasPump />
-            <h2>Petrol + Gas</h2>
-         </div>
-         <div>
-            <TbEngine/>
-            <h2>Electric</h2>
-      </div> */}
           </div>
           <div className="grid grid-flow-col card-actions justify-between">
             <Link
@@ -71,7 +62,7 @@ export const SpecialOfferCard = ({ item }) => {
             >
               view more
             </Link>
-            <div className="ps-2">
+            <div className="ps-2 flex justify-between gap-2 items-center">
               <h2 className="font-bold text-lg">
                 ₹{formatCurrency(item?.specialOfferPrice)}
               </h2>

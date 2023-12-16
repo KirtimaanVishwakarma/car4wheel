@@ -1,30 +1,89 @@
-import React, { useEffect, useState } from 'react';
-import HeroSection from '../components/heroSection';
-import { IoIosCloseCircleOutline, IoIosClose } from 'react-icons/io';
-import { Checkbox } from 'antd';
-import CarListingCard from '../components/carListingCard';
+import React, { useEffect, useState } from "react";
+import { DatePicker, Space, Checkbox, Empty } from "antd";
+import HeroSection from "../components/heroSection";
+import { IoIosCloseCircleOutline, IoIosClose } from "react-icons/io";
+import CarListingCard from "../components/carListingCard";
+import { homeForm } from "../utils/constant";
 
-import { Slider, Switch } from 'antd';
-import Main from '../utils/main';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllCars } from '../redux/actions/car';
-import Loader from '../assets/loader/loader';
+import { Slider, Switch } from "antd";
+import Main from "../utils/main";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllCars } from "../redux/actions/car";
+import Loader from "../assets/loader/loader";
+import { useParams } from "react-router-dom";
+
+const onMinYearChange = (date, dateString) => {
+  console.log(date, dateString);
+};
+const onMaxYearChange = (date, dateString) => {
+  console.log(date, dateString);
+};
 
 const CarListing = () => {
-  const [selectedOption, setSelectedOption] = useState('');
-  const options = ['Option 1', 'Option 2', 'Option 3', 'Option 4'];
+  const [selectedValue, setSelectedValue] = useState(null);
+
+  const handleCheckboxChange = (value) => {
+    setSelectedValue(value);
+    console.log(value);
+  };
+
+  const [selectedOption, setSelectedOption] = useState("");
+  const options = ["Option 1", "Option 2", "Option 3", "Option 4"];
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
   };
 
   const dispatch = useDispatch();
   const { loading, carList } = useSelector((state) => state.cars);
+  const carsListing = carList?.list;
   useEffect(() => {
-    dispatch(getAllCars());
+    const searchParams = new URLSearchParams(location.search);
+    const price = searchParams.get("price");
+    const bodyType = searchParams.get("bodyType");
+    if (price && bodyType === "undefined") {
+      const testPrice = price?.split("-");
+      let searchObj;
+      if (!testPrice[1]) {
+        searchObj = {
+          "price[gte]": testPrice[0],
+        };
+      } else {
+        searchObj = {
+          "price[gte]": testPrice[0],
+          "price[lte]": testPrice[1],
+        };
+      }
+      dispatch(getAllCars(10, 1, "", searchObj));
+    } else if (price === "undefined" && bodyType) {
+      const searchObj = {
+        bodyType,
+      };
+      dispatch(getAllCars(10, 1, "", searchObj));
+    } else if (price && bodyType) {
+      const testPrice = price?.split("-");
+      let searchObj;
+      if (!testPrice[1]) {
+        searchObj = {
+          "price[gte]": testPrice[0],
+        };
+      } else {
+        searchObj = {
+          "price[gte]": testPrice[0],
+          "price[lte]": testPrice[1],
+        };
+      }
+      dispatch(getAllCars(10, 1, "", searchObj));
+    } else {
+      dispatch(getAllCars());
+    }
+  }, [location.search]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
   }, []);
-  useEffect(()=>{window.scrollTo(0, 0)},[])
-  if(loading){
-    return <Loader/>
+  const bodyTypeOptions = homeForm[1].options;
+
+  if (loading) {
+    return <Loader />;
   }
   return (
     <Main>
@@ -60,24 +119,24 @@ const CarListing = () => {
             <div className="mt-14">
               <div>
                 <div className="max-w-md mx-auto mt-8 p-4  rounded-lg bg-white-0 bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
-                  <h2 className="font-bold text-xl ">Make</h2>
+                  <h2 className="font-bold text-xl ">Brands</h2>
                   <div className="container">
                     <div>
                       <form action="">
                         <input
                           className="w-full px-3 py-2 h-10 mt-4 rounded-md"
                           type="text"
-                          placeholder="Search Make"
+                          placeholder="Search brand"
                         />
                       </form>
 
                       <div className="flex flex-col gap-2 mt-4">
-                        {[1, 2, 3, 4, 5].map((ele) => (
+                        {carsListing?.map((ele) => (
                           <Checkbox
-                            key={ele}
-                            onChange={() => console.log('check')}
+                            key={ele?._id}
+                            onChange={() => console.log("check")}
                           >
-                            Baleno (1234)
+                            {ele?.brand?.name}
                           </Checkbox>
                         ))}
                       </div>
@@ -88,120 +147,43 @@ const CarListing = () => {
                 <div className="max-w-md mx-auto mt-8 p-4 bg-gray-100 rounded-lg  bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
                   <h2 className="text-xl font-semibold mb-4">Year</h2>
                   <div className="flex justify-center gap-6">
-                    <form>
-                      <div className="">
-                        <select
-                          className="w-36 px-4 py-2 rounded-md"
-                          value={selectedOption}
-                          onChange={handleOptionChange}
-                        >
-                          <option value="" disabled className="">
-                            Min Year
-                          </option>
-                          {options.map((option, index) => (
-                            <option key={index} value={option}>
-                              {option}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    </form>
+                    <Space direction="vertical">
+                      <DatePicker onChange={onMinYearChange} picker="year" />
+                    </Space>
 
-                    <form>
-                      <div className="">
-                        <select
-                          className="w-36 px-4 py-2 rounded-md"
-                          value={selectedOption}
-                          onChange={handleOptionChange}
-                        >
-                          <option value="" disabled>
-                            Min Year
-                          </option>
-                          {options.map((option, index) => (
-                            <option key={index} value={option}>
-                              {option}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    </form>
+                    <Space direction="vertical">
+                      <DatePicker onChange={onMaxYearChange} picker="year" />
+                    </Space>
                   </div>
                 </div>
                 <div className="max-w-md mx-auto mt-8 p-4 bg-gray-100 rounded-lg bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
                   <h2 className="font-bold text-xl ">Body Type</h2>
                   <div className="container">
                     <div>
-                      <form action="">
-                        <input
-                          className="w-full px-3 py-2 h-10 mt-4 rounded-md"
-                          type="text"
-                          placeholder="Search Make"
-                        />
-                      </form>
                       <div className="flex flex-col gap-2 mt-4">
-                        {[1, 2, 3, 4, 5].map((ele) => (
+                        {bodyTypeOptions?.map((ele, i) => (
                           <Checkbox
-                            key={ele}
-                            onChange={() => console.log('check')}
+                            key={i} // Use a unique key for each option
+                            value={ele.value} // Set the value for each option
+                            checked={selectedValue === ele.value}
+                            onClick={() => handleCheckboxChange(ele.value)}
                           >
-                            Baleno (1234)
+                            {ele.label}
                           </Checkbox>
                         ))}
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="max-w-md mx-auto mt-8 p-4 bg-gray-100 rounded-lg  bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
-                  <h2 className="text-xl font-semibold mb-4">Year</h2>
-                  <div className="flex gap-6">
-                    <form>
-                      <div className="mb-4">
-                        <select
-                          className="w-full px-3 py-2 rounded-md"
-                          value={selectedOption}
-                          onChange={handleOptionChange}
-                        >
-                          <option value="" disabled>
-                            Min Year
-                          </option>
-                          {options.map((option, index) => (
-                            <option key={index} value={option}>
-                              {option}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    </form>
-
-                    <form>
-                      <div className="mb-4">
-                        <select
-                          className="w-full px-3 py-2 rounded-md"
-                          value={selectedOption}
-                          onChange={handleOptionChange}
-                        >
-                          <option value="" disabled>
-                            Min Year
-                          </option>
-                          {options.map((option, index) => (
-                            <option key={index} value={option}>
-                              {option}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    </form>
-                  </div>
-                </div>
                 <div className="max-w-md mx-auto mt-8 p-4 bg-gray-100 rounded-lg bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
                   <h2 className="text-xl font-semibold mb-4">Price</h2>
-                  <Slider range defaultValue={[0, 10]} />
+                  <Slider range defaultValue={[50000, 10000000]} />
                   <div className="flex gap-6 h-10 rounded-lg items-center mt-5 mb-4">
                     <span className="px-10 py-2 bg-white-0 rounded-lg">
                       $333
                     </span>
                     <span className="px-10 py-2 bg-white-0 rounded-lg">
-                      {' '}
+                      {" "}
                       $444
                     </span>
                   </div>
@@ -209,13 +191,14 @@ const CarListing = () => {
                 <div className="max-w-md mx-auto mt-8 p-4 rounded-lg bg-white-0 bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
                   <h2 className="font-bold text-xl ">Colours</h2>
                   <div className="grid grid-cols-2 gap-2 mt-4">
-                    {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((ele) => (
+                    {carsListing?.map((ele) => (
                       <Checkbox
                         className=""
-                        key={ele}
-                        onChange={() => console.log('check')}
+                        key={ele?._id}
+                        name="color"
+                        onChange={() => console.log("check")}
                       >
-                        <h1>Baleno (1234)</h1>
+                        <h1>{ele.color}</h1>
                       </Checkbox>
                     ))}
                   </div>
@@ -224,17 +207,24 @@ const CarListing = () => {
             </div>
           </section>
 
-                      {/* listing  */}
+          {/* listing  */}
 
           <section className="lg:!w-2/3 w-auto">
-            <h1 className="mt-4 mb-10">Showing {carList && carList?.totalElement} car available in stock</h1>
-            <div className="grid lg:!grid-cols-2 grid-row gap-5">
-              {carList && carList?.list?.map((ele) => (
-                <div key={ele?._id} className="">
-                  <CarListingCard item={ele}/>
-                </div>
-              ))}
-            </div>
+            <h1 className="mt-4 mb-10">
+              Showing {carList && carList?.elements} car available in stock
+            </h1>
+            {carList && carList?.elements > 0 ? (
+              <div className="grid lg:!grid-cols-2 grid-row gap-5">
+                {carList &&
+                  carList?.list?.map((ele) => (
+                    <div key={ele?._id} className="">
+                      <CarListingCard item={ele} />
+                    </div>
+                  ))}
+              </div>
+            ) : (
+              <Empty />
+            )}
           </section>
         </div>
       </div>
