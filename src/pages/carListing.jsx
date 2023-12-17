@@ -87,7 +87,11 @@ const CarListing = () => {
   }
   return (
     <Main>
-      <HeroSection />
+      <HeroSection
+        label={"Explore"}
+        heroText={"Smar4Wheels for Infinite Thrills!"}
+        content= {"Embark on a journey of automotive elegance with our handpicked selection of cars that resonate with the spirit of India."}
+      />
       <div className="flex w-full py-4 pb-10 lg:!py-14 lg:!px-12 px-4">
         <div className="flex flex-col-reverse lg:!flex-row w-full gap-4 justify-between mt-6 ">
           <section className="lg:!w-1/3 w-auto">
@@ -163,8 +167,8 @@ const CarListing = () => {
                       <div className="flex flex-col gap-2 mt-4">
                         {bodyTypeOptions?.map((ele, i) => (
                           <Checkbox
-                            key={i} // Use a unique key for each option
-                            value={ele.value} // Set the value for each option
+                            key={i}
+                            value={ele.value}
                             checked={selectedValue === ele.value}
                             onClick={() => handleCheckboxChange(ele.value)}
                           >

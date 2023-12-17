@@ -1,21 +1,28 @@
-import React, { useEffect } from 'react';
-import HeroSection from '../components/heroSection';
-import { AboutCard } from '../components/aboutCard';
-import { Button, Image } from 'antd';
-import Stepper from '../components/stepper';
-import WhyChoose from '../components/whyChoose'
-import Main from '../utils/main';
+import React, { useEffect } from "react";
+import HeroSection from "../components/heroSection";
+import { AboutCard } from "../components/aboutCard";
+import { Button, Image } from "antd";
+import Stepper from "../components/stepper";
+import WhyChoose from "../components/whyChoose";
+import Main from "../utils/main";
 
 const About = () => {
-  useEffect(()=>{window.scrollTo(0, 0)},[])
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <Main>
-      <HeroSection name={'about'}/>
+      <HeroSection
+        name={"about"}
+        label={"We are"}
+        heroText={"Driving Passion, Defining Excellence."}
+        content = {"At Smart4wheels, we are not just a platform, we are passionate individuals united by a love for cars."}
+      />
 
       {/* welcome section start  */}
       <div className="py-14 px-3 lg:!p-14 w-full'">
         <div className="flex flex-col items-center">
-          {' '}
+          {" "}
           <div className="lg:!w-4/5 w-auto flex flex-col gap-7 ">
             <div>
               <header className="font-medium text-lg text-center text-blue-400">
@@ -53,6 +60,7 @@ const About = () => {
 
       {/* Why Only Choose Drivco */}
       <WhyChoose />
+
       {/* <div className="px-10 py-8  bg-white bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
         <div className='mx-4'>
           <div className="text-center w-4/5 m-auto mb-8">
@@ -142,14 +150,12 @@ const About = () => {
                   </p>
                 </div>
               </div>
-              </Stepper>
+            </Stepper>
           ))}
         </div>
       </div>
 
-
       {/* customer review  */}
-     
     </Main>
   );
 };

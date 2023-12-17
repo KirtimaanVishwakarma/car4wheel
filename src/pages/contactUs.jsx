@@ -70,7 +70,7 @@ const ContactUs = () => {
   }
   return (
     <Main>
-      <HeroSection />
+      <HeroSection label={'Get in touch'} heroText = {"We're here for you! Reach out to Smart4Wheels."} content={"Your inquiries are our priority. Your journey starts with a conversation, so drop us a line and let's navigate the road ahead together!"} />
       {/* contact form  */}
       <div className="lg:!m-14 m-4 flex lg:!flex-row flex-col gap-4">
         <div className="flex flex-col justify-between gap-6 w-full lg:!w-2/5 ">

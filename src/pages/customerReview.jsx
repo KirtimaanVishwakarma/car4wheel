@@ -22,7 +22,7 @@ const CustomerReview = () => {
   }
   return (
     <Main>
-      <HeroSection />
+      <HeroSection label={"Discover"} heroText={"The experiences that drive our reputation!"} content={"Explore what our valued customers have to say about their Smart4Wheels journey. Real stories, real satisfaction your road to trust begins here!"} />
       <div className="lg:!mx-14 my-20 mx-4">
         <div className="grid lg:!grid-cols-3 gap-6">
           {reviewList &&

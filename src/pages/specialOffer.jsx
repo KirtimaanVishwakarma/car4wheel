@@ -39,7 +39,11 @@ const SpecialOffer = () => {
   return (
     <Main>
       <div className="relative">
-        <HeroSection />
+        <HeroSection
+          label={"Grab"}
+          heroText={"Exclusive Deals, Drive Today!"}
+          content={"Exclusive Offers Tailored Just for You!"}
+        />
 
         <div className="border w-[90%]  right-5 rounded-2xl p-5 absolute lg:!w-[95%] top-[90%] bg-white-0 shadow lg:!top-[82%] lg:!left-8">
           <div className="h-full flex flex-col lg:!flex-row lg:!flex-1 gap-2 justify-between w-full">
