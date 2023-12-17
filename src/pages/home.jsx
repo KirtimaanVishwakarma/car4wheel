@@ -71,14 +71,14 @@ const Home = () => {
   }
   return (
     <Main>
-      <div className="lg:!px-14 px-3 lg:!py-14 bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
+      <div className="lg:!px-14 px-3 lg:!py-4 bg-cover bg-[url('https://demo-egenslab.b-cdn.net/html/drivco/preview/assets/img/inner-page/inner-bg.png')]">
         <div className=" flex lg:!flex-row  flex-col gap-8 py-14">
           <section className="flex flex-col gap-4">
-            <span className="flex items-center  lg:!gap-2 font-semibold lg:!font-bold text-lg lg:!text-2xl  text-blue-400">
+            <span className="flex items-center tracking-wider lg:!gap-2 font-semibold lg:!font-bold text-lg lg:!text-2xl  text-blue-400">
               Fastest Speed
               <GiSpeedometer />
             </span>
-            <h1 className="flex flex-col font-bold text-5xl lg:!text-7xl leading-tight text- text-blu text-blue-900">
+            <h1 className="flex flex-col font-bold text-5xl  leading-tight tracking-wider text-blue-900">
               To Best Way Buy
               <span>Dream Car.</span>
             </h1>

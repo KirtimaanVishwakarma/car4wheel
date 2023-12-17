@@ -160,15 +160,15 @@ const Auction = () => {
   useEffect(() => {
     dispatch(addInquiry());
   }, [dispatch]);
-  const { loading, getInquiry } = useSelector((state) => state.inquiry);
-  console.log(getInquiry);
+  // const { loading, getInquiry } = useSelector((state) => state.inquiry);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <Main>
-      <HeroSection />
+      <HeroSection heroText = {"Into Smart4Wheels Auctions adventure!"} content={"Grab the unbeatable deals that defy expectations. Your dream car is just a bid away!"} label = {'Dive'} />
       <div className="flex lg:!flex-row flex-col gap-6 px-2 lg:!my-14 py-14 lg:!px-10">
         <section className="flex flex-[65%] flex-col">
           <Image
